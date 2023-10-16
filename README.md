@@ -1,6 +1,18 @@
-# AirlineManagmentSystem
+# AirlineManagmentSystem ✈️🎫
 
-## List of Contents
+
+## Devs 💻
+
+**[Antonio Bečić](https://github.com/AntonioB27)**
+
+[![text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/antonio-be%C4%8Di%C4%87-9a006624b/)
+
+**[Matej Vavkan](https://github.com/v-matej)**
+
+[![text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matej-vaukan-88803049/)
+
+
+## List of Contents 📖
 * [Introduction](#introduction)
 * [Features](#features)
   * [Manager Features](#manager-features)
@@ -8,10 +20,10 @@
 * [Implementation](#implementation)
 * [Technologies](#technologies)
 
-## Introduction
+## Introduction 👓
 The Airline Ticket Reservation System is a Java-based project developed using the Spring Boot framework. In the fast-paced world of air travel, efficient and user-friendly reservation systems are essential for both airlines and passengers. This project aims to streamline the ticket reservation process, providing passengers with a seamless experience while offering airlines a robust and flexible platform to manage bookings.
 
-## Features
+## Features 💯
 Our system is equipped with many features for reservation and flight management services. Some of the features we implemented are:
 
 ### Manager Features:
@@ -41,11 +53,11 @@ Our system is equipped with many features for reservation and flight management 
   
 ## Implementation
 
-### Database setup
+### Database setup 
 ![a5f56be9-37b4-4ff0-b198-33f6e5752325](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/a5fd049e-df16-4080-8f46-085129ba490c)
 
 
- ## Technologies
+ ## Technologies 👨‍💻
   <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" height="70"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg" height="70"/>  
