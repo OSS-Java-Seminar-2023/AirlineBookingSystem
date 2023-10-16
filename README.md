@@ -42,6 +42,7 @@ Our system is equipped with many features for reservation and flight management 
 ## Implementation
 
 ### Database setup
+![a5f56be9-37b4-4ff0-b198-33f6e5752325](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/a5fd049e-df16-4080-8f46-085129ba490c)
 
 
  ## Technologies
