@@ -28,19 +28,14 @@ Our system is equipped with many features for reservation and flight management 
 
 ### Manager Features:
 1. **User Management:**
-   - Create, modify, and disable user accounts.
-   - Reset user passwords and unlock accounts.
-  
-2. **Employees Management:**
-   - Create, modify, and disable employee accounts.
-   - Assing and modify roles
-  
-3. **Passenger Management:**
-   - Create, modify, and delete passengers.
+   - Create, modify, and disable user accounts
+   - Reset user passwords and unlock accounts
+     
+2. **Passenger Management:**
+   - Create, modify, and delete passengers
    
-4. **Flight Management:**
-   - Create, modify, and delete flights.
-   - Manage what staff will be on the plane
+3. **Flight Management:**
+   - Create, modify, and delete flights
    - Manage the boarding and landing times and locations
   
 ### User Features:
@@ -48,14 +43,17 @@ Our system is equipped with many features for reservation and flight management 
    - Search for flights to and from designated locations and times
 
 2. **Buying tickets:**
-   - Buy tickets for one or many passengers
+   - Book tickets for one or many passengers
+   - Book a two-way flight 
    - Cancel the order
+  
+3. **Mail confirmations**
+   - Receive a mail confirmation for your ticket/s 
   
 ## Implementation
 
 ### Database setup 
-![a5f56be9-37b4-4ff0-b198-33f6e5752325](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/a5fd049e-df16-4080-8f46-085129ba490c)
-
+![WhatsApp Image 2023-10-22 at 17 04 07](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/e668e3ac-8968-4423-9bc2-f0a57a91d9e5)
 
  ## Technologies 👨‍💻
   <p align="center">
