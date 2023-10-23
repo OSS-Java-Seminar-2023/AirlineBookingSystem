@@ -18,6 +18,7 @@
   * [Manager Features](#manager-features)
   * [User Features](#user-features)
 * [Implementation](#implementation)
+  * [Database Setup](#database-setup)
 * [Technologies](#technologies)
 
 ## Introduction 👓
@@ -52,7 +53,7 @@ Our system is equipped with many features for reservation and flight management 
   
 ## Implementation 💡
 
-### Database setup 🗃️
+### Database Setup 🗃️
 ![WhatsApp Image 2023-10-22 at 17 04 07](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/e668e3ac-8968-4423-9bc2-f0a57a91d9e5)
 
  ## Technologies 👨‍💻
