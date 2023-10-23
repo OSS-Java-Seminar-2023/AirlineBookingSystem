@@ -23,7 +23,7 @@
 ## Introduction 👓
 The Airline Ticket Reservation System is a Java-based project developed using the Spring Boot framework. In the fast-paced world of air travel, efficient and user-friendly reservation systems are essential for both airlines and passengers. This project aims to streamline the ticket reservation process, providing passengers with a seamless experience while offering airlines a robust and flexible platform to manage bookings.
 
-## Features 💯
+## Features 📝
 Our system is equipped with many features for reservation and flight management services. Some of the features we implemented are:
 
 ### Manager Features:
@@ -50,9 +50,9 @@ Our system is equipped with many features for reservation and flight management 
 3. **Mail confirmations**
    - Receive a mail confirmation for your ticket/s 
   
-## Implementation
+## Implementation 💡
 
-### Database setup 
+### Database setup 🗃️
 ![WhatsApp Image 2023-10-22 at 17 04 07](https://github.com/OSS-Java-Seminar-2023/AirlineManagementSystem/assets/114333980/e668e3ac-8968-4423-9bc2-f0a57a91d9e5)
 
  ## Technologies 👨‍💻
