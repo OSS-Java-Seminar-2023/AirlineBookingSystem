@@ -1,4 +1,4 @@
-# AirlineManagmentSystem ✈️🎫
+# AirplaneTicketBookingSystem ✈️🎫
 
 
 ## Devs 💻
