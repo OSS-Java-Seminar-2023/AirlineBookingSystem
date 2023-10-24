@@ -55,7 +55,8 @@ Our system is equipped with many features for reservation and flight management 
 
 ### Database Setup 🗃️
 
-![Java_DB](https://github.com/OSS-Java-Seminar-2023/AirlineBookingSystem/assets/136986297/53a95beb-ab8d-4018-8c16-e8401da98f1b)
+![Java_DB](https://github.com/OSS-Java-Seminar-2023/AirlineBookingSystem/assets/136986297/30fca61e-c724-474e-afe1-46a3fff912c9)
+
 
  ## Technologies 👨‍💻
   <p align="center">
