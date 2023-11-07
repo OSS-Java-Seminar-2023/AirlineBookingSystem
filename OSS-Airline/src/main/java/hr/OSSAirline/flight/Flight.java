@@ -5,6 +5,7 @@ import hr.OSSAirline.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,8 @@ import java.sql.Date;
 @Entity
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id = UUID.randomUUID().toString();
     private String flightNumber;
     @ManyToOne
     @JoinColumn(name = "from_id")

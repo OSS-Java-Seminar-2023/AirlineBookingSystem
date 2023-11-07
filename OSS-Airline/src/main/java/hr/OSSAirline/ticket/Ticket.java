@@ -12,14 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.util.UUID;
 
 @Setter
 @Getter
 @Entity
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id = UUID.randomUUID().toString();
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private Passenger passenger;

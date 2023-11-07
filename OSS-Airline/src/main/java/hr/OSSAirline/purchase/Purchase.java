@@ -12,15 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.UUID;
 
 @Setter
 @Getter
 @Entity
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id = UUID.randomUUID().toString();
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
