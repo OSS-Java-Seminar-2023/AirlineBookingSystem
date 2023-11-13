@@ -15,8 +15,8 @@ import java.sql.Date;
 @Entity
 public class Flight {
     @Id
-    @Column
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @Column
     private String flightNumber;
     @ManyToOne

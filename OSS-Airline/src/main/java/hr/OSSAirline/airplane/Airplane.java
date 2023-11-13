@@ -11,8 +11,8 @@ import java.util.UUID;
 @Entity
 public class Airplane {
     @Id
-    @Column
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column
     private String registration;

@@ -14,8 +14,8 @@ import java.util.UUID;
 @Entity
 public class Ticket {
     @Id
-    @Column
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private Passenger passenger;

@@ -14,8 +14,8 @@ import java.util.UUID;
 @Entity
 public class Purchase {
     @Id
-    @Column
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne

@@ -13,8 +13,8 @@ import java.util.UUID;
 @Entity
 public class Seat {
     @Id
-    @Column
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;
