@@ -6,12 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Time;
 import java.sql.Date;
 
@@ -20,8 +15,9 @@ import java.sql.Date;
 @Entity
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private String id = UUID.randomUUID().toString();
+    @Column
     private String flightNumber;
     @ManyToOne
     @JoinColumn(name = "from_id")
@@ -32,9 +28,13 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "airplane_id")
     private Airplane airplane;
+    @Column
     private Date date;
+    @Column
     private Time time;
+    @Column
     private String gate;
+    @Column
     private Time duration;
 }
 

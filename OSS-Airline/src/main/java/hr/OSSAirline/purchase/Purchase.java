@@ -5,12 +5,7 @@ import hr.OSSAirline.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,14 +14,16 @@ import java.util.UUID;
 @Entity
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private String id = UUID.randomUUID().toString();
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
+    @Column
     private String paymentInfo;
+    @Column
     private Date paymentDate;
 
 }
