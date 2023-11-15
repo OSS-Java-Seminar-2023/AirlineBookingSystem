@@ -1,27 +1,22 @@
-package hr.OSSAirline.seat;
+package hr.OSSAirline.models;
 
-import hr.OSSAirline.flight.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-
 @Setter
 @Getter
 @Entity
-public class Seat {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @ManyToOne
-    @JoinColumn(name = "flight_id")
-    private Flight flight;
     @Column
-    private Float seatPrice;
+    private String username;
     @Column
-    private String seatClass;
-
+    private String password;
+    @Column
+    private String email;
 }
-

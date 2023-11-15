@@ -1,7 +1,5 @@
-package hr.OSSAirline.purchase;
+package hr.OSSAirline.models;
 
-import hr.OSSAirline.ticket.Ticket;
-import hr.OSSAirline.user.User;
 import lombok.Getter;
 import lombok.Setter;
 

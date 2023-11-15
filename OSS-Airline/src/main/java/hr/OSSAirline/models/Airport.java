@@ -1,4 +1,4 @@
-package hr.OSSAirline.user;
+package hr.OSSAirline.models;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +9,14 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
-public class User {
+public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column
-    private String username;
+    private String airportName;
     @Column
-    private String password;
-    @Column
-    private String email;
+    private String IATA;
+
 }
+

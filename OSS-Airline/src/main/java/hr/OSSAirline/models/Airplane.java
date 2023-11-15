@@ -1,4 +1,4 @@
-package hr.OSSAirline.airplane;
+package hr.OSSAirline.models;
 
 import lombok.Getter;
 import lombok.Setter;

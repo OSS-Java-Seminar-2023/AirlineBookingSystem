@@ -1,8 +1,8 @@
-package hr.OSSAirline.ticket;
+package hr.OSSAirline.models;
 
-import hr.OSSAirline.flight.Flight;
-import hr.OSSAirline.passenger.Passenger;
-import hr.OSSAirline.seat.Seat;
+import hr.OSSAirline.models.Flight;
+import hr.OSSAirline.models.Passenger;
+import hr.OSSAirline.models.Seat;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
-package hr.OSSAirline.flight;
+package hr.OSSAirline.models;
 
-import hr.OSSAirline.airplane.Airplane;
-import hr.OSSAirline.airport.Airport;
+import hr.OSSAirline.models.Airplane;
+import hr.OSSAirline.models.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
