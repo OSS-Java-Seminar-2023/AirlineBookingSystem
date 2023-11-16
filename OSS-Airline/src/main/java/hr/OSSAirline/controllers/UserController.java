@@ -5,15 +5,20 @@ import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+=======
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> eb38abf (tests)
 
-@Controller
+@RestController
 public class UserController {
 
+<<<<<<< HEAD
     public UserService userService;
 
     @Autowired
@@ -41,4 +46,8 @@ public class UserController {
 //        // Redirect to a success page or login page
 //        return "redirect:/login";
 //    }
+=======
+    @Autowired
+    public UserService userService;
+>>>>>>> eb38abf (tests)
 }
