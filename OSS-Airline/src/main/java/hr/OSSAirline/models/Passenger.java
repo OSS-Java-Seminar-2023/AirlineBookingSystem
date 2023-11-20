@@ -2,19 +2,19 @@ package hr.OSSAirline.models;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
+import jakarta.persistence.*;
 
 @Setter
 @Getter
 @Entity
 public class Passenger {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @UuidGenerator
+    private String id;
     @Column
     private String name;
     @Column
@@ -25,6 +25,6 @@ public class Passenger {
     private String PIN;
     @Column
     @DateTimeFormat
-    private Date DOB;
+    private java.sql.Date DOB;
 }
 

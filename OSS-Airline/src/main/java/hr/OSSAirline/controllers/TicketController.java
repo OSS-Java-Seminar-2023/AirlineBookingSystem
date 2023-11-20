@@ -1,17 +1,18 @@
 package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.repositories.TicketRepository;
+import hr.OSSAirline.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class TicketController {
 
-    public final TicketRepository ticketRepository;
+    public final TicketService ticketService;
 
     @Autowired
-    public TicketController(TicketRepository ticketRepository){
+    public TicketController(TicketService ticketService){
 
-        this.ticketRepository=ticketRepository;
+        this.ticketService=ticketService;
     }
 }

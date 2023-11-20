@@ -1,20 +1,19 @@
 package hr.OSSAirline.models;
 
-import hr.OSSAirline.models.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.UUID;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 @Setter
 @Getter
 @Entity
 public class Seat {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @UuidGenerator
+    private String id;
     @ManyToOne
     @JoinColumn(name = "flight_id")
     private Flight flight;

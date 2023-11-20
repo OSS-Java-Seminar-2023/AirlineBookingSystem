@@ -3,16 +3,17 @@ package hr.OSSAirline.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.UUID;
+import jakarta.persistence.*;
+
+import org.hibernate.annotations.UuidGenerator;
 
 @Setter
 @Getter
 @Entity
 public class Airport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @UuidGenerator
+    private String id;
     @Column
     private String airportName;
     @Column

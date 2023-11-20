@@ -3,17 +3,20 @@ package hr.OSSAirline.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
+
+
 import java.util.Date;
-import java.util.UUID;
 
 @Setter
 @Getter
 @Entity
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @UuidGenerator
+    private String id;
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne

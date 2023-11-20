@@ -1,15 +1,15 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.repositories.AirplaneRepository;
+import hr.OSSAirline.services.AirplaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class AirplaneController {
-    private final AirplaneRepository airplaneRepositoryrepository;
+    private final AirplaneService airplaneService;
 
     @Autowired
-    public AirplaneController(AirplaneRepository airplaneRepositoryrepository){
-        this.airplaneRepositoryrepository=airplaneRepositoryrepository;
+    public AirplaneController(AirplaneService airplaneService){
+        this.airplaneService=airplaneService;
     }
 }

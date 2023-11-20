@@ -1,22 +1,20 @@
 package hr.OSSAirline.models;
 
-import hr.OSSAirline.models.Airplane;
-import hr.OSSAirline.models.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-import javax.persistence.*;
-import java.sql.Time;
-import java.sql.Date;
+import jakarta.persistence.*;
+
+import org.hibernate.annotations.UuidGenerator;
+
 
 @Setter
 @Getter
 @Entity
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @UuidGenerator
+    private String id;
     @Column
     private String flightNumber;
     @ManyToOne
@@ -29,12 +27,12 @@ public class Flight {
     @JoinColumn(name = "airplane_id")
     private Airplane airplane;
     @Column
-    private Date date;
+    private java.sql.Date date;
     @Column
-    private Time time;
+    private java.sql.Time time;
     @Column
     private String gate;
     @Column
-    private Time duration;
+    private java.sql.Time duration;
 }
 
