@@ -7,12 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-<<<<<<< HEAD
 public interface UserRepository extends JpaRepository<User, String> {
-=======
-public interface UserRepository extends JpaRepository<User, UUID> {
-
-    @Query
-    User getUserByUsername(String username);
->>>>>>> eb38abf (tests)
+    public User getUserByUsername(String username);
 }
