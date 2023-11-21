@@ -18,10 +18,10 @@ public class Purchase {
     private String id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private hr.OSSAirline.models.user user;
+    private hr.OSSAirline.models.User user;
     @ManyToOne
     @JoinColumn(name = "ticket_id")
-    private hr.OSSAirline.models.ticket ticket;
+    private hr.OSSAirline.models.Ticket ticket;
     @Column
     private String paymentInfo;
     @Column
