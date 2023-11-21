@@ -10,7 +10,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Getter
 @Entity
-public class Airport {
+public class airport {
     @Id
     @UuidGenerator
     private String id;

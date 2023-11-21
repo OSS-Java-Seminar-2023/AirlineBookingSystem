@@ -12,16 +12,16 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-public class Purchase {
+public class purchase {
     @Id
     @UuidGenerator
     private String id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private hr.OSSAirline.models.user user;
     @ManyToOne
     @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    private hr.OSSAirline.models.ticket ticket;
     @Column
     private String paymentInfo;
     @Column

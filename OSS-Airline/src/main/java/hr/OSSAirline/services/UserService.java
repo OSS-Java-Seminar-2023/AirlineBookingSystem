@@ -1,19 +1,29 @@
 package hr.OSSAirline.services;
 
-import hr.OSSAirline.models.User;
+import hr.OSSAirline.models.user;
 import hr.OSSAirline.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
     public final UserRepository userRepository;
-    @Autowired
-    public UserService(UserRepository userRepository){
-        this.userRepository=userRepository;
+
+
+    public void registerUser(user user) {
+        userRepository.save(user);
     }
 
-    public void registerUser(User user){
-        userRepository.save(user);
+    public boolean authenticate(String email, String password) {
+        Optional<user> userOptional = userRepository.findByEmailAndPassword(email, password);
+        return userOptional.isPresent();
+    }
+
+    public List<user> getAllUsers() {
+        return userRepository.findAll();
     }
 }
