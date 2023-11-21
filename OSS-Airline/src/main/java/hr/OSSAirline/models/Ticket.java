@@ -16,13 +16,13 @@ public class Ticket {
     private String id;
     @ManyToOne
     @JoinColumn(name = "passenger_id")
-    private hr.OSSAirline.models.Passenger passenger;
+    private Passenger passenger;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private hr.OSSAirline.models.Flight flight;
+    private Flight flight;
     @ManyToOne
     @JoinColumn(name = "seat_id")
-    private hr.OSSAirline.models.Seat seat;
+    private Seat seat;
     @Column
     private Float ticketPrice;
 

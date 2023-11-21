@@ -25,7 +25,7 @@ public class Flight {
     private Airport to;
     @ManyToOne
     @JoinColumn(name = "airplane_id")
-    private hr.OSSAirline.models.Airplane airplane;
+    private Airplane airplane;
     @Column
     private java.sql.Date date;
     @Column

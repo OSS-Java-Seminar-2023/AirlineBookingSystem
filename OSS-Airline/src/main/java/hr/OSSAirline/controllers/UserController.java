@@ -1,6 +1,6 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.models.user;
+import hr.OSSAirline.models.User;
 import hr.OSSAirline.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,12 +26,16 @@ public class UserController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new user());
+        model.addAttribute("user", new User());
         return "user_registration";
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute user user) {
+    public String processRegistration(@ModelAttribute User user, @RequestParam String confirmPassword) {
+        if(!user.getPassword().equals(confirmPassword)){
+            return "redirect:/register?error=password";
+        }
+
         // Save the user to the database
         userService.registerUser(user);
 
@@ -40,12 +45,12 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-            model.addAttribute("loginRequest", new user());
+            model.addAttribute("loginRequest", new User());
             return "user_login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute user user) {
+    public String login(@ModelAttribute User user) {
         System.out.println("login request " + user);
         return userService.authenticate(user.getEmail(), user.getPassword()) ? "user_login" : "redirect:/users";
     }
@@ -53,7 +58,7 @@ public class UserController {
     @GetMapping("/users")
     public String listUsers(Model model) {
         // Retrieve the list of users from the service
-        List<user> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
 
         // Add the list of users to the model
         model.addAttribute("users", users);

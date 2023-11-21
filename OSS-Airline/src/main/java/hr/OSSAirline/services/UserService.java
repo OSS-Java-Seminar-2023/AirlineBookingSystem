@@ -1,6 +1,6 @@
 package hr.OSSAirline.services;
 
-import hr.OSSAirline.models.user;
+import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserService {
     public final UserRepository userRepository;
 
-    public void registerUser(user user) {
+    public void registerUser(User user) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -27,14 +27,14 @@ public class UserService {
     public boolean authenticate(String email, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        Optional<user> userOptional = userRepository.findByEmail(email);
+        Optional<User> userOptional = userRepository.findByEmail(email);
 
         return userOptional
                 .filter(user -> passwordEncoder.matches(password, user.getPassword()))
                 .isPresent();
     }
 
-    public List<user> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
 
 //    public void saveUser(user user){

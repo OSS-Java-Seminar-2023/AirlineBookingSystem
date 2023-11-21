@@ -16,7 +16,7 @@ public class Seat {
     private String id;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private hr.OSSAirline.models.Flight flight;
+    private Flight flight;
     @Column
     private Float seatPrice;
     @Column
