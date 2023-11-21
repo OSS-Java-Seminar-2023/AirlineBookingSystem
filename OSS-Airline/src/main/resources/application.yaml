@@ -12,4 +12,8 @@ spring:
     database: mysql
     generate-ddl: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+
+  sql:
+    init:
+      mode: always
