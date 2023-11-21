@@ -35,7 +35,6 @@ public class UserController {
         if(!user.getPassword().equals(confirmPassword)){
             return "redirect:/register?error=password";
         }
-
         // Save the user to the database
         userService.registerUser(user);
 
