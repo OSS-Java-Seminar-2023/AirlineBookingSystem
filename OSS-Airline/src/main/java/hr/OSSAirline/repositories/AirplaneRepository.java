@@ -8,4 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface AirplaneRepository extends JpaRepository<Airplane, String> {
+
+    public Airplane getAirplaneByRegistration(String registration);
 }
