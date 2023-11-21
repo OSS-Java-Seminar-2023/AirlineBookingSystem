@@ -9,20 +9,20 @@ import org.hibernate.annotations.UuidGenerator;
 
 @Setter
 @Getter
-@Entity
-public class ticket {
+@Entity(name = "ticket")
+public class Ticket {
     @Id
     @UuidGenerator
     private String id;
     @ManyToOne
     @JoinColumn(name = "passenger_id")
-    private hr.OSSAirline.models.passenger passenger;
+    private hr.OSSAirline.models.Passenger passenger;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private hr.OSSAirline.models.flight flight;
+    private hr.OSSAirline.models.Flight flight;
     @ManyToOne
     @JoinColumn(name = "seat_id")
-    private hr.OSSAirline.models.seat seat;
+    private hr.OSSAirline.models.Seat seat;
     @Column
     private Float ticketPrice;
 

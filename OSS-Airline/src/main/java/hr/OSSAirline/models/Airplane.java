@@ -9,8 +9,8 @@ import org.hibernate.annotations.UuidGenerator;
 
 @Setter
 @Getter
-@Entity
-public class airplane {
+@Entity(name = "airplane")
+public class Airplane {
     @Id
     @UuidGenerator
     private String id;

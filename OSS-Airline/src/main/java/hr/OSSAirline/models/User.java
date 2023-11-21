@@ -10,7 +10,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Getter
 @Entity
 @Table(name = "user", schema = "Airline")
-public class user {
+public class User {
     @Id
     @UuidGenerator
     private String id;

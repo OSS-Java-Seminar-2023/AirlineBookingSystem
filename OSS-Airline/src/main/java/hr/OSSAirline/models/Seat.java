@@ -9,14 +9,14 @@ import org.hibernate.annotations.UuidGenerator;
 
 @Setter
 @Getter
-@Entity
-public class seat {
+@Entity(name = "seat")
+public class Seat {
     @Id
     @UuidGenerator
     private String id;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    private hr.OSSAirline.models.flight flight;
+    private hr.OSSAirline.models.Flight flight;
     @Column
     private Float seatPrice;
     @Column

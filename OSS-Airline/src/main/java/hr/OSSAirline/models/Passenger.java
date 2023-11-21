@@ -10,8 +10,8 @@ import jakarta.persistence.*;
 
 @Setter
 @Getter
-@Entity
-public class passenger {
+@Entity(name = "passenger")
+public class Passenger {
     @Id
     @UuidGenerator
     private String id;

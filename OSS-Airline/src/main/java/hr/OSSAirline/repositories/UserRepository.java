@@ -1,14 +1,13 @@
 package hr.OSSAirline.repositories;
 
-import hr.OSSAirline.models.user;
+import hr.OSSAirline.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<user, String> {
-    Optional<user> findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, String> {
+    public Optional<User> findByEmail(String email);
 
 }

@@ -11,8 +11,8 @@ import java.util.Date;
 
 @Setter
 @Getter
-@Entity
-public class purchase {
+@Entity(name = "purchase")
+public class Purchase {
     @Id
     @UuidGenerator
     private String id;
