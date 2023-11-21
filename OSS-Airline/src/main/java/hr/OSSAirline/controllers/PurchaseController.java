@@ -1,6 +1,5 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.models.Purchase;
 import hr.OSSAirline.repositories.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

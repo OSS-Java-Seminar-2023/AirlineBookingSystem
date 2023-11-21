@@ -11,7 +11,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Getter
 @Entity
-public class Flight {
+public class flight {
     @Id
     @UuidGenerator
     private String id;
@@ -19,13 +19,13 @@ public class Flight {
     private String flightNumber;
     @ManyToOne
     @JoinColumn(name = "from_id")
-    private Airport from;
+    private airport from;
     @ManyToOne
     @JoinColumn(name = "to_id")
-    private Airport to;
+    private airport to;
     @ManyToOne
     @JoinColumn(name = "airplane_id")
-    private Airplane airplane;
+    private hr.OSSAirline.models.airplane airplane;
     @Column
     private java.sql.Date date;
     @Column

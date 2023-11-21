@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Setter
 @Getter
 @Entity
-public class Passenger {
+public class passenger {
     @Id
     @UuidGenerator
     private String id;
