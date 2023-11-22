@@ -1,0 +1,46 @@
+*{
+    font-family: Calibri, serif;
+}
+
+body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+h2{
+    color: white;   
+}
+
+.form-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: white;
+    gap: 20px 0px;
+    padding: 20px;
+    border-radius: 10%;
+}
+
+button {
+    background-color: white;
+    border: solid 2px #1ECD97;
+    color: #1ECD97;
+    width: 220px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    &:hover{
+        background-color: #1ECD97;
+        color: white;
+    }
+}
+

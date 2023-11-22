@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Testcontainers
 @SpringBootTest
@@ -31,7 +32,7 @@ public class UserIntegrationTest  extends RepositoryTestBase {
 
         userRepository.save(testUser);
 
-        User out = userRepository.getUserByUsername(testUser.getUsername());
-        Assertions.assertEquals(out, testUser);
+        Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
+        Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
     }
 }
