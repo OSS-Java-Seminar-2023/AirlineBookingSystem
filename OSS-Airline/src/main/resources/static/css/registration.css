@@ -19,9 +19,14 @@ h2{
     color: white;
 }
 
-.login-text{
-    color: #1ECD97;
-    font-size: larger;
+#login-text{
+    color: #002dcc;
+    font-size: 28px;
+}
+
+#registration-text{
+    color: #002dcc;
+    font-size: 28px;
 }
 
 .form-div{
@@ -43,11 +48,11 @@ h2{
 input{
     height: 20px;
     border: none;
-    border-bottom: #1ECD97 solid 2px;
+    border-bottom: #002dcc solid 2px;
 
     &:focus{
         border: none;
-        border-bottom: #1ECD97 solid 4px;
+        border-bottom: #002dcc solid 4px;
         box-shadow: 2px 2px 5px black;
     }
 }
@@ -59,8 +64,8 @@ input{
 
 button {
     background-color: white;
-    border: solid 2px #1ECD97;
-    color: #1ECD97;
+    border: solid 2px #002dcc;
+    color: #002dcc;
     width: 220px;
     height: 40px;
     font-size: 18px;
@@ -69,7 +74,7 @@ button {
     cursor: pointer;
     transition: background-color 0.4s ease;
     &:hover{
-        background-color: #1ECD97;
+        background-color: #002dcc;
         color: white;
         box-shadow: 5px 5px 20px black;
     }

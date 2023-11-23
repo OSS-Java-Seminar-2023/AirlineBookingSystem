@@ -24,14 +24,17 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public boolean authenticate(String email, String password) {
+    public boolean authenticate(String username, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        Optional<User> userOptional = userRepository.findByUsername(username);
 
-        return userOptional
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
-                .isPresent();
+        if(userOptional.isPresent()) {
+            var user = userOptional.get();
+
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false; //triba dodoat exception
     }
 
     public List<User> getAllUsers() {

@@ -10,7 +10,6 @@
 </head>
 
 <body>
-<h2>User Registration</h2>
 
 <form action="/register" class="form-div" th:object="${user}" method="POST">
     <!-- Display validation errors if any -->
@@ -19,7 +18,12 @@
             <span th:text="${error}"></span>
         </p>
     </div>
-
+    <div>
+        <img th:src="@{/images/user-login.png}" alt="LOGIN" class="user-img">
+    </div>
+    <div id="registration-text">
+        <strong>Registration</strong>
+    </div>
     <div>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:value="${user.username}" required>
