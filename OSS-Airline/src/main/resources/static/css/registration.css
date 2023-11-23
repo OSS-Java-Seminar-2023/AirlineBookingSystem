@@ -1,9 +1,13 @@
 *{
-    font-family: Calibri, serif;
+    font-family: Ubuntu, sans-serif;
 }
 
 body{
-    background-color: black;
+    background-image: url("../images/airplane-wing-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +16,7 @@ body{
 }
 
 h2{
-    color: white;   
+    color: white;
 }
 
 .form-div{
@@ -23,8 +27,24 @@ h2{
     align-content: center;
     background-color: white;
     gap: 20px 0px;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10%;
+    border: 3px solid black;
+}
+
+input{
+    height: 20px;
+    border: none;
+    border-bottom: #1ECD97 solid 2px;
+
+    &:focus{
+        border-bottom: #1ECD97 solid 4px;
+    }
+}
+
+.user-img{
+    height: 50px;
+    width: 50px;
 }
 
 button {
