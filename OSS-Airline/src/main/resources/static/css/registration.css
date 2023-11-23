@@ -9,14 +9,19 @@ body{
     background-attachment: fixed;
     background-size: cover;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-content: center;
     align-items: center;
 }
 
 h2{
     color: white;
+}
+
+.login-text{
+    color: #1ECD97;
+    font-size: larger;
 }
 
 .form-div{
@@ -30,6 +35,9 @@ h2{
     padding: 40px;
     border-radius: 10%;
     border: 3px solid black;
+    position: absolute;
+    top: 50%;
+    transform: translate(30%, -50%);
 }
 
 input{
@@ -38,7 +46,9 @@ input{
     border-bottom: #1ECD97 solid 2px;
 
     &:focus{
+        border: none;
         border-bottom: #1ECD97 solid 4px;
+        box-shadow: 2px 2px 5px black;
     }
 }
 
@@ -61,6 +71,7 @@ button {
     &:hover{
         background-color: #1ECD97;
         color: white;
+        box-shadow: 5px 5px 20px black;
     }
 }
 
