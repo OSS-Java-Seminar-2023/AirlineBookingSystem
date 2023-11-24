@@ -47,6 +47,9 @@
     <div>
         <button type="submit">Register</button>
     </div>
+    <div th:if="${param.error}">
+        <p style="color: red; font-weight: bold" th:text="${param.error}"></p>
+    </div>
 </form>
 </body>
 

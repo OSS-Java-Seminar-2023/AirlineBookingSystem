@@ -14,10 +14,10 @@ public class User {
     @Id
     @UuidGenerator
     private String id;
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     private String password;
-    @Column
+    @Column(unique = true)
     private String email;
 }

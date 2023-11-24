@@ -32,8 +32,14 @@ public class UserController {
 
     @PostMapping("/register")
     public String processRegistration(@ModelAttribute User user, @RequestParam String confirmPassword) {
+        if(userService.usernameTaken(user.getUsername())){
+            return "redirect:/register?error=Username taken!";
+        }
+        if(userService.emailTaken(user.getEmail())){
+            return "redirect:/register?error=Email is already in use!";
+        }
         if(!user.getPassword().equals(confirmPassword)){
-            return "redirect:/register?error=password";
+            return "redirect:/register?error=Password mismatch!";
         }
         // Save the user to the database
         userService.registerUser(user);
@@ -51,7 +57,7 @@ public class UserController {
     @PostMapping("/login")
     public String login(@ModelAttribute User user) {
         System.out.println("login request " + user);
-        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/users" : "redirect:/login?error=password";
+        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/users" : "redirect:/login?error=Wrong password!";
     }
 
     @GetMapping("/users")

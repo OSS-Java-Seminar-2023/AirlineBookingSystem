@@ -24,6 +24,16 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public boolean usernameTaken(String username){
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.isPresent();
+    }
+
+    public boolean emailTaken(String email){
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.isPresent();
+    }
+
     public boolean authenticate(String username, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -32,9 +42,13 @@ public class UserService {
         if(userOptional.isPresent()) {
             var user = userOptional.get();
 
-            return passwordEncoder.matches(password, user.getPassword());
+            if(passwordEncoder.matches(password, user.getPassword())){
+                return true;
+            }
+//            throw new RuntimeException("Wrong password!");
         }
-        return false; //triba dodoat exception
+//        throw new RuntimeException("Wrong username!");
+        return false;
     }
 
     public List<User> getAllUsers() {
