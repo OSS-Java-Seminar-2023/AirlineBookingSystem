@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Add your custom styles if needed -->
+</head>
+
+<body>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/}" th:text="${'Home'}"></a></li>
+        <li><a th:href="@{/login}" th:text="${'Login'}"></a></li>
+        <li><a th:href="@{/register}" th:text="${'Register'}"></a></li>
+    </ul>
+</nav>
+
+<div>
+    <h2>Flight Search</h2>
+    <form th:action="@{/flights}" method="post">
+        <label for="from">From:</label>
+        <input type="text" id="from" name="from" list="fromAirports" required>
+        <datalist id="fromAirports">
+            <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+        </datalist>
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" list="toAirports" required>
+        <datalist id="toAirports">
+            <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+        </datalist>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="class">Seat Class:</label>
+        <select id="class" name="class">
+            <option value="economy">Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First Class</option>
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+</body>
+
+</html>

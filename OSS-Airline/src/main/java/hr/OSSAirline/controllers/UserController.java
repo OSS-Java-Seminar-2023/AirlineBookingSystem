@@ -56,8 +56,10 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user) {
-        System.out.println("login request " + user);
-        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/users" : "redirect:/login?error=Wrong password!";
+        if(!userService.usernameTaken(user.getUsername())){
+            return "redirect:/login?error=Wrong username or password!";
+        }
+        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/users" : "redirect:/login?error=Wrong username or password!";
     }
 
     @GetMapping("/users")

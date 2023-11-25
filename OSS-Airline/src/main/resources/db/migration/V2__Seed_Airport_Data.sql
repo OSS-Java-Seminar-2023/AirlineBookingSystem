@@ -1,4 +1,4 @@
-INSERT INTO airport (id, airport_name, IATA)
+INSERT INTO airport (id, name, IATA)
 VALUES
     ('6fc6e95d-5f68-4c84-a62d-d3369e0da227', 'Zagreb International Airport', 'ZAG'),
     ('30c187ad-37b5-4e68-8e95-88938f57b8c3', 'Split Airport', 'SPU'),
@@ -10,18 +10,11 @@ VALUES
     ('11c8a2b9-9203-4f33-9378-7fb2954f26c1', 'Pula Airport', 'PUY'),
     ('3e5c7c61-c033-465c-94c4-e6e6ea2e6d6e', 'Brac Airport', 'BWK'),
     ('b7b63ff0-c4b4-4b56-a45e-9a17039cb5b7', 'Lošinj Airport', 'LSZ'),
-    ('a6c81d25-cccb-4a9c-8b2e-3b0a59f8e82b', 'Rijeka Airport', 'RJK'),
     ('4fc8c3ae-1b13-46c7-96bb-e744214d3d76', 'Krk Airport', 'KRK'),
     ('cfb29ac7-91e8-448c-b9f2-70ac0ed9ac72', 'Pag Airport', 'PAG'),
-    ('e72534b1-3845-4e4e-9a63-3f5db88c5414', 'Losinj Airport', 'LSZ'),
-    ('73e63b1d-45fc-42cf-8a5c-3cf90300f5da', 'Bol Airport', 'BWK'),
     ('1a5f308d-0ea7-4c0f-b5ee-870877738c72', 'London Heathrow Airport', 'LHR'),
     ('2d21f13d-8c96-4d2b-94d9-7d1bb5258bc2', 'Paris Charles de Gaulle Airport', 'CDG'),
     ('482748f0-5649-4f4c-b82e-3e3431682a0d', 'Frankfurt Airport', 'FRA'),
-    ('6ec6e6e6-6e6e-6e6e-6e6e-6e6e6e6e6e6e', 'Dubai International Airport', 'DXB'),
-    ('8f8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f', 'Singapore Changi Airport', 'SIN'),
-    ('9f9f9f9f-9f9f-9f9f-9f9f-9f9f9f9f9f9f', 'Los Angeles International Airport', 'LAX'),
-    ('a2b2c1a3-1c5d-4e2f-96b1-758ef9b035d6', 'Leonardo da Vinci-Fiumicino Airport', 'FCO'),
     ('b3e83c7a-77f4-4dbb-9ba7-3e3ef6624b1f', 'Barcelona-El Prat Airport', 'BCN'),
     ('c2f6e6f1-48a3-4b11-9a9f-63b7b4b7f674', 'Berlin Brandenburg Airport', 'BER'),
     ('dab5e6c3-4561-4b7f-819a-02a2b938666e', 'Amsterdam Airport Schiphol', 'AMS'),

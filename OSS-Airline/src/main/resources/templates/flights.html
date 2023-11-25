@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight List</title>
+    <!-- Add your custom styles if needed -->
+</head>
+
+<body>
+
+<h2>Flight List</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Flight Number</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Airplane Model</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Gate</th>
+        <th>Duration</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight : ${flights}">
+        <td th:text="${flight.flightNumber}"></td>
+        <td th:text="${flight.from.name}"></td>
+        <td th:text="${flight.to.name}"></td>
+        <td th:text="${flight.airplane.model}"></td>
+        <td th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(flight.time, 'HH:mm')}"></td>
+        <td th:text="${flight.gate}"></td>
+        <td th:text="${#dates.format(flight.duration, 'HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

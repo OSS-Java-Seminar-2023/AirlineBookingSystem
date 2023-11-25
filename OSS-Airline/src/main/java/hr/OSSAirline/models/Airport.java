@@ -15,7 +15,7 @@ public class Airport {
     @UuidGenerator
     private String id;
     @Column
-    private String airportName;
+    private String name;
     @Column
     private String IATA;
 
