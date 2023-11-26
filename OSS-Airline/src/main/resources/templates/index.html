@@ -6,48 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Add your custom styles if needed -->
+    <link rel="stylesheet" th:href="@{/css/nav.css}">
 </head>
 
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
 <body>
+<main>
+    <div>
+        <h2>Flight Search</h2>
+        <form th:action="@{/flights}" method="post">
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" list="fromAirports" required>
+            <datalist id="fromAirports">
+                <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+            </datalist>
 
-<nav>
-    <ul>
-        <li><a th:href="@{/}" th:text="${'Home'}"></a></li>
-        <li><a th:href="@{/login}" th:text="${'Login'}"></a></li>
-        <li><a th:href="@{/register}" th:text="${'Register'}"></a></li>
-    </ul>
-</nav>
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" list="toAirports" required>
+            <datalist id="toAirports">
+                <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+            </datalist>
 
-<div>
-    <h2>Flight Search</h2>
-    <form th:action="@{/flights}" method="post">
-        <label for="from">From:</label>
-        <input type="text" id="from" name="from" list="fromAirports" required>
-        <datalist id="fromAirports">
-            <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-        </datalist>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
 
-        <label for="to">To:</label>
-        <input type="text" id="to" name="to" list="toAirports" required>
-        <datalist id="toAirports">
-            <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-        </datalist>
+            <label for="class">Seat Class:</label>
+            <select id="class" name="class">
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First Class</option>
+            </select>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
-
-        <label for="class">Seat Class:</label>
-        <select id="class" name="class">
-            <option value="economy">Economy</option>
-            <option value="business">Business</option>
-            <option value="first">First Class</option>
-        </select>
-
-        <button type="submit">Search</button>
-    </form>
-</div>
-
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</main>
 </body>
 
 </html>

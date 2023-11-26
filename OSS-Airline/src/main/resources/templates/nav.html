@@ -1,0 +1,12 @@
+<div th:fragment="nav">
+    <nav>
+        <div class="nav-div">
+            <img th:src="@{/images/logo-white.png}" alt="logo-white" id="logo-img">
+        </div>
+        <div class="nav-div">
+            <a th:href="@{/}" th:text="${'Home'}"></a>
+            <a th:href="@{/login}" th:text="${'Login'}"></a>
+            <a th:href="@{/register}" th:text="${'Register'}"></a>
+        </div>
+    </nav>
+</div>
