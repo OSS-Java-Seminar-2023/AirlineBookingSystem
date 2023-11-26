@@ -17,23 +17,27 @@
 <main>
     <div>
         <form th:action="@{/flights}" method="post" class="form-div">
-            <label for="from">From:</label>
-            <input type="text" id="from" name="from" list="fromAirports" required>
-            <datalist id="fromAirports">
-                <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-            </datalist>
-
-            <label for="to">To:</label>
-            <input type="text" id="to" name="to" list="toAirports" required>
-            <datalist id="toAirports">
-                <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-            </datalist>
-
+            <div class="form-inside-parent-div">
+                <div class="form-inside-div">
+                    <label for="from">From:</label>
+                    <input type="text" id="from" name="from" list="fromAirports" required>
+                    <datalist id="fromAirports">
+                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                    </datalist>
+                </div>
+                <div class="form-inside-div">
+                    <label for="to">To:</label>
+                    <input type="text" id="to" name="to" list="toAirports" required>
+                    <datalist id="toAirports">
+                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                    </datalist>
+                </div>
+            </div>
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
 
             <label for="class">Seat Class:</label>
-            <select id="class" name="class">
+            <select id="class" name="class" class="custom-select">
                 <option value="economy">Economy</option>
                 <option value="business">Business</option>
                 <option value="first">First Class</option>

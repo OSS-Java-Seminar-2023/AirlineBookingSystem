@@ -11,15 +11,22 @@ ul {
     overflow: hidden;
     background-color: #002dcc;
     position: fixed;
-    top: 0;
-    width: 100%;
-    border-bottom: 2px solid white;
+    top: 10px;
+    left: 10px;
+    width: 98%;
+    border: 2px solid white;
+    border-radius: 30px;
 }
 
 li {
     float: right;
     margin-top: 5px;
-    padding: 5px 10px;
+    padding: 5px 15px;
+}
+
+#icon{
+    height: 35px;
+    width: 50px;
 }
 
 li a {

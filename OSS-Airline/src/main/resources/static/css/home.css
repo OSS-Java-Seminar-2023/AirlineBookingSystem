@@ -1,4 +1,4 @@
-body{
+body {
     margin-top: 70px;
     background-image: url("../images/airplane-wing-background.png");
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@ body{
     color: white;
 }
 
-.form-div{
+.form-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,23 +25,51 @@ body{
     transform: translate(30%, -50%);
 }
 
-label{
-    color: #002dcc;
+.form-inside-parent-div {
+    display: flex;
+    gap: 10px;
 }
 
-input{
-    height: 20px;
-    border: none;
-    border-bottom: #002dcc solid 2px;
+.form-inside-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
 
-    &:focus{
+select {
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid #002dcc;
+    color: black;
+    font-size: large;
+
+    &:focus {
         border: none;
         border-bottom: #002dcc solid 4px;
         box-shadow: 2px 2px 5px black;
     }
 }
 
-.user-img{
+label {
+    color: #002dcc;
+}
+
+input {
+    height: 20px;
+    border: none;
+    border-bottom: #002dcc solid 2px;
+    font-size: large;
+
+    &:focus {
+        border: none;
+        border-bottom: #002dcc solid 4px;
+        box-shadow: 2px 2px 5px black;
+    }
+}
+
+.user-img {
     height: 50px;
     width: 50px;
 }
@@ -57,7 +85,8 @@ button {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.4s ease;
-    &:hover{
+
+    &:hover {
         background-color: #002dcc;
         color: white;
         box-shadow: 5px 5px 20px black;
