@@ -9,10 +9,12 @@
     <link rel="stylesheet" th:href="@{/css/registration.css}">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
 </head>
-<body>
+
 <header>
     <div th:replace="~{/nav.html}"></div>
 </header>
+
+<body>
 <form action="/register" class="form-div" th:object="${user}" method="POST">
     <!-- Display validation errors if any -->
     <div th:if="${#fields.hasErrors()}">

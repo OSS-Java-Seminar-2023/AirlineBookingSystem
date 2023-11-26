@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search</title>
-    <link rel="stylesheet" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 
 <header>
@@ -16,8 +16,7 @@
 <body>
 <main>
     <div>
-        <h2>Flight Search</h2>
-        <form th:action="@{/flights}" method="post">
+        <form th:action="@{/flights}" method="post" class="form-div">
             <label for="from">From:</label>
             <input type="text" id="from" name="from" list="fromAirports" required>
             <datalist id="fromAirports">

@@ -1,13 +1,19 @@
 body{
-    background-image: url("../images/airplane-wing-background.jpg");
+    background-image: url("../images/airplane-wing-background.png");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-content: center;
     align-items: center;
+}
+
+#logo-img{
+    height: 30px;
+    width: 40px;
 }
 
 h2{

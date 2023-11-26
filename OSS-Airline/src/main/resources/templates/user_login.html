@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" th:href="@{/css/nav.css}">
     <link rel="stylesheet" th:href="@{/css/registration.css}">
 </head>
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
 <body>
-<div th:replace="/nav.html"></div>
 <form action="/login" class="form-div" method="post">
     <div>
         <img th:src="@{/images/user-login.png}" alt="LOGIN" class="user-img">
@@ -28,7 +29,7 @@
         <button type="submit">Login</button>
     </div>
     <div th:if="${param.error}">
-        <p style="color: red; font-weight: bold"  th:text="${param.error}"></p>
+        <p style="color: red; font-weight: bold" th:text="${param.error}"></p>
     </div>
 </form>
 </body>
