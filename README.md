@@ -1,6 +1,9 @@
 # AirlineBookingSystem ✈️🎫
 
 
+![image](https://github.com/OSS-Java-Seminar-2023/AirlineBookingSystem/assets/114333980/e92fdd31-f204-466e-8f3f-21b463cd99c8)
+
+
 ## Devs 💻
 
 **[Antonio Bečić](https://github.com/AntonioB27)**
