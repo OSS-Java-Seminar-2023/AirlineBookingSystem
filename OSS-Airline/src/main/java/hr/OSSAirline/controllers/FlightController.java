@@ -25,7 +25,6 @@ public class FlightController {
 
     @PostMapping("/flights")
     public String searchFlights(@RequestParam String from, @RequestParam String to, @RequestParam String date, Model model) {
-        // Implement search logic and pass results to the template
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedDate = new Date();
         try {

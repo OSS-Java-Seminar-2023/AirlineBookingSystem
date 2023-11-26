@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight List</title>
-    <!-- Add your custom styles if needed -->
+    <link rel="stylesheet" th:href="@{/css/flights.css}">
 </head>
 
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
 <body>
-
-<h2>Flight List</h2>
-
-<table border="1">
+<table>
     <thead>
+    <h2>Flights list</h2>
     <tr>
         <th>Flight Number</th>
         <th>From</th>
@@ -27,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="flight : ${flights}">
+    <tr th:each="flight : ${flights}" id="flights_row">
         <td th:text="${flight.flightNumber}"></td>
         <td th:text="${flight.from.name}"></td>
         <td th:text="${flight.to.name}"></td>

@@ -1,0 +1,44 @@
+body{
+    margin-top: 70px;
+    background-image: url("../images/airplane-wing-background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+
+    padding: 20px;
+    color: white;
+}
+
+table{
+    width: 60%;
+    background-color: white;
+    border: 2px solid #002dcc;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+th, td{
+    border-bottom: 1px solid black;
+}
+
+tr{
+    padding-top: 5px;
+}
+
+th{
+    height: 50px;
+    background-color: #002dcc;
+    font-weight: bold;
+}
+
+td{
+    text-align: center;
+    color: black;
+}
+
+#flights_row:hover{
+    color: white;
+    background-color: #3f5ac1;
+}
+
