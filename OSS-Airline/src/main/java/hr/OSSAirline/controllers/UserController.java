@@ -59,7 +59,7 @@ public class UserController {
         if(!userService.usernameTaken(user.getUsername())){
             return "redirect:/login?error=Wrong username or password!";
         }
-        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/users" : "redirect:/login?error=Wrong username or password!";
+        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/" : "redirect:/login?error=Wrong username or password!";
     }
 
     @GetMapping("/users")

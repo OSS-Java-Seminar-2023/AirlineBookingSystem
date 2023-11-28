@@ -14,34 +14,35 @@
 </header>
 
 <body>
-<table>
-    <thead>
-    <h2>Flights list</h2>
-    <tr>
-        <th>Flight Number</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Airplane Model</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Gate</th>
-        <th>Duration</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="flight : ${flights}" id="flights_row">
-        <td th:text="${flight.flightNumber}"></td>
-        <td th:text="${flight.from.name}"></td>
-        <td th:text="${flight.to.name}"></td>
-        <td th:text="${flight.airplane.model}"></td>
-        <td th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></td>
-        <td th:text="${#dates.format(flight.time, 'HH:mm')}"></td>
-        <td th:text="${flight.gate}"></td>
-        <td th:text="${#dates.format(flight.duration, 'HH:mm')}"></td>
-    </tr>
-    </tbody>
-</table>
+<div th:if="${#lists.size(flights) > 0}">
+    <div class="flight-header">
+        <div>Flight Number</div>
+        <div>From</div>
+        <div>To</div>
+        <div>Airplane</div>
+        <div>Date</div>
+        <div>Time</div>
+        <div>Gate</div>
+        <div>Duration</div>
+        <div>Buy</div>
+    </div>
 
+    <div th:each="flight : ${flights}" class="flight">
+        <div th:text="${flight.flightNumber}"></div>
+        <div th:text="${flight.from.name}"></div>
+        <div th:text="${flight.to.name}"></div>
+        <div th:text="${flight.airplane.model}"></div>
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
+        <div th:text="${flight.gate}"></div>
+        <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
+        <button type="submit">BUY TICKET</button>
+    </div>
+</div>
+
+<div th:if="${#lists.size(flights) == 0}">
+    <h1> SORRY, NO FLIGHTS FOUND! </h1>
+</div>
 </body>
 
 </html>

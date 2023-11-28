@@ -1,9 +1,18 @@
-<div th:fragment="nav">
+<div th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
-    <ul>
-        <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" id="logo-img"></li>
-        <li><a th:href="@{/login}" th:text="${'Login'}"></a></li>
-        <li><a th:href="@{/register}" th:text="${'Register'}"></a></li>
-        <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>
-    </ul>
+    <div sec:authorize="isAnonymous()">
+        <ul>
+            <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></li>
+            <li><a th:href="@{/login}" th:text="${'Login'}"></a></li>
+            <li><a th:href="@{/register}" th:text="${'Register'}"></a></li>
+            <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>
+        </ul>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <ul>
+            <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></li>
+            <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>
+        </ul>
+    </div>
 </div>

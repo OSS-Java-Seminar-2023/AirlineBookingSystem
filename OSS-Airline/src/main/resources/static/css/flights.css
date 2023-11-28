@@ -1,6 +1,6 @@
-body{
+body {
     margin-top: 70px;
-    background-image: url("../images/airplane-wing-background.png");
+    background-image: url("../images/airplane-wing-background.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -10,7 +10,7 @@ body{
     color: white;
 }
 
-table{
+table {
     width: 60%;
     background-color: white;
     border: 2px solid #002dcc;
@@ -18,27 +18,101 @@ table{
     padding: 3px;
 }
 
-th, td{
+th, td {
     border-bottom: 1px solid black;
 }
 
-tr{
+tr {
     padding-top: 5px;
 }
 
-th{
+th {
     height: 50px;
     background-color: #002dcc;
     font-weight: bold;
 }
 
-td{
+td {
     text-align: center;
     color: black;
 }
 
-#flights_row:hover{
+#flights_row:hover {
     color: white;
     background-color: #3f5ac1;
 }
+
+.flight {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: large;
+    height: 30px;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    border-radius: 6px;
+    align-items: center;
+    align-content: center;
+    transition: background-color 0.4s ease, scale 0.2s ease;
+
+    &:hover {
+        background-color: #002dcc;
+        color: white;
+        box-shadow: 5px 5px 20px black;
+        scale: 1.02;
+    }
+}
+
+.flight-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: large;
+    height: 30px;
+    background-color: #002dcc;
+    border: 2px solid black;
+    color: white;
+    border-radius: 6px;
+    align-items: center;
+    align-content: center;
+    box-shadow: 5px 5px 20px black;
+    padding-bottom: 20px;
+    margin-bottom: 3px;
+}
+
+.flight div {
+    border-right: 2px solid black;
+    text-align: center;
+    padding-right: 2px;
+}
+
+button {
+    background-color: white;
+    border: solid 2px #002dcc;
+    color: #002dcc;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 6px;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+        border: 2px solid white;
+        background-color: #002dcc;
+        color: white;
+        box-shadow: 5px 5px 20px black;
+    }
+}
+
+h1 {
+    background-color: white;
+    border: 2px solid black;
+    font-size: 50px;
+    color: red;
+    text-align: center;
+    padding: 50px;
+    border-radius: 30px;
+}
+
 

@@ -37,6 +37,7 @@ li a {
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
+    text-align: center;
     transition: background-color 0.4s ease;
     &:hover{
         background-color: white;
@@ -46,7 +47,7 @@ li a {
     }
 }
 
-#logo-img{
+.logo-img{
     height: 35px;
     width: 50px;
 }
