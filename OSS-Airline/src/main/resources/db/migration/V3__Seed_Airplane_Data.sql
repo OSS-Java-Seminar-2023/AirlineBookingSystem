@@ -1,4 +1,4 @@
-INSERT INTO airplane (id, registration, model, first_seats, business_seats, economy_seats)
+INSERT INTO airplane (id, registration, model, firstSeats, businessSeats, economySeats)
 VALUES
     ('745c13e1-d6fe-4471-9f45-cb5bf4ae5bda', '9A-CTG', 'Airbus A319', 12, 24, 96),
     ('6fc6e95d-5f68-4c84-a62d-d3369e0da227', '9A-CTH', 'Airbus A320', 16, 32, 120),

@@ -2,6 +2,7 @@ package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,11 +56,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user) {
+    public String login(@ModelAttribute User user, HttpSession session) {
         if(!userService.usernameTaken(user.getUsername())){
             return "redirect:/login?error=Wrong username or password!";
         }
-        return userService.authenticate(user.getUsername(), user.getPassword()) ? "redirect:/" : "redirect:/login?error=Wrong username or password!";
+        if(userService.authenticate(user.getUsername(), user.getPassword())){
+            session.setAttribute("userId",user.getId());
+            session.setAttribute("userName",user.getUsername());
+            return "redirect:/";}
+        return "redirect:/login?error=Wrong username or password!";
     }
 
     @GetMapping("/users")
@@ -72,5 +77,10 @@ public class UserController {
 
         // Return the Thymeleaf template name
         return "userlist";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 }
