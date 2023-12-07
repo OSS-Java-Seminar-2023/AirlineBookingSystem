@@ -4,15 +4,15 @@ spring:
     username: root
     password: root
 
-#  thymeleaf:
-#    prefix: classpath:/template/
-#    suffix: .html
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
   jpa:
     database: mysql
     generate-ddl: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
   sql:
     init:

@@ -6,6 +6,8 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 
 @Setter
 @Getter
@@ -20,10 +22,10 @@ public class Airplane {
     @Column
     private String model;
     @Column
-    private int firstSeats;
+    private Integer firstSeats;
     @Column
-    private int businessSeats;
+    private Integer businessSeats;
     @Column
-    private int economySeats;
+    private Integer economySeats;
 }
 
