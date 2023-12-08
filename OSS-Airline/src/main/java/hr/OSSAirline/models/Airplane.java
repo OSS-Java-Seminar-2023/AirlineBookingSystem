@@ -21,11 +21,11 @@ public class Airplane {
     private String registration;
     @Column
     private String model;
-    @Column
+    @Column(name="first_seats")
     private Integer firstSeats;
-    @Column
+    @Column(name="business_seats")
     private Integer businessSeats;
-    @Column
+    @Column(name="economy_seats")
     private Integer economySeats;
 }
 

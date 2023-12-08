@@ -28,7 +28,7 @@ flightLoop: LOOP
 END IF;
 
         -- Retrieve the number of seats for the associated plane
-SELECT firstSeats, businessSeats, economySeats
+SELECT first_seats, business_seats, economy_seats
 INTO firstClassSeats, businessClassSeats, economyClassSeats
 FROM airplane
 WHERE id = airplaneIdVar;
