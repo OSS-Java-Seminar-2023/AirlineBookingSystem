@@ -17,6 +17,8 @@ public class FlightService {
     public final FlightRepository flightRepository;
 
     public List<Flight> getFlights(Airport from, Airport to, Date date){
+        System.out.println(from.getName());
+        System.out.println(to.getName());
         return flightRepository.searchFlightsByFromAndToAndDate(from,to,date);
     }
 

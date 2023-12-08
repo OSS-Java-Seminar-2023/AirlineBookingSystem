@@ -1,6 +1,7 @@
 package hr.OSSAirline.controllers;
 
 
+import hr.OSSAirline.models.Airport;
 import hr.OSSAirline.models.Flight;
 import hr.OSSAirline.services.AirportService;
 import hr.OSSAirline.services.FlightService;
@@ -35,9 +36,11 @@ public class FlightController {
         catch (ParseException ex){
             System.out.println(ex);
         }
-        var to_id = airportService.getAirportByName(to);
-        var from_id = airportService.getAirportByName(from);
-        List<Flight> flights = flightService.getFlights(from_id, to_id, parsedDate);
+        Airport to_airport = airportService.getAirportByName(to);
+        Airport from_airport = airportService.getAirportByName(from);
+        System.out.println("XXXXXXXXX " + to);
+        System.out.println("XXXXXXXXX " + from);
+        List<Flight> flights = flightService.getFlights(from_airport, to_airport, parsedDate);
         model.addAttribute("flights", flights);
         return "flights";
     }

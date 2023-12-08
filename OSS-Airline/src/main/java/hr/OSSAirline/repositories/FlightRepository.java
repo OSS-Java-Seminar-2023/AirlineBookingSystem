@@ -13,5 +13,5 @@ import java.util.Optional;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, String> {
-    public List<Flight> searchFlightsByFromAndToAndDate(Airport from, Airport to, Date date);
+    List<Flight> searchFlightsByFromAndToAndDate(Airport from, Airport to, Date date);
 }
