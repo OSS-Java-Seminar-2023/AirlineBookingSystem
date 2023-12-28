@@ -1,5 +1,7 @@
 package hr.OSSAirline.services;
 
+import hr.OSSAirline.dto.UserDto;
+import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,18 +12,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    public final UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public void registerUser(User user) {
+    public void registerUser(UserDto user) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
-        userRepository.save(user);
+        userRepository.save(UserMapper.INSTANCE.toEntity(user));
     }
 
     public boolean usernameTaken(String username){
@@ -51,15 +55,10 @@ public class UserService {
         return false;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-
-//    public void saveUser(user user){
-//        userRepository.save(user);
-//    }
-//
-//    public user getUserByUsername(String username){
-//        return userRepository.getUserByUsername(username);
-//    }
+    public List<UserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
