@@ -8,6 +8,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequiredArgsConstructor
 public class AirplaneController {
-    private final AirplaneService airplaneService;
 
+    private final AirplaneService airplaneService;
 }

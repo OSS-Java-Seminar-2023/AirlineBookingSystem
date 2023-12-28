@@ -1,6 +1,7 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.models.User;
+import hr.OSSAirline.dto.UserDto;
+import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -17,22 +18,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    public final UserService userService;
-
-
-//    @GetMapping("/hello")
-//    public String sayhello() {
-//        return "hello";
-//    }
+    private final UserService userService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "user_registration";
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute User user, @RequestParam String confirmPassword) {
+    public String processRegistration(@ModelAttribute UserDto user, @RequestParam String confirmPassword) {
         if(userService.usernameTaken(user.getUsername())){
             return "redirect:/register?error=Username taken!";
         }
@@ -51,12 +46,12 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-            model.addAttribute("loginRequest", new User());
+            model.addAttribute("loginRequest", new UserDto());
             return "user_login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, HttpSession session) {
+    public String login(@ModelAttribute UserDto user, HttpSession session) {
         if(!userService.usernameTaken(user.getUsername())){
             return "redirect:/login?error=Wrong username or password!";
         }
@@ -69,13 +64,8 @@ public class UserController {
 
     @GetMapping("/users")
     public String listUsers(Model model) {
-        // Retrieve the list of users from the service
-        List<User> users = userService.getAllUsers();
-
-        // Add the list of users to the model
+        List<UserDto> users = userService.getAllUsers();
         model.addAttribute("users", users);
-
-        // Return the Thymeleaf template name
         return "userlist";
     }
     @GetMapping("/logout")

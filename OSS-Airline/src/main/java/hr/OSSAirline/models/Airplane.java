@@ -1,16 +1,10 @@
 package hr.OSSAirline.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
-
-@Setter
-@Getter
+@Data
 @Entity(name = "airplane")
 public class Airplane {
     @Id
