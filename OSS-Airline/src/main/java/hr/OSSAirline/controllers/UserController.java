@@ -27,39 +27,39 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute UserDto user, @RequestParam String confirmPassword) {
-        if(userService.usernameTaken(user.getUsername())){
-            return "redirect:/register?error=Username taken!";
+    public String processRegistration(@ModelAttribute UserDto user, @RequestParam String confirmPassword, Model model) {
+        try {
+            if (!user.getPassword().equals(confirmPassword)) {
+                throw new RuntimeException("Password mismatch!");
+            }
+            userService.registerUser(user);
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("user", user);
+            return "user_registration";
         }
-        if(userService.emailTaken(user.getEmail())){
-            return "redirect:/register?error=Email is already in use!";
-        }
-        if(!user.getPassword().equals(confirmPassword)){
-            return "redirect:/register?error=Password mismatch!";
-        }
-        // Save the user to the database
-        userService.registerUser(user);
 
-        // Redirect to a success page or login page
         return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-            model.addAttribute("loginRequest", new UserDto());
-            return "user_login";
+        model.addAttribute("loginRequest", new UserDto());
+        return "user_login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute UserDto user, HttpSession session) {
-        if(!userService.usernameTaken(user.getUsername())){
-            return "redirect:/login?error=Wrong username or password!";
+    public String login(@ModelAttribute UserDto user, HttpSession session, Model model) {
+        try {
+            userService.authenticate(user.getUsername(), user.getPassword());
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("loginRequest", user);
+            return "user_login";
         }
-        if(userService.authenticate(user.getUsername(), user.getPassword())){
-            session.setAttribute("userId",user.getId());
-            session.setAttribute("userName",user.getUsername());
-            return "redirect:/";}
-        return "redirect:/login?error=Wrong username or password!";
+        session.setAttribute("userId", user.getId());
+        session.setAttribute("userName", user.getUsername());
+        return "redirect:/";
     }
 
     @GetMapping("/users")
@@ -68,8 +68,9 @@ public class UserController {
         model.addAttribute("users", users);
         return "userlist";
     }
+
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }

@@ -21,6 +21,12 @@ public class UserService {
     private final UserMapper userMapper;
 
     public void registerUser(UserDto user) {
+        if(usernameTaken(user.getUsername())){
+            throw new RuntimeException("Username taken!");
+        }
+        if(emailTaken(user.getEmail())){
+            throw new RuntimeException("Email is already in use!");
+        }
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
@@ -29,30 +35,30 @@ public class UserService {
     }
 
     public boolean usernameTaken(String username){
-        Optional<User> userOptional = userRepository.findByUsername(username);
+        var userOptional = userRepository.findByUsername(username);
         return userOptional.isPresent();
     }
 
     public boolean emailTaken(String email){
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        var userOptional = userRepository.findByEmail(email);
         return userOptional.isPresent();
     }
 
-    public boolean authenticate(String username, String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public void authenticate(String username, String password) {
+        if(!usernameTaken(username)){
+            throw new RuntimeException("Wrong username or password!");
+        }
+        var passwordEncoder = new BCryptPasswordEncoder();
 
-        Optional<User> userOptional = userRepository.findByUsername(username);
+        var userOptional = userRepository.findByUsername(username);
 
         if(userOptional.isPresent()) {
             var user = userOptional.get();
 
-            if(passwordEncoder.matches(password, user.getPassword())){
-                return true;
+            if(!passwordEncoder.matches(password, user.getPassword())){
+                throw new RuntimeException("Wrong username or password!");
             }
-//            throw new RuntimeException("Wrong password!");
         }
-//        throw new RuntimeException("Wrong username!");
-        return false;
     }
 
     public List<UserDto> getAllUsers() {

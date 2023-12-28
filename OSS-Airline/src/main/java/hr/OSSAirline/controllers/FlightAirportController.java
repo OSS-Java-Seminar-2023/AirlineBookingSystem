@@ -25,17 +25,20 @@ public class FlightAirportController {
 
     @PostMapping("/flights")
     public String searchFlights(@RequestParam String from, @RequestParam String to, @RequestParam String date, Model model) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsedDate = new Date();
+        var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        var parsedDate = new Date();
         try {
             parsedDate = dateFormat.parse(date);
+            var flights_map = flightService.getFlights(from, to, parsedDate);
+            model.addAttribute("flights_map", flights_map);
         }
-        catch (ParseException ex){
-            System.out.println(ex);
+        catch (ParseException e){
+            System.out.println(e);
         }
-
-        List<FlightDto> flights = flightService.getFlights(from, to, parsedDate);
-        model.addAttribute("flights", flights);
+        catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+            return "index";
+        }
         return "flights";
     }
 

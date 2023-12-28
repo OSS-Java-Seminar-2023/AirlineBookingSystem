@@ -28,8 +28,8 @@
     <div>
         <button type="submit">Login</button>
     </div>
-    <div th:if="${param.error}">
-        <p style="color: red; font-weight: bold" th:text="${param.error}"></p>
+    <div th:if="${error}" class="error" style="color: red;">
+        <p th:text="${error}"></p>
     </div>
 </form>
 </body>

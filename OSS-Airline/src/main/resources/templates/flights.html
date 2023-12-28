@@ -14,7 +14,11 @@
 </header>
 
 <body>
-<div th:if="${#lists.size(flights) > 0}">
+<div th:if="${#lists.size(flights_map['flights_date']) == 0 and #lists.size(flights_map['flights_after']) == 0 and #lists.size(flights_map['flights_before']) == 0}">
+    <h1> SORRY, NO FLIGHTS FOUND! </h1>
+</div>
+
+<div th:if="${#lists.size(flights_map['flights_date']) > 0 or #lists.size(flights_map['flights_after']) > 0 or #lists.size(flights_map['flights_before']) > 0}">
     <div class="flight-header">
         <div>Flight Number</div>
         <div>From</div>
@@ -27,7 +31,7 @@
         <div>Buy</div>
     </div>
 
-    <div th:each="flight : ${flights}" class="flight">
+    <div th:each="flight : ${flights_map['flights_date']}" class="flight">
         <div th:text="${flight.flightNumber}"></div>
         <div th:text="${flight.from.name}"></div>
         <div th:text="${flight.to.name}"></div>
@@ -38,10 +42,39 @@
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
         <button type="submit">BUY TICKET</button>
     </div>
-</div>
-
-<div th:if="${#lists.size(flights) == 0}">
-    <h1> SORRY, NO FLIGHTS FOUND! </h1>
+    <div th:if="${#lists.size(flights_map['flights_date']) == 0}">
+        <h1> SORRY, NO FLIGHTS FOUND ON GIVEN DATE! </h1>
+    </div>
+    <br>
+    <div th:each="flight : ${flights_map['flights_before']}" class="flight">
+        <div th:text="${flight.flightNumber}"></div>
+        <div th:text="${flight.from.name}"></div>
+        <div th:text="${flight.to.name}"></div>
+        <div th:text="${flight.airplane.model}"></div>
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
+        <div th:text="${flight.gate}"></div>
+        <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
+        <button type="submit">BUY TICKET</button>
+    </div>
+    <div th:if="${#lists.size(flights_map['flights_before']) == 0}">
+        <h1> SORRY, NO FLIGHTS FOUND BEFORE THE GIVEN DATE! </h1>
+    </div>
+    <br>
+    <div th:each="flight : ${flights_map['flights_after']}" class="flight">
+        <div th:text="${flight.flightNumber}"></div>
+        <div th:text="${flight.from.name}"></div>
+        <div th:text="${flight.to.name}"></div>
+        <div th:text="${flight.airplane.model}"></div>
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
+        <div th:text="${flight.gate}"></div>
+        <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
+        <button type="submit">BUY TICKET</button>
+    </div>
+    <div th:if="${#lists.size(flights_map['flights_after']) == 0}">
+        <h1> SORRY, NO FLIGHTS FOUND AFTER THE GIVEN DATE! </h1>
+    </div>
 </div>
 </body>
 

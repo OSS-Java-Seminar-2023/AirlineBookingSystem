@@ -16,11 +16,8 @@
 
 <body>
 <form action="/register" class="form-div" th:object="${user}" method="POST">
-    <!-- Display validation errors if any -->
-    <div th:if="${#fields.hasErrors()}">
-        <p style="color: red;" th:each="error : ${#fields.errors()}">
-            <span th:text="${error}"></span>
-        </p>
+    <div th:if="${error}" class="error" style="color: red;">
+        <p th:text="${error}"></p>
     </div>
     <div>
         <img th:src="@{/images/user-login.png}" alt="LOGIN" class="user-img">
