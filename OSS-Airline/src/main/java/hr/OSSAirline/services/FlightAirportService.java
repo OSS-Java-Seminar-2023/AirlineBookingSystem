@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,14 +23,28 @@ public class FlightAirportService {
     private final FlightMapper flightMapper;
     public final AirportRepository airportRepository;
 
-    public List<FlightDto> getFlights(String from, String to, Date date){
+    public HashMap<String,List<FlightDto>> getFlights(String from, String to, Date date){
 
-        var from_airport = airportRepository.findByName(from).orElseThrow(() -> new RuntimeException("No airport found"));
-        var to_airport = airportRepository.findByName(to).orElseThrow(() -> new RuntimeException("No airport found"));
+        var from_airport = airportRepository.findByName(from).orElseThrow(() -> new RuntimeException("Wrong airport name!"));
+        var to_airport = airportRepository.findByName(to).orElseThrow(() -> new RuntimeException("Wrong airport name!"));
 
-        return flightRepository.searchFlightsByFromAndToAndDate(from_airport,to_airport,date).stream()
+        var flights_before= flightRepository.findAllFlightsForFirstDateBeforeGivenDate(from_airport,to_airport,date).stream()
                 .map(flightMapper::toDto)
                 .collect(Collectors.toList());
+
+        var flights_after = flightRepository.findAllFlightsForFirstDateAfterGivenDate(from_airport,to_airport,date).stream()
+                .map(flightMapper::toDto)
+                .collect(Collectors.toList());
+
+        var flights_date = flightRepository.searchFlightsByFromAndToAndDate(from_airport,to_airport,date).stream()
+                .map(flightMapper::toDto)
+                .collect(Collectors.toList());
+
+        var flights_map = new HashMap<String,List<FlightDto>>();
+        flights_map.put("flights_before",flights_before);
+        flights_map.put("flights_date",flights_date);
+        flights_map.put("flights_after",flights_after);
+        return flights_map;
     }
 
 }

@@ -43,6 +43,9 @@
             </select>
 
             <button type="submit">Search</button>
+            <div th:if="${error}" class="error" style="color: red;">
+                <p th:text="${error}"></p>
+            </div>
         </form>
     </div>
 </body>
