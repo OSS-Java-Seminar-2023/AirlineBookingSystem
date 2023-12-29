@@ -1,20 +1,4 @@
-<div th:fragment="nav" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <link rel="stylesheet" th:href="@{/css/nav.css}">
-    <div sec:authorize="isAnonymous()">
-        <ul>
-            <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></li>
-            <li><a th:href="@{/logout}" th:text="${'Logout'}"></a></li>
-            <li><a th:href="@{/login}" th:text="${'Login'}"></a></li>
-            <li><a th:href="@{/register}" th:text="${'Register'}"></a></li>
-            <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>
-        </ul>
-    </div>
-
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--        <ul>-->
-<!--            <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></li>-->
-<!--            <li><a th:href="@{/logout}" th:text="${'Logout'}"></a></li>-->
-<!--            <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
+<div th:fragment="nav">
+  <div th:if="${httpSession.getAttribute('userName') != null}" th:insert="~{nav-logged-in}"></div>
+  <div th:if="${httpSession.getAttribute('userName') == null}" th:insert="~{nav-not-logged-in}"></div>
 </div>
