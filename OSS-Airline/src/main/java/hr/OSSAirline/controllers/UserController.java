@@ -3,6 +3,7 @@ package hr.OSSAirline.controllers;
 import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.services.UserService;
+import hr.OSSAirline.utils.SecurityCheck;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import static hr.OSSAirline.utils.SecurityCheck.isUserLoggedInReturnToHome;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -21,13 +24,16 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserLoggedInReturnToHome(session);
+        if (x != null) return x;
         model.addAttribute("user", new UserDto());
+        model.addAttribute("httpSession",session);
         return "user_registration";
     }
 
     @PostMapping("/register")
-    public String processRegistration(@ModelAttribute UserDto user, @RequestParam String confirmPassword, Model model) {
+    public String processRegistration(@ModelAttribute UserDto user, @RequestParam String confirmPassword, Model model, HttpSession session) {
         try {
             if (!user.getPassword().equals(confirmPassword)) {
                 throw new RuntimeException("Password mismatch!");
@@ -36,6 +42,7 @@ public class UserController {
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("user", user);
+            model.addAttribute("httpSession",session);
             return "user_registration";
         }
 
@@ -43,8 +50,11 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserLoggedInReturnToHome(session);
+        if (x != null) return x;
         model.addAttribute("loginRequest", new UserDto());
+        model.addAttribute("httpSession",session);
         return "user_login";
     }
 
@@ -54,23 +64,26 @@ public class UserController {
             userService.authenticate(user.getUsername(), user.getPassword());
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession",session);
             model.addAttribute("loginRequest", user);
             return "user_login";
         }
-        session.setAttribute("userId", user.getId());
         session.setAttribute("userName", user.getUsername());
+        model.addAttribute("httpSession",session);
         return "redirect:/";
     }
 
     @GetMapping("/users")
-    public String listUsers(Model model) {
+    public String listUsers(Model model, HttpSession session) {
         List<UserDto> users = userService.getAllUsers();
         model.addAttribute("users", users);
+        model.addAttribute("httpSession",session);
         return "userlist";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session, Model model) {
+        model.addAttribute("httpSession",session);
         session.invalidate();
         return "redirect:/";
     }

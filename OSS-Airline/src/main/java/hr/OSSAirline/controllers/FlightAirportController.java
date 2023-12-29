@@ -8,6 +8,7 @@ import hr.OSSAirline.models.Flight;
 import hr.OSSAirline.services.AirportService;
 import hr.OSSAirline.services.FlightAirportService;
 import hr.OSSAirline.services.FlightService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class FlightAirportController {
     public final FlightAirportService flightService;
 
     @PostMapping("/flights")
-    public String searchFlights(@RequestParam String from, @RequestParam String to, @RequestParam String date, Model model) {
+    public String searchFlights(@RequestParam String from, @RequestParam String to, @RequestParam String date, Model model, HttpSession session) {
         var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         var parsedDate = new Date();
         try {
