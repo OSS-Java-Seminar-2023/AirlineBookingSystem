@@ -32,12 +32,14 @@ public class FlightAirportController {
             parsedDate = dateFormat.parse(date);
             var flights_map = flightService.getFlights(from, to, parsedDate);
             model.addAttribute("flights_map", flights_map);
+            model.addAttribute("httpSession",session);
         }
         catch (ParseException e){
             System.out.println(e);
         }
         catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession",session);
             return "index";
         }
         return "flights";

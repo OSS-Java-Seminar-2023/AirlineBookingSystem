@@ -1,14 +1,11 @@
 package hr.OSSAirline.services;
 
 import hr.OSSAirline.repositories.SeatRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class SeatService {
     public final SeatRepository seatRepository;
-    @Autowired
-    public SeatService(SeatRepository seatRepository){
-        this.seatRepository=seatRepository;
-    }
 }

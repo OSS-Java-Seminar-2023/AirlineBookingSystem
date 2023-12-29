@@ -1,14 +1,11 @@
 package hr.OSSAirline.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
 
-@Setter
-@Getter
+@Data
 @Entity(name = "ticket")
 public class Ticket {
     @Id

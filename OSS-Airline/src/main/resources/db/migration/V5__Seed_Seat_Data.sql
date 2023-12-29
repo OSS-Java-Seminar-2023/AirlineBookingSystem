@@ -34,17 +34,17 @@ FROM airplane
 WHERE id = airplaneIdVar;
 
 -- Create seats for each class and associate with the current flight
-INSERT INTO seat (id, flight_id, seatPrice, seatClass)
+INSERT INTO seat (id, flight_id, seat_price, seat_class)
 SELECT UUID(), flightIdVar, 100.00, 'First Class'
 FROM information_schema.tables
          LIMIT firstClassSeats;
 
-INSERT INTO seat (id, flight_id, seatPrice, seatClass)
+INSERT INTO seat (id, flight_id, seat_price, seat_class)
 SELECT UUID(), flightIdVar, 50.00, 'Business Class'
 FROM information_schema.tables
          LIMIT businessClassSeats;
 
-INSERT INTO seat (id, flight_id, seatPrice, seatClass)
+INSERT INTO seat (id, flight_id, seat_price, seat_class)
 SELECT UUID(), flightIdVar, 30.00, 'Economy Class'
 FROM information_schema.tables
          LIMIT economyClassSeats;

@@ -35,13 +35,6 @@
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
 
-            <label for="seatClass">Seat Class:</label>
-            <select id="seatClass" name="seatClass" class="custom-select">
-                <option value="Economy Class">Economy</option>
-                <option value="Business Class">Business</option>
-                <option value="First Class">First Class</option>
-            </select>
-
             <button type="submit">Search</button>
             <div th:if="${error}" class="error" style="color: red;">
                 <p th:text="${error}"></p>

@@ -40,7 +40,10 @@
         <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
-        <button type="submit">BUY TICKET</button>
+        <form th:action="@{/seats}" method="post">
+            <input type="hidden" name="flightId" th:value="${flight.id}"/>
+            <button type="submit">BUY TICKET</button>
+        </form>
     </div>
     <div th:if="${#lists.size(flights_map['flights_date']) == 0}">
         <h1> SORRY, NO FLIGHTS FOUND ON GIVEN DATE! </h1>
@@ -55,7 +58,10 @@
         <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
-        <button type="submit">BUY TICKET</button>
+        <form th:action="@{/seats}" method="post">
+            <input type="hidden" name="flightId" th:value="${flight.id}"/>
+            <button type="submit">BUY TICKET</button>
+        </form>
     </div>
     <div th:if="${#lists.size(flights_map['flights_before']) == 0}">
         <h1> SORRY, NO FLIGHTS FOUND BEFORE THE GIVEN DATE! </h1>
@@ -70,7 +76,10 @@
         <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
-        <button type="submit">BUY TICKET</button>
+        <form th:action="@{/seats}" method="post">
+            <input type="hidden" name="flightId" th:value="${flight.id}"/>
+            <button type="submit">BUY TICKET</button>
+        </form>
     </div>
     <div th:if="${#lists.size(flights_map['flights_after']) == 0}">
         <h1> SORRY, NO FLIGHTS FOUND AFTER THE GIVEN DATE! </h1>
