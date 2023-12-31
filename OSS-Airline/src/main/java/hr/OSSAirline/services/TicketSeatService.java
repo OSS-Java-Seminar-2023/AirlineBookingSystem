@@ -28,7 +28,7 @@ public class TicketSeatService {
 
         var takenTickets = ticketRepository.findByFlightId(flightId).stream()
                 .map(ticketMapper::toDto)
-                .toList();;
+                .toList();
 
         var takenSeats = takenTickets.stream()
                 .map(TicketDto::getSeat)
@@ -37,5 +37,11 @@ public class TicketSeatService {
         return allSeats.stream()
                 .filter(seat -> !takenSeats.contains(seat))
                 .collect(Collectors.toList());
+    }
+
+    public List<SeatDto>  getSeatsByIds(List<String> seat_ids){
+        return seatRepository.findByIdIn(seat_ids).stream()
+                .map(seatMapper::toDto)
+                .toList();
     }
 }

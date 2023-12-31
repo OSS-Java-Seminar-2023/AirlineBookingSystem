@@ -21,6 +21,8 @@
             display: flex;
             flex-direction: row;
             margin-right: 10px;     /* Add a little margin for spacing between seats */
+            background-color: white;
+            color: black;
         }
 
         .seat-number {
@@ -40,24 +42,20 @@
 <body>
 <h1>Available Seats</h1>
 
-<form th:action="@{/submit-seats}" method="post">
-    <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
+<form th:action="@{/tickets}" method="post">
+    <button type="submit">Book Selected Seats</button>
+    <div th:each="seat : ${availableSeats}" class="seat-container">
         <div class="seat">
-            <div class="seat-number" th:text="${iterStat.count}"></div>
+            <div><strong>Number:</strong> <span th:text="${seat.seatNumber}"></span></div>
             <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
             <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span></div>
             <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
-
-            <!-- Add a checkbox for each seat -->
             <div>
-                <input type="checkbox" th:id="'seat_' + ${iterStat.count}" name="selectedSeats" th:value="${seat.id}">
-                <label th:for="'seat_' + ${iterStat.count}">Select Seat</label>
+                <input type="checkbox" th:id="'seat_' + ${seat.seatNumber}" name="selectedSeats" th:value="${seat.id}">
+                <label th:for="'seat_' + ${seat.seatNumber}">Select Seat</label>
             </div>
         </div>
     </div>
-
-    <!-- Submit button -->
-    <button type="submit">Book Selected Seats</button>
 </form>
 
 </body>

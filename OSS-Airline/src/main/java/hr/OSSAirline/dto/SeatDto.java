@@ -8,4 +8,5 @@ public class SeatDto {
         private FlightDto flight;
         private Float seatPrice;
         private String seatClass;
+        private String seatNumber;
 }

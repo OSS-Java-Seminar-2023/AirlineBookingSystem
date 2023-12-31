@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <style>
+        .ticket-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .ticket {
+            border: 1px solid black;
+            padding: 15px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;   /* Add a little margin for spacing between tickets */
+            background-color: white;
+            color: black;
+        }
+
+        .ticket-id {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .ticket-details div {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+<h1>Book Tickets</h1>
+
+<form th:action="@{/tickets/reserve}" method="post">
+    <div th:each="ticket, iterStat : ${ticketList}" class="ticket-container">
+        <div class="ticket">
+            <input type="hidden" th:name="|passenger[${iterStat.index}]|" th:value="${ticket.passenger.id}" />
+            <input type="hidden" th:name="|flight[${iterStat.index}]|" th:value="${ticket.flight.id}" />
+            <input type="hidden" th:name="|seat[${iterStat.index}]|" th:value="${ticket.seat.id}" />
+
+
+            <div class="ticket-id">
+                <label for="ticketId">Ticket ID:</label>
+                <input type="text" id="ticketId" th:value="${ticket.id}" readonly>
+            </div>
+            <div class="ticket-details">
+                <div>
+                    <label for="passengerName">Passenger:</label>
+                    <input type="text" id="passengerName" th:value="${ticket.passenger.name + ' ' + ticket.passenger.surname}" readonly>
+                </div>
+                <div>
+                    <label for="flightNumber">Flight:</label>
+                    <input type="text" id="flightNumber" th:value="${ticket.flight.flightNumber}" readonly>
+                </div>
+                <div>
+                    <label for="seatNumber">Seat:</label>
+                    <input type="text" id="seatNumber" th:value="${ticket.seat.seatNumber}" readonly>
+                </div>
+                <div>
+                    <label for="ticketPrice">Price:</label>
+                    <input type="text" id="ticketPrice" th:value="${ticket.ticketPrice}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit">Reserve Tickets</button>
+</form>
+
+</body>
+
+</html>
