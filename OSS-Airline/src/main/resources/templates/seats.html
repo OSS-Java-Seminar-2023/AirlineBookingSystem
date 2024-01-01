@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seats</title>
     <link rel="stylesheet" th:href="@{/css/seats.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <script th:src="@{/javaScript/seats.js}"></script>
 </head>
 
 <header>
@@ -14,29 +16,43 @@
 </header>
 
 <body>
-<div class="parent-div">
+<div class="available-seats">
     <h1>Available Seats</h1>
+    <button class="button-29" role="button">Book Selected Seats</button>
+    <div class="parent-div">
 
-    <form th:action="@{/submit-seats}" method="post">
-        <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
-            <div class="seat">
-                <div class="seat-number" th:text="${iterStat.count}"></div>
-                <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
-                <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span></div>
-                <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
 
-                <!-- Add a checkbox for each seat -->
-                <div>
-                    <input type="checkbox" th:id="'seat_' + ${iterStat.count}" name="selectedSeats"
-                           th:value="${seat.id}">
-                    <label th:for="'seat_' + ${iterStat.count}" >Select Seat</label>
+        <form th:action="@{/submit-seats}" method="post">
+            <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
+                <div class="seat">
+                    <div class="seat-number" th:text="${iterStat.count}"></div>
+                    <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
+                    <div><strong>Price:</strong> <span th:text="${seat.seatPrice}">€</span></div>
+                    <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
+
+                    <div class="checkbox-wrapper-12">
+                        <div class="cbx">
+                            <input id="cbx-12" type="checkbox" th:value="${seat.id}"/>
+                            <label for="cbx-12"></label>
+                            <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                                <path d="M2 8.36364L6.23077 12L13 2"></path>
+                            </svg>
+                        </div>
+                        <!-- Gooey-->
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <defs>
+                                <filter id="goo-12">
+                                    <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+                                    <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
+                                    <feblend in="SourceGraphic" in2="goo-12"></feblend>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit">Book Selected Seats</button>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 

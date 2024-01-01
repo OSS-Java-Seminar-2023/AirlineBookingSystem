@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" th:href="@{/css/registration.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
 </head>
 <header>
     <div th:replace="~{/nav.html}"></div>
@@ -17,16 +18,16 @@
     <div id="login-text">
         <strong>Login</strong>
     </div>
-    <div>
+    <div class="input-text-div">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" autofocus required>
+        <input type="text" id="username" name="username" placeholder="username" autofocus required>
     </div>
-    <div>
+    <div class="input-text-div">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password"  required>
+        <input type="password" id="password" name="password" placeholder="password"  required>
     </div>
     <div>
-        <button type="submit">Login</button>
+        <button class="button-29" role="button">Login</button>
     </div>
     <div th:if="${error}" class="error" style="color: red;">
         <p th:text="${error}"></p>
