@@ -6,31 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seats</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <style>
-        .seat-container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-        }
-
-        .seat {
-            border: 1px solid black;
-            padding: 10px;
-            width: 40%;
-            display: flex;
-            flex-direction: row;
-            margin-right: 10px;     /* Add a little margin for spacing between seats */
-        }
-
-        .seat-number {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .seat div{
-            margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/seats.css}">
 </head>
 
 <header>
@@ -38,28 +14,30 @@
 </header>
 
 <body>
-<h1>Available Seats</h1>
+<div class="parent-div">
+    <h1>Available Seats</h1>
 
-<form th:action="@{/submit-seats}" method="post">
-    <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
-        <div class="seat">
-            <div class="seat-number" th:text="${iterStat.count}"></div>
-            <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
-            <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span></div>
-            <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
+    <form th:action="@{/submit-seats}" method="post">
+        <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
+            <div class="seat">
+                <div class="seat-number" th:text="${iterStat.count}"></div>
+                <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
+                <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span></div>
+                <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
 
-            <!-- Add a checkbox for each seat -->
-            <div>
-                <input type="checkbox" th:id="'seat_' + ${iterStat.count}" name="selectedSeats" th:value="${seat.id}">
-                <label th:for="'seat_' + ${iterStat.count}">Select Seat</label>
+                <!-- Add a checkbox for each seat -->
+                <div>
+                    <input type="checkbox" th:id="'seat_' + ${iterStat.count}" name="selectedSeats"
+                           th:value="${seat.id}">
+                    <label th:for="'seat_' + ${iterStat.count}" >Select Seat</label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Submit button -->
-    <button type="submit">Book Selected Seats</button>
-</form>
-
+        <!-- Submit button -->
+        <button type="submit">Book Selected Seats</button>
+    </form>
+</div>
 </body>
 
 </html>

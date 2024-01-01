@@ -1,0 +1,76 @@
+body {
+    margin-top: 70px;
+    background-image: url("../images/airplane-wing-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 20px;
+    color: white;
+    height: 100%;
+}
+
+html{
+    height: 100%;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.seat-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.seat {
+    border: 2px solid white; /* Border color for seats */
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ecf0f1; /* Background color for seats */
+    color: #2c3e50; /* Text color for seats */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.seat:hover {
+    transform: scale(1.05); /* Scale the seat by 5% on hover */
+}
+
+.seat-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.parent-div {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    overflow: auto;
+    direction: rtl;
+}
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e5e5e5;
+}
+

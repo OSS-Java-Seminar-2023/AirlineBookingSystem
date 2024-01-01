@@ -18,7 +18,7 @@ public class TicketSeatController {
     @PostMapping("/seats")
     public String getAllAvailableSeats(@RequestParam String flightId, Model model, HttpSession session) {
         try {
-            SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+            //SecurityCheck.isUserNotLoggedInReturnToLogin(session);
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("httpSession",session);
