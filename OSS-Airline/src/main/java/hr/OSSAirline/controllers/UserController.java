@@ -4,6 +4,7 @@ import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.services.UserService;
 import hr.OSSAirline.utils.SecurityCheck;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class UserController {
                 throw new RuntimeException("Password mismatch!");
             }
             userService.registerUser(user);
-        } catch (RuntimeException e) {
+        } catch (RuntimeException | MessagingException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("user", user);
             model.addAttribute("httpSession",session);
