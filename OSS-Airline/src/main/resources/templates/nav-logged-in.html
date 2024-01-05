@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <div>
         <ul>
-            <li style="float:left"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></li>
-            <li><a th:href="@{/logout}" th:text="${'Logout'}"></a></li>
-            <li><a th:href="@{/}" th:text="${'Flight Search'}"></a></li>
+            <li style="float:left"><a th:href="@{/}"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></a></li>
+            <li><a class="text-link" th:href="@{/logout}" th:text="${'Logout'}"></a></li>
+            <li><a class="text-link" th:href="@{/}" th:text="${'Flight Search'}"></a></li>
         </ul>
     </div>
 </div>

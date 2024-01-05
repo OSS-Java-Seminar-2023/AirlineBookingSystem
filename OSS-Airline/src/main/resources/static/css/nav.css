@@ -26,7 +26,16 @@ li {
     width: 50px;
 }
 
-li a {
+li a{
+    padding: 5px 10px;
+    display: inline;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.text-link {
     padding: 5px 10px;
     display: inline;
     color: white;
