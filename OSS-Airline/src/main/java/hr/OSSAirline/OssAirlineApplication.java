@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 		"hr.OSSAirline.dto"
 })
 @EntityScan("hr.OSSAirline.models")
-
+@EnableScheduling
 public class OssAirlineApplication {
 
 

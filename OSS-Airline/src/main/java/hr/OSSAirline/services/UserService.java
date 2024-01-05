@@ -4,6 +4,8 @@ import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.UserRepository;
+import hr.OSSAirline.utils.MailConstants;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,9 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public void registerUser(UserDto user) {
+    private final EmailService emailService;
+
+    public void registerUser(UserDto user) throws MessagingException {
         if(usernameTaken(user.getUsername())){
             throw new RuntimeException("Username taken!");
         }
@@ -30,6 +34,8 @@ public class UserService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+
+        emailService.sendEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
 
         userRepository.save(UserMapper.INSTANCE.toEntity(user));
     }
