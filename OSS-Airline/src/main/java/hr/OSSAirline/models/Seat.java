@@ -17,6 +17,7 @@ public class Seat {
     private Float seatPrice;
     @Column
     private String seatClass;
-
+    @Column
+    private String seatNumber;
 }
 

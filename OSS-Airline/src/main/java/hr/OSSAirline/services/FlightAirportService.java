@@ -1,16 +1,15 @@
 package hr.OSSAirline.services;
 
-import hr.OSSAirline.dto.AirportDto;
+
 import hr.OSSAirline.dto.FlightDto;
-import hr.OSSAirline.mappers.AirportMapper;
 import hr.OSSAirline.mappers.FlightMapper;
-import hr.OSSAirline.models.Airport;
-import hr.OSSAirline.models.Flight;
 import hr.OSSAirline.repositories.AirportRepository;
 import hr.OSSAirline.repositories.FlightRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +40,7 @@ public class FlightAirportService {
                 .collect(Collectors.toList());
 
         var flights_map = new HashMap<String,List<FlightDto>>();
-        flights_map.put("flights_before",flights_before);
+        flights_map.put("flights_before", flights_before);
         flights_map.put("flights_date",flights_date);
         flights_map.put("flights_after",flights_after);
         return flights_map;

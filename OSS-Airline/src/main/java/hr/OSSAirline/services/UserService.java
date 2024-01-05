@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
     private final EmailService emailService;
 
     public void registerUser(UserDto user) throws MessagingException {
@@ -31,6 +30,12 @@ public class UserService {
         if(emailTaken(user.getEmail())){
             throw new RuntimeException("Email is already in use!");
         }
+        encodeAndSetPassword(user);
+
+        userRepository.save(UserMapper.INSTANCE.toEntity(user));
+    }
+
+    private static void encodeAndSetPassword(UserDto user) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);

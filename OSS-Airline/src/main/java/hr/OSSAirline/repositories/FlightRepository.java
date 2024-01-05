@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, String> {
     List<Flight> searchFlightsByFromAndToAndDate(Airport from, Airport to, Date date);
-    @Query("SELECT f FROM flight f WHERE f.from = :from AND f.to = :to AND f.date = (SELECT MAX(ff.date) FROM flight ff WHERE ff.from = :from AND ff.to = :to AND ff.date < :givenDate)")
+    @Query("SELECT f FROM flight f WHERE f.from = :from AND f.to = :to AND f.date = (SELECT MAX(ff.date) FROM flight ff WHERE ff.from = :from AND ff.to = :to AND ff.date < :givenDate AND ff.date > NOW())")
     List<Flight> findAllFlightsForFirstDateBeforeGivenDate(@Param("from") Airport from, @Param("to") Airport to, @Param("givenDate") Date givenDate);
 
     @Query("SELECT f FROM flight f WHERE f.from = :from AND f.to = :to AND f.date = (SELECT MIN(ff.date) FROM flight ff WHERE ff.from = :from AND ff.to = :to AND ff.date > :givenDate)")
