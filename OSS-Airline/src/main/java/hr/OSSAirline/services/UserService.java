@@ -27,11 +27,15 @@ public class UserService {
         if(emailTaken(user.getEmail())){
             throw new RuntimeException("Email is already in use!");
         }
+        encodeAndSetPassword(user);
+
+        userRepository.save(UserMapper.INSTANCE.toEntity(user));
+    }
+
+    private static void encodeAndSetPassword(UserDto user) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-
-        userRepository.save(UserMapper.INSTANCE.toEntity(user));
     }
 
     public boolean usernameTaken(String username){

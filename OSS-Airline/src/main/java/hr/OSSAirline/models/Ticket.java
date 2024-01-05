@@ -20,6 +20,9 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "seat_id")
     private Seat seat;
+    @ManyToOne
+    @JoinColumn(name = "purchase_id")
+    private Purchase purchase;
     @Column
     private Float ticketPrice;
 

@@ -1,16 +1,14 @@
 package hr.OSSAirline.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Setter
-@Getter
+@Data
 @Entity(name = "purchase")
 public class Purchase {
     @Id
@@ -19,12 +17,13 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
+
     @Column
     private String paymentInfo;
+
     @Column
     private Date paymentDate;
-
 }
