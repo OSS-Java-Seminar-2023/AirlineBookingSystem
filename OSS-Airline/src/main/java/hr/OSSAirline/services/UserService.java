@@ -32,6 +32,7 @@ public class UserService {
         }
         encodeAndSetPassword(user);
 
+        emailService.sendEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
         userRepository.save(UserMapper.INSTANCE.toEntity(user));
     }
 
@@ -39,10 +40,6 @@ public class UserService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-
-        emailService.sendEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
-
-        userRepository.save(UserMapper.INSTANCE.toEntity(user));
     }
 
     public boolean usernameTaken(String username){
