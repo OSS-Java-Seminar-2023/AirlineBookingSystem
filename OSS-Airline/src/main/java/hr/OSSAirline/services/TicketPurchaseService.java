@@ -2,14 +2,12 @@ package hr.OSSAirline.services;
 
 import hr.OSSAirline.controllers.TicketPurchaseController;
 import hr.OSSAirline.mappers.PurchaseMapper;
-import hr.OSSAirline.models.Flight;
-import hr.OSSAirline.models.Passenger;
-import hr.OSSAirline.models.Seat;
-import hr.OSSAirline.models.Ticket;
+import hr.OSSAirline.models.*;
 import hr.OSSAirline.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,15 +20,33 @@ public class TicketPurchaseService {
     public final FlightRepository flightRepository;
     public final PassengerRepository passengerRepository;
     public final SeatRepository seatRepository;
+    private final UserRepository userRepository;
 
 
 
-    public void makePurchase(TicketPurchaseController.TicketForm ticketForm) {
-//        var tickets = ticketForm.getTickets();
-        var flights = ticketForm.getFlight().stream().map(flightId -> flightRepository.findById(flightId)).collect(Collectors.toList());
-        var passengers = ticketForm.getPassenger().stream().map(passengerId -> passengerRepository.findById(passengerId)).collect(Collectors.toList());
-        var seats = ticketForm.getSeat().stream().map(seatId -> seatRepository.findById(seatId)).collect(Collectors.toList());
-
-        System.out.println("check");
+    public void makePurchase(TicketPurchaseController.TicketForm ticketForm, String userName) {
+        var user = userRepository.findUserByUsername(userName); //TODO fixat poslje da nije .get() error handeling
+        var flights = ticketForm.getFlight().stream().map(flightRepository::findById).toList();
+        var passengers = ticketForm.getPassenger().stream().map(passengerRepository::findById).toList();
+        var seats = ticketForm.getSeat().stream().map(seatRepository::findById).toList();
+        var prices = ticketForm.getPrice().stream().toList();
+        var ticket_list = new ArrayList<Ticket>();
+        for (int i = 0; i < passengers.size(); i++) {
+            var ticket = new Ticket();
+            ticket.setFlight(flights.get(i).orElseThrow());
+            ticket.setPassenger(passengers.get(i).orElseThrow());
+            ticket.setSeat(seats.get(i).orElseThrow());
+            ticket.setTicketPrice(prices.get(i));
+            ticket_list.add(ticket);
+        }
+        var purchase = new Purchase();
+        purchase.setUser(user.get()); //TODO provjerit jeli user prazan
+        purchase.setTickets(ticket_list);
+        purchaseRepository.save(purchase);
+        ticket_list.stream()
+                .forEach(ticket -> {
+                    ticket.setPurchase(purchase);
+                    ticketRepository.updatePurchaseField(ticket.getId(),purchase);
+                });
     }
 }

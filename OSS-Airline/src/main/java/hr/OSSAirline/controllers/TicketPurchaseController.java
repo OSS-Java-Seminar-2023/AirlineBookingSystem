@@ -5,6 +5,7 @@ import hr.OSSAirline.services.FlightService;
 import hr.OSSAirline.services.PassengerService;
 import hr.OSSAirline.services.SeatService;
 import hr.OSSAirline.services.TicketPurchaseService;
+import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,16 @@ public class TicketPurchaseController {
 
 
     @PostMapping("/tickets/reserve")
-    public String reserveTickets(@ModelAttribute("tickets") TicketForm ticketForm, Model model) {
-        ticketPurchaseService.makePurchase(ticketForm);
+    public String reserveTickets(@ModelAttribute("tickets") TicketForm ticketForm, Model model, HttpSession session) {
+        //        try {
+//            SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+//        } catch (RuntimeException e) {
+//            model.addAttribute("error", e.getMessage());
+//            model.addAttribute("httpSession",session);
+//            return "user_login";
+//        }
+        var userName = session.getAttribute("userName").toString();
+        ticketPurchaseService.makePurchase(ticketForm,userName);
         System.out.println("hello");
         return "redirect:/";
     }
@@ -34,5 +43,6 @@ public class TicketPurchaseController {
         private List<String> passenger;
         private List<String> flight;
         private List<String> seat;
+        private List<Float> price;
     }
 }

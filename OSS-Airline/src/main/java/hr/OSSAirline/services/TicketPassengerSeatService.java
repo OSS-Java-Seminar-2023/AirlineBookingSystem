@@ -43,7 +43,7 @@ public class TicketPassengerSeatService {
             ticketDto.setPassenger(passengerDto);
             ticketDto.setSeat(seatMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null)));
             ticketDto.setFlight(flightMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null).getFlight()));
-            ticketDto.setTicketPrice(seatRepository.findById(entry.getKey()).orElse(null).getSeatPrice());// implement logic behind cheaper price for childern or teens
+            ticketDto.setTicketPrice(seatRepository.findById(entry.getKey()).orElse(null).getSeatPrice()); // implement logic behind cheaper price for childern or teens
             tickets.add(ticketDto);
         }
 

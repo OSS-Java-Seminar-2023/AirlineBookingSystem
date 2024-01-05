@@ -71,6 +71,7 @@
                 <div>
                     <label for="ticketPrice">Price:</label>
                     <input type="text" id="ticketPrice" th:value="${ticket.ticketPrice}" readonly>
+                    <input type="hidden" th:name="|price[${iterStat.index}]|" th:value="${ticket.ticketPrice}" />
                 </div>
             </div>
         </div>
