@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
 
+
     color: white;
 }
 
@@ -19,10 +20,18 @@ body {
     gap: 20px;
     padding: 40px;
     border-radius: 30px;
-    border: 3px solid black;
     position: absolute;
     top: 50%;
     transform: translate(30%, -50%);
+}
+
+.form-div h1{
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: #002dcc;
 }
 
 .form-inside-parent-div {
@@ -56,6 +65,11 @@ label {
     color: #002dcc;
 }
 
+.user-img{
+    height: 50px;
+    width: 50px;
+}
+
 input {
     height: 20px;
     border: none;
@@ -72,23 +86,4 @@ input {
 .user-img {
     height: 50px;
     width: 50px;
-}
-
-button {
-    background-color: white;
-    border: solid 2px #002dcc;
-    color: #002dcc;
-    width: 220px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.4s ease;
-
-    &:hover {
-        background-color: #002dcc;
-        color: white;
-        box-shadow: 5px 5px 20px black;
-    }
 }

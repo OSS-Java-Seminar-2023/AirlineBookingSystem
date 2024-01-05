@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight List</title>
     <link rel="stylesheet" th:href="@{/css/flights.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
 </head>
 
 <header>
@@ -28,7 +29,7 @@
         <div>Time</div>
         <div>Gate</div>
         <div>Duration</div>
-        <div>Buy</div>
+        <div><i class="material-icons">shopping_cart</i></div>
     </div>
 
     <div th:each="flight : ${flights_map['flights_date']}" class="flight">

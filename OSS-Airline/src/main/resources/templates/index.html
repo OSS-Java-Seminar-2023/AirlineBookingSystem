@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search</title>
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <header>
@@ -14,33 +18,35 @@
 </header>
 
 <body>
-    <div>
-        <form th:action="@{/flights}" method="post" class="form-div">
-            <div class="form-inside-parent-div">
-                <div class="form-inside-div">
-                    <label for="from">From:</label>
-                    <input type="text" id="from" name="from" list="fromAirports" required>
-                    <datalist id="fromAirports">
-                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-                    </datalist>
-                </div>
-                <div class="form-inside-div">
-                    <label for="to">To:</label>
-                    <input type="text" id="to" name="to" list="toAirports" required>
-                    <datalist id="toAirports">
-                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
-                    </datalist>
-                </div>
+<div>
+    <form th:action="@{/flights}" method="post" class="form-div">
+        <img th:src="@{/images/plane_8885364.png}" alt="LOGIN" class="user-img">
+        <h1>SEARCH FLIGHTS</h1>
+        <div class="form-inside-parent-div">
+            <div class="form-inside-div">
+                <label for="from"><strong>From:</strong></label>
+                <input type="text" id="from" name="from" list="fromAirports" required>
+                <datalist id="fromAirports">
+                    <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                </datalist>
             </div>
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
+            <div class="form-inside-div">
+                <label for="to"><strong>To:</strong></label>
+                <input type="text" id="to" name="to" list="toAirports" required>
+                <datalist id="toAirports">
+                    <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                </datalist>
+            </div>
+        </div>
+        <label for="date"><strong>Date:</strong></label>
+        <input type="date" id="date" name="date" required>
 
-            <button type="submit">Search</button>
-            <div th:if="${error}" class="error" style="color: red;">
-                <p th:text="${error}"></p>
-            </div>
-        </form>
-    </div>
+        <button class="button-29" role="button"><span class="material-symbols-outlined">search</span></button>
+        <div th:if="${error}" class="error" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+    </form>
+</div>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
