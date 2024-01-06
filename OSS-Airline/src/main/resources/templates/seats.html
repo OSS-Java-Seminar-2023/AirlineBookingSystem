@@ -21,7 +21,7 @@
     <div class="parent-div">
 
 
-        <form th:action="@{/tickets}" method="post">
+        <form th:action="@{/tickets}" method="post" class="form">
             <button class="button-29" role="button">Book Selected Seats</button>
             <div th:each="seat, iterStat : ${availableSeats}" class="seat-container">
                 <div class="seat">

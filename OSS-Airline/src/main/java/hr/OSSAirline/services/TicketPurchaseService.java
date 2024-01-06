@@ -24,7 +24,7 @@ public class TicketPurchaseService {
 
 
 
-    public void makePurchase(TicketPurchaseController.TicketForm ticketForm, String userName) {
+    public String makePurchase(TicketPurchaseController.TicketForm ticketForm, String userName) {
         var user = userRepository.findUserByUsername(userName);
         var flights = ticketForm.getFlight().stream().map(flightRepository::findById).toList();
         var passengers = ticketForm.getPassenger().stream().map(passengerRepository::findById).toList();
@@ -48,5 +48,6 @@ public class TicketPurchaseService {
                     ticket.setPurchase(purchase);
                     ticketRepository.updatePurchaseField(ticket.getId(),purchase);
                 });
+        return purchase.getId();
     }
 }

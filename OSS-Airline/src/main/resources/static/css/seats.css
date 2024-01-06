@@ -77,6 +77,13 @@ html{
     text-transform: uppercase;
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
  .checkbox-wrapper-12 {
      position: relative;
      margin-right: 15px;

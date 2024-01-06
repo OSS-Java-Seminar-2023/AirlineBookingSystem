@@ -1,10 +1,8 @@
 package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.dto.TicketDto;
-import hr.OSSAirline.services.FlightService;
-import hr.OSSAirline.services.PassengerService;
-import hr.OSSAirline.services.SeatService;
-import hr.OSSAirline.services.TicketPurchaseService;
+import hr.OSSAirline.repositories.UserRepository;
+import hr.OSSAirline.services.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +18,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TicketPurchaseController {
     public final TicketPurchaseService ticketPurchaseService;
-
+    private final UserRepository userRepository;
+    private final EmailService emailService;
 
     @PostMapping("/tickets/reserve")
     public String reserveTickets(@ModelAttribute("tickets") TicketForm ticketForm, Model model, HttpSession session) {
@@ -32,9 +31,12 @@ public class TicketPurchaseController {
 //            return "user_login";
 //        }
         var userName = session.getAttribute("userName").toString();
-        ticketPurchaseService.makePurchase(ticketForm,userName);
-        System.out.println("hello");
-        return "redirect:/";
+        var purchaseId = ticketPurchaseService.makePurchase(ticketForm,userName);
+        var user = userRepository.findByUsername(userName);
+        emailService.sendPurchaseEmail(user.get(), purchaseId);
+        model.addAttribute("reservation", String.format(userName + " thank you for your reservation!\nPlease check your email!"));
+        model.addAttribute("httpSession",session);
+        return "index";
     }
 
     @Data

@@ -45,6 +45,9 @@
         <div th:if="${error}" class="error" style="color: red;">
             <p th:text="${error}"></p>
         </div>
+        <div th:if="${reservation}" class="reservation" style="color: #002dcc;">
+            <p th:text="${reservation}"></p>
+        </div>
     </form>
 </div>
 </body>
