@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/ti.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
 </head>
 
 <header>
@@ -14,49 +15,58 @@
 </header>
 
 <body>
-<h1>Selected Seats</h1>
+<div class="tickets">
+    <h1>Selected Seats</h1>
+    <div class="parent-div">
+        <form th:action="@{/tickets/save}" method="post" class="form-div-2">
+            <div th:each="seat, iterStat : ${selectedSeats}" class="seat">
 
-<form th:action="@{/tickets/save}" method="post">
-    <div th:each="seat, iterStat : ${selectedSeats}" class="seat">
-        <!-- Seat Information Display -->
-        <div>
-            <div><strong>Number:</strong> <span th:text="${seat.seatNumber}"></span></div>
-            <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
-            <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span></div>
-            <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
-        </div>
+                <div class="boarding-pass"><strong>BOARDING PASS</strong></div>
+                <!-- Seat Information Display -->
+                <div class="flight-info">
+                    <div><strong>Number:</strong> <span th:text="${seat.seatNumber}"></span></div>
+                    <div><strong>Flight:</strong> <span th:text="${seat.flight.flightNumber}"></span></div>
+                    <div><strong>Price:</strong> <span th:text="${seat.seatPrice}"></span>€</div>
+                    <div><strong>Class:</strong> <span th:text="${seat.seatClass}"></span></div>
+                </div>
 
-        <!-- Passenger Information Fields -->
-        <div>
-            <label for="passengerName">Name:</label>
-            <input type="text" id="passengerName" th:name="'passengers[' + ${iterStat.index} + '].name'" required>
-        </div>
+                <div class="passenger"><strong>PASSENGER</strong></div>
+                <!-- Passenger Information Fields -->
+                <div>
+                    <label for="passengerName">Name:</label>
+                    <input type="text" id="passengerName" th:name="'passengers[' + ${iterStat.index} + '].name'"
+                           required>
+                </div>
 
-        <div>
-            <label for="passengerSurname">Surname:</label>
-            <input type="text" id="passengerSurname" th:name="'passengers[' + ${iterStat.index} + '].surname'" required>
-        </div>
+                <div>
+                    <label for="passengerSurname">Surname:</label>
+                    <input type="text" id="passengerSurname" th:name="'passengers[' + ${iterStat.index} + '].surname'"
+                           required>
+                </div>
 
-        <div>
-            <label for="passengerMail">Email:</label>
-            <input type="email" id="passengerMail" th:name="'passengers[' + ${iterStat.index} + '].mail'" required>
-        </div>
+                <div>
+                    <label for="passengerMail">Email:</label>
+                    <input type="email" id="passengerMail" th:name="'passengers[' + ${iterStat.index} + '].mail'"
+                           required>
+                </div>
 
-        <div>
-            <label for="passengerPIN">PIN:</label>
-            <input type="text" id="passengerPIN" th:name="'passengers[' + ${iterStat.index} + '].PIN'" required>
-        </div>
+                <div>
+                    <label for="passengerPIN">PIN:</label>
+                    <input type="text" id="passengerPIN" th:name="'passengers[' + ${iterStat.index} + '].PIN'" required>
+                </div>
 
-        <div>
-            <label for="passengerDOB">Date of Birth:</label>
-            <input type="date" id="passengerDOB" th:name="'passengers[' + ${iterStat.index} + '].DOB'" required>
-        </div>
+                <div>
+                    <label for="passengerDOB">Date of Birth:</label>
+                    <input type="date" id="passengerDOB" th:name="'passengers[' + ${iterStat.index} + '].DOB'" required>
+                </div>
 
-        <input type="hidden" name="seats" th:value="${seat.id}"/>
+                <input type="hidden" name="seats" th:value="${seat.id}"/>
+            </div>
+
+            <button class="button-29" role="button" type="submit"><span
+                    class="material-symbols-outlined">Assign Passengers</span></button>
+        </form>
     </div>
-
-    <button type="submit">Assign Passengers</button>
-</form>
-
+</div>
 </body>
 </html>
