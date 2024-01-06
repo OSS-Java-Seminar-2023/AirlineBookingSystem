@@ -9,6 +9,7 @@ import hr.OSSAirline.mappers.TicketMapper;
 import hr.OSSAirline.repositories.PassengerRepository;
 import hr.OSSAirline.repositories.SeatRepository;
 import hr.OSSAirline.repositories.TicketRepository;
+import hr.OSSAirline.utils.ComparisonUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +37,19 @@ public class TicketPassengerSeatService {
             if (existingPassenger == null) {
                 passengerRepository.save(passengerMapper.toEntity(passengerDto));
             } else {
-                passengerDto = existingPassenger;
+                if(ComparisonUtil.areEqual(passengerDto,existingPassenger)) {
+                    passengerDto = existingPassenger;
+                }
+                else {
+                    throw new RuntimeException("Passenger exists wrong data!");
+                }
             }
 
             TicketDto ticketDto = new TicketDto();
             ticketDto.setPassenger(passengerDto);
             ticketDto.setSeat(seatMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null)));
             ticketDto.setFlight(flightMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null).getFlight()));
-            ticketDto.setTicketPrice(seatRepository.findById(entry.getKey()).orElse(null).getSeatPrice()); // implement logic behind cheaper price for childern or teens
+            ticketDto.setTicketPrice(seatRepository.findById(entry.getKey()).orElse(null).getSeatPrice()); // implement logic behind cheaper price for children or teens
             tickets.add(ticketDto);
         }
 

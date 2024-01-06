@@ -25,7 +25,7 @@ public class TicketPurchaseService {
 
 
     public void makePurchase(TicketPurchaseController.TicketForm ticketForm, String userName) {
-        var user = userRepository.findUserByUsername(userName); //TODO fixat poslje da nije .get() error handeling
+        var user = userRepository.findUserByUsername(userName);
         var flights = ticketForm.getFlight().stream().map(flightRepository::findById).toList();
         var passengers = ticketForm.getPassenger().stream().map(passengerRepository::findById).toList();
         var seats = ticketForm.getSeat().stream().map(seatRepository::findById).toList();
@@ -40,7 +40,7 @@ public class TicketPurchaseService {
             ticket_list.add(ticket);
         }
         var purchase = new Purchase();
-        purchase.setUser(user.get()); //TODO provjerit jeli user prazan
+        purchase.setUser(user.get());
         purchase.setTickets(ticket_list);
         purchaseRepository.save(purchase);
         ticket_list.stream()
