@@ -32,7 +32,7 @@ public class TicketPassengerSeatController {
                         passengers::get
                 ));
 
-        var ticket_list = ticketPassengerSeatService.proccessTicket(passengers_map);
+        var ticket_list = ticketPassengerSeatService.proccessTicket(passengers_map); //TODO fix error throw form function
         model.addAttribute("httpSession",session);
         model.addAttribute("ticketList", ticket_list);
 
