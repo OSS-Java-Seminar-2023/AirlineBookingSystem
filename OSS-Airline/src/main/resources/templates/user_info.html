@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+</body>
+    <div class="user-info">
+        <div><strong>Username: </strong><span th:text="${user.getUsername()}"></span> </div>
+        <div><strong>Email: </strong><span th:text="${user.getEmail()}"></span> </div>
+        <div><a href="@{/}"><span th:text="${'Change password'}"></span></a></div>
+    </div>
+</html>

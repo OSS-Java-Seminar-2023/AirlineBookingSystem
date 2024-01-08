@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    color: black;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.container h1 {
+    background-color: #002dcc;
+    border-radius: 30px;
+    width: 90%;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 5px black;
+    color: white;
+}
+
+.reservations{
+    padding: 20px;
+}
+
+.reservation{
+    padding: 10px;
+}
+
+.reservation-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.reservation-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reservation-text{
+    color: #002dcc;
+    font-weight: bolder;
+}

@@ -88,4 +88,15 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
+
+    @GetMapping("/info")
+    public String info(HttpSession session, Model model) {
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if(x != null) return x;
+        var user = userService.getUserByUsername(session.getAttribute("userName").toString());
+        model.addAttribute("user", user);
+        model.addAttribute("httpSession",session);
+
+        return "user_info";
+    }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Details</title>
+    <link rel="stylesheet" th:href="@{/css/ti.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+<div class="tickets">
+    <h1>Detailed Reservation</h1>
+    <div class="parent-div">
+            <div th:each="ticket, iterStat : ${reservations.getTickets()}" class="seat">
+                <div class="ticket-details">
+                    <div>
+                        <label for="passengerName">Passenger:</label>
+                        <input type="text" id="passengerName" class="imput"
+                               th:value="${ticket.passenger.name + ' ' + ticket.passenger.surname}" readonly>
+                    </div>
+                    <div>
+                        <label for="flightNumber">Flight:</label>
+                        <input type="text" id="flightNumber" class="imput" th:value="${ticket.flight.flightNumber}"
+                               readonly>
+                    </div>
+                    <div>
+                        <label for="seatNumber">Seat:</label>
+                        <input type="text" id="seatNumber" class="imput" th:value="${ticket.seat.seatNumber}" readonly>
+                    </div>
+                    <div>
+                        <label for="ticketPrice">Price:</label>
+                        <input type="text" id="ticketPrice" class="imput" th:value="${ticket.ticketPrice}" readonly>
+                        <input type="hidden" th:name="|price[${iterStat.index}]|" th:value="${ticket.ticketPrice}"/>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</body>
+
+</html>

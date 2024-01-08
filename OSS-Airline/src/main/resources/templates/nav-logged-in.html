@@ -1,9 +1,11 @@
 <div th:fragment="nav-logged-in">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <div>
         <ul>
             <li style="float:left"><a th:href="@{/}"><img th:src="@{/images/logo-white.png}" alt="logo-white" class="logo-img"></a></li>
+            <li><a class="text-link" th:href="@{/info}"><span class="material-symbols-outlined">account_circle</span></a></li>
             <li><a class="text-link" th:href="@{/logout}" th:text="${'Logout'}"></a></li>
             <li><a class="text-link" th:href="@{/reservations}" th:text="${'Reservations'}"></a></li>
             <li><a class="text-link" th:href="@{/}" th:text="${'Flight Search'}"></a></li>

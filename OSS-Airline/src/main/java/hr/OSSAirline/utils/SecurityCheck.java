@@ -13,7 +13,7 @@ public class SecurityCheck {
     public static String isUserNotLoggedInReturnToLogin(HttpSession session) {
         var userName= session.getAttribute("userName");
         if(userName==null){
-            throw new RuntimeException("Login required!");
+            return "redirect:/login";
         }
         return null;
     }

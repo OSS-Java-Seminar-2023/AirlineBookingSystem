@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +34,16 @@ public class ReservationController {
         model.addAttribute("httpSession",session);
         model.addAttribute("reservations", reservations);
         return "reservations";
+    }
+
+    @PostMapping("/reservations/details")
+    public String detailedReservation(@RequestParam String reservationId, Model model, HttpSession session){
+        //var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        //if (x != null) return x;
+
+        var reservation = reservationService.getReservationById(reservationId);
+        model.addAttribute("httpSession",session);
+        model.addAttribute("reservations", reservation);
+        return "reservation-details";
     }
 }

@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/reservations.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
-    <title>Purchase Details</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <title>Reservations</title>
 </head>
 
 <header>
@@ -14,27 +19,21 @@
 
 <body>
 <div class="container">
-    <h1>Reservation Details</h1>
-
-    <form th:action="@{/reservation-details}" method="get">
-        <label for="purchaseId">Enter Purchase ID:</label>
-        <input type="text" id="purchaseId" name="purchaseId" required>
-        <button type="submit">Submit</button>
-    </form>
+    <h1>Your Reservations</h1>
 
     <div class="reservations">
-        <h1>Your reservations</h1>
-        <div class="parent-div">
-
-
-            <div class="reservation">
-                <div th:each="reservation : ${reservations}" class="reservation-container">
-                    <div class="seat">
-                        <div><strong>Reservation ID:</strong> <span th:text="${reservation.getId()}"></span></div>
-                        <div><strong>No of tickets:</strong> <span th:text="${reservation.getTickets().size()}"></span></div>
-                    </div>
-                </div>
+        <div th:each="reservation : ${reservations}" class="reservation-container">
+            <div class="reservation-info">
+                <div><strong>No of tickets:</strong> <span th:text="${reservation.getTickets().size()}" class="reservation-text"></span></div>
+                <div><strong>Date of reservation:</strong> <span th:text="${reservation.getTickets().get(0).flight.getDate()}" class="reservation-text"></span></div>
+                <div><strong>From:</strong> <span th:text="${reservation.getTickets().get(0).flight.getFrom().getName()}" class="reservation-text"></span></div>
+                <div><strong>To:</strong> <span th:text="${reservation.getTickets().get(0).flight.getTo().getName()}" class="reservation-text"></span></div>
             </div>
+
+            <form th:action="@{/reservations/details}" method="post">
+                <input type="hidden" name="reservationId" th:value="${reservation.getId()}"/>
+                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
+            </form>
         </div>
     </div>
 </div>

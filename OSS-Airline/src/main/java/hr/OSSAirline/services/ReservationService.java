@@ -22,4 +22,8 @@ public class ReservationService {
                 .map(reservationMapper::toDto)
                 .toList();
     };
+
+    public ReservationDto getReservationById(String id){
+        return reservationMapper.toDto(reservationRepository.findReservationsById(id));
+    }
 }

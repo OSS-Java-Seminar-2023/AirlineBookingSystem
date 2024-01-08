@@ -75,4 +75,8 @@ public class UserService {
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    public UserDto getUserByUsername(String username){
+        return userMapper.toDto(userRepository.findUserByUsername(username).get());
+    }
 }
