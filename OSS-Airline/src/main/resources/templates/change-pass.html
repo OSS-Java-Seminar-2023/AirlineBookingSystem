@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+</body>
+<div class="change-pass-div">
+    <form th:action="@{/changePassword}" method="post">
+        <label for="oldPassword">Old password</label>
+        <input id="oldPassword" name="oldPassword" type="password"/>
+        <label for="newPassword">New password</label>
+        <input id="newPassword" name="newPassword" type="password"/>
+        <label for="passConfirm">Confirm new password</label>
+        <input id="passConfirm" type="password"/>
+
+        <button class="button-29" role="button">Change password</button>
+    </form>
+</div>
+</html>

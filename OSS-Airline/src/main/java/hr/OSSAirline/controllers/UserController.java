@@ -99,4 +99,34 @@ public class UserController {
 
         return "user_info";
     }
+
+    @GetMapping("/changePassword")
+    public String changePassword(HttpSession session, Model model){
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if(x != null) return x;
+
+        model.addAttribute("httpSession",session);
+
+        return "change-pass";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePasswordPost(@RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, Model model){
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if(x != null) return x;
+
+        try {
+            userService.changePassword(session.getAttribute("userName").toString(), newPassword, oldPassword);
+        }
+        catch (RuntimeException e){
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession",session);
+            return "index";
+        }
+
+        model.addAttribute("info", "Password successfully changed!");
+        model.addAttribute("httpSession",session);
+
+        return "index";
+    }
 }

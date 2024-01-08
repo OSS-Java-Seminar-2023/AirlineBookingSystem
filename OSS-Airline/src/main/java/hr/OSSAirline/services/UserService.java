@@ -79,4 +79,14 @@ public class UserService {
     public UserDto getUserByUsername(String username){
         return userMapper.toDto(userRepository.findUserByUsername(username).get());
     }
+
+    public void changePassword(String username, String newPassword, String oldPassword){
+        var passwordEncoder = new BCryptPasswordEncoder();
+        var user = userRepository.getUserByUsername(username);
+        if(!passwordEncoder.matches(oldPassword, user.getPassword())) {
+            throw new RuntimeException("Current password not matching!");
+        }
+        var hashedPassword = passwordEncoder.encode(newPassword);
+        userRepository.changePassword(username, hashedPassword);
+    }
 }

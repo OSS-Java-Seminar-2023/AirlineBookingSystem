@@ -19,6 +19,9 @@
     <div class="user-info">
         <div><strong>Username: </strong><span th:text="${user.getUsername()}"></span> </div>
         <div><strong>Email: </strong><span th:text="${user.getEmail()}"></span> </div>
-        <div><a href="@{/}"><span th:text="${'Change password'}"></span></a></div>
+        <div><a th:href="@{/changePassword}"><span th:text="${'Change password'}"></span></a></div>
+        <div th:if="${info}" class="info" style="color: #002dcc;">
+            <p th:text="${info}"></p>
+        </div>
     </div>
 </html>
