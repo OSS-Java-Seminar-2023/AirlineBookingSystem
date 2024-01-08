@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class PurchaseDto {
+public class ReservationDto {
     private String id;
     private UserDto user;
     private List<TicketDto> tickets = new ArrayList<>();

@@ -10,12 +10,12 @@ public interface TicketMapper {
     @Mapping(target = "passenger", source = "passenger")
     @Mapping(target = "flight", source = "flight")
     @Mapping(target = "seat", source = "seat")
-    @Mapping(target = "purchase", source = "purchase")
+    @Mapping(target = "reservation", source = "reservation")
     TicketDto toDto(Ticket ticket);
 
     @Mapping(target = "passenger", source = "passenger")
     @Mapping(target = "flight", source = "flight")
-    @Mapping(target = "purchase", source = "purchase")
+    @Mapping(target = "reservation", source = "reservation")
     @Mapping(target = "seat", source = "seat")
     Ticket toEntity(TicketDto ticketDto);
 }

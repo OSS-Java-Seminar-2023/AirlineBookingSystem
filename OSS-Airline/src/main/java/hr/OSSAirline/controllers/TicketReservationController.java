@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-public class TicketPurchaseController {
-    public final TicketPurchaseService ticketPurchaseService;
+public class TicketReservationController {
+    public final TicketReservationService ticketReservationService;
     private final UserRepository userRepository;
     private final EmailService emailService;
 
@@ -31,9 +30,9 @@ public class TicketPurchaseController {
 //            return "user_login";
 //        }
         var userName = session.getAttribute("userName").toString();
-        var purchaseId = ticketPurchaseService.makePurchase(ticketForm,userName);
+        var reservationId = ticketReservationService.makeReservation(ticketForm,userName);
         var user = userRepository.findByUsername(userName);
-        emailService.sendPurchaseEmail(user.get(), purchaseId);
+        emailService.sendReservationMail(user.get(), reservationId);
         model.addAttribute("reservation", String.format(userName + " thank you for your reservation!\nPlease check your email!"));
         model.addAttribute("httpSession",session);
         return "index";

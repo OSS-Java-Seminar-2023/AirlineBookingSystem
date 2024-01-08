@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <title>Purchase Details</title>
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+<div class="container">
+    <h1>Reservation Details</h1>
+
+    <form th:action="@{/reservation-details}" method="get">
+        <label for="purchaseId">Enter Purchase ID:</label>
+        <input type="text" id="purchaseId" name="purchaseId" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="reservations">
+        <h1>Your reservations</h1>
+        <div class="parent-div">
+
+
+            <div class="reservation">
+                <div th:each="reservation : ${reservations}" class="reservation-container">
+                    <div class="seat">
+                        <div><strong>Reservation ID:</strong> <span th:text="${reservation.getId()}"></span></div>
+                        <div><strong>No of tickets:</strong> <span th:text="${reservation.getTickets().size()}"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

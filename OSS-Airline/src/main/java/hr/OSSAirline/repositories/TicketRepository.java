@@ -1,6 +1,6 @@
 package hr.OSSAirline.repositories;
 
-import hr.OSSAirline.models.Purchase;
+import hr.OSSAirline.models.Reservation;
 import hr.OSSAirline.models.Ticket;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +16,6 @@ public interface TicketRepository extends JpaRepository<Ticket, String> {
     List<Ticket> findByFlightId(String id);
     @Transactional
     @Modifying
-    @Query("UPDATE ticket t SET t.purchase = :purchase WHERE t.id = :ticketId")
-    void updatePurchaseField(String ticketId, Purchase purchase);
+    @Query("UPDATE ticket t SET t.reservation = :reservation WHERE t.id = :ticketId")
+    void updateReservationField(String ticketId, Reservation reservation);
 }

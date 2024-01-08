@@ -22,17 +22,17 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
-    public void sendPurchaseEmail(User user, String purchaseId) {
+    public void sendReservationMail(User user, String reservationId) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ossairline@gmail.com");
         message.setTo(user.getEmail());
-        message.setSubject(MailConstants.MAIL_PURCHASE_SUBJECT);
-        message.setText(getPurchaseEmailMessage(user, purchaseId));
+        message.setSubject(MailConstants.MAIL_RESERVATION_SUBJECT);
+        message.setText(getReservationEmailMessage(user, reservationId));
         javaMailSender.send(message);
     }
 
-    private String getPurchaseEmailMessage(User user, String purchaseId) {
+    private String getReservationEmailMessage(User user, String reservationId) {
         return "Hello, " + user.getUsername() + "! \nYou can see you reservation on our web page using this code: \n" +
-                purchaseId + "\nBest regards, OSS Airline";
+                reservationId + "\nBest regards, OSS Airline";
     }
 }

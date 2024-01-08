@@ -6,5 +6,5 @@ public class MailConstants {
 
     public static final String MAIL_BODY = "Thank you for registering you account with OSS Airline! We are glad to have you on board!";
 
-    public static final String MAIL_PURCHASE_SUBJECT = "Thank you for your reservation!";
+    public static final String MAIL_RESERVATION_SUBJECT = "Thank you for your reservation!";
 }

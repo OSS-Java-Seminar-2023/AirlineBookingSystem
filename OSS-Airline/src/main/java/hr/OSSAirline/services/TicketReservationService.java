@@ -1,22 +1,18 @@
 package hr.OSSAirline.services;
 
-import hr.OSSAirline.controllers.TicketPurchaseController;
-import hr.OSSAirline.mappers.PurchaseMapper;
+import hr.OSSAirline.controllers.TicketReservationController;
 import hr.OSSAirline.models.*;
 import hr.OSSAirline.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Service
 @RequiredArgsConstructor
-public class TicketPurchaseService {
+public class TicketReservationService {
     private final TicketRepository ticketRepository;
-    private final PurchaseRepository purchaseRepository;
-    //    private final PurchaseMapper purchaseMapper;
+    private final ReservationRepository reservationRepository;
     public final FlightRepository flightRepository;
     public final PassengerRepository passengerRepository;
     public final SeatRepository seatRepository;
@@ -24,7 +20,7 @@ public class TicketPurchaseService {
 
 
 
-    public String makePurchase(TicketPurchaseController.TicketForm ticketForm, String userName) {
+    public String makeReservation(TicketReservationController.TicketForm ticketForm, String userName) {
         var user = userRepository.findUserByUsername(userName);
         var flights = ticketForm.getFlight().stream().map(flightRepository::findById).toList();
         var passengers = ticketForm.getPassenger().stream().map(passengerRepository::findById).toList();
@@ -39,15 +35,15 @@ public class TicketPurchaseService {
             ticket.setTicketPrice(prices.get(i));
             ticket_list.add(ticket);
         }
-        var purchase = new Purchase();
-        purchase.setUser(user.get());
-        purchase.setTickets(ticket_list);
-        purchaseRepository.save(purchase);
+        var reservation = new Reservation();
+        reservation.setUser(user.get());
+        reservation.setTickets(ticket_list);
+        reservationRepository.save(reservation);
         ticket_list.stream()
                 .forEach(ticket -> {
-                    ticket.setPurchase(purchase);
-                    ticketRepository.updatePurchaseField(ticket.getId(),purchase);
+                    ticket.setReservation(reservation);
+                    ticketRepository.updateReservationField(ticket.getId(),reservation);
                 });
-        return purchase.getId();
+        return reservation.getId();
     }
 }

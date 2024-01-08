@@ -21,8 +21,8 @@ public class Ticket {
     @JoinColumn(name = "seat_id")
     private Seat seat;
     @ManyToOne
-    @JoinColumn(name = "purchase_id")
-    private Purchase purchase;
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservation;
     @Column
     private Float ticketPrice;
 

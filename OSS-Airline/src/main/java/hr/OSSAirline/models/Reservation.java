@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity(name = "purchase")
-public class Purchase {
+@Entity(name = "reservation")
+public class Reservation {
     @Id
     @UuidGenerator
     private String id;
@@ -18,7 +18,7 @@ public class Purchase {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
 
     @Column
