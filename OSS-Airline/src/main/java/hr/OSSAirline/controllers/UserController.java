@@ -1,6 +1,7 @@
 package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.dto.UserDto;
+import hr.OSSAirline.exceptions.PasswordException;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.services.UserService;
 import hr.OSSAirline.utils.SecurityCheck;
@@ -111,22 +112,26 @@ public class UserController {
     }
 
     @PostMapping("/changePassword")
-    public String changePasswordPost(@RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, Model model){
+    public String changePasswordPost(@RequestParam String oldPassword, @RequestParam String newPassword,@RequestParam String passConfirm, HttpSession session, Model model){
         var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
         if(x != null) return x;
 
         try {
-            userService.changePassword(session.getAttribute("userName").toString(), newPassword, oldPassword);
+            userService.changePassword(session.getAttribute("userName").toString(), newPassword, oldPassword, passConfirm);
         }
-        catch (RuntimeException e){
+        catch (PasswordException e){
             model.addAttribute("error", e.getMessage());
             model.addAttribute("httpSession",session);
-            return "index";
+            var user = userService.getUserByUsername(session.getAttribute("userName").toString());
+            model.addAttribute("user", user);
+            return "user_info";
         }
 
         model.addAttribute("info", "Password successfully changed!");
         model.addAttribute("httpSession",session);
+        var user = userService.getUserByUsername(session.getAttribute("userName").toString());
+        model.addAttribute("user", user);
 
-        return "index";
+        return "user_info";
     }
 }

@@ -1,0 +1,30 @@
+.user-info{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    width: 40%;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    transition: scale ease 0.2s, box-shadow ease 0.2s;
+}
+
+.user-info div{
+    padding: 10px;
+}
+
+.user-info div strong{
+    color: #002dcc;
+}
+
+.user-info div a{
+    text-decoration: none;
+    color: #002dcc;
+    cursor: pointer;
+}
+
+.user-info:hover{
+    scale: 1.02;
+    box-shadow: 5px 5px 20px black;
+}

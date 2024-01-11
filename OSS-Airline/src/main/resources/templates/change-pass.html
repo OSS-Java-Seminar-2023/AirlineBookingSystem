@@ -8,6 +8,7 @@
     <title>Change Password</title>
     <link rel="stylesheet" th:href="@{/css/button.css}">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/change_password.css}">
 </head>
 
 <header>
@@ -17,15 +18,23 @@
 <body>
 </body>
 <div class="change-pass-div">
+    <h1>Change Password</h1>
     <form th:action="@{/changePassword}" method="post">
-        <label for="oldPassword">Old password</label>
-        <input id="oldPassword" name="oldPassword" type="password"/>
-        <label for="newPassword">New password</label>
-        <input id="newPassword" name="newPassword" type="password"/>
-        <label for="passConfirm">Confirm new password</label>
-        <input id="passConfirm" type="password"/>
-
-        <button class="button-29" role="button">Change password</button>
+        <div>
+            <label for="oldPassword">Old password: </label>
+            <input id="oldPassword" name="oldPassword" type="password"/>
+        </div>
+        <div>
+            <label for="newPassword">New password: </label>
+            <input id="newPassword" name="newPassword" type="password"/>
+        </div>
+        <div>
+            <label for="passConfirm">Confirm new password: </label>
+            <input id="passConfirm" name="passConfirm" type="password"/>
+        </div>
+        <div>
+            <button class="button-29" role="button">Change password</button>
+        </div>
     </form>
 </div>
 </html>

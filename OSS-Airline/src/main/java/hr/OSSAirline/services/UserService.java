@@ -1,6 +1,7 @@
 package hr.OSSAirline.services;
 
 import hr.OSSAirline.dto.UserDto;
+import hr.OSSAirline.exceptions.PasswordException;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.UserRepository;
@@ -80,11 +81,14 @@ public class UserService {
         return userMapper.toDto(userRepository.findUserByUsername(username).get());
     }
 
-    public void changePassword(String username, String newPassword, String oldPassword){
+    public void changePassword(String username, String newPassword, String oldPassword, String passConfirm) throws PasswordException {
+        if(!newPassword.equals(passConfirm)){
+            throw new PasswordException("New passwords not matching!");
+        }
         var passwordEncoder = new BCryptPasswordEncoder();
         var user = userRepository.getUserByUsername(username);
         if(!passwordEncoder.matches(oldPassword, user.getPassword())) {
-            throw new RuntimeException("Current password not matching!");
+            throw new PasswordException("Current password not matching!");
         }
         var hashedPassword = passwordEncoder.encode(newPassword);
         userRepository.changePassword(username, hashedPassword);
