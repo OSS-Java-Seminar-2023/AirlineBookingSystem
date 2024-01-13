@@ -51,6 +51,14 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/admin")
+    public String showAdminPage(Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        model.addAttribute("httpSession",session);
+        return "admin";
+    }
+
     @GetMapping("/login")
     public String showLoginForm(Model model, HttpSession session) {
         var x = SecurityCheck.isUserLoggedInReturnToHome(session);
@@ -71,6 +79,7 @@ public class UserController {
             return "user_login";
         }
         session.setAttribute("userName", user.getUsername());
+        session.setAttribute("isAdmin", userService.getUserByUsername(user.getUsername()).getIsAdmin());
         model.addAttribute("httpSession",session);
         return "redirect:/";
     }

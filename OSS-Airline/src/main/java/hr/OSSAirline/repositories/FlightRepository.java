@@ -1,5 +1,6 @@
 package hr.OSSAirline.repositories;
 
+import hr.OSSAirline.models.Airplane;
 import hr.OSSAirline.models.Airport;
 import hr.OSSAirline.models.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,5 +41,7 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
             "              AND ff.to = :to " +
             "              AND ff.date > :givenDate)")
     List<Flight> findAllFlightsForFirstDateAfterGivenDate(@Param("from") Airport from, @Param("to") Airport to, @Param("givenDate") Date givenDate);
+
+    Boolean existsByAirplane_Id(String airplane_id);
 
 }

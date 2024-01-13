@@ -17,4 +17,6 @@ public class User {
     private String password;
     @Column(unique = true)
     private String email;
+    @Column(name="is_admin")
+    private Boolean isAdmin;
 }
