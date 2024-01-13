@@ -29,31 +29,45 @@ public class AirplaneController {
         return "airplanes";
     }
 
-    @PostMapping("/airplanes/{id}/delete")
+    @PostMapping("/airplane/delete")
     public String deleteAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
-        airplaneService.deleteAirplane(airplaneId);
-
+        try {
+            airplaneService.deleteAirplane(airplaneId);
+        }
+        catch (RuntimeException e){
+            var airplanes = airplaneService.getAllAirplanes();
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession", session);
+            model.addAttribute("airplanes", airplanes);
+            return "airplanes";
+        }
         model.addAttribute("httpSession", session);
-
         return "redirect:/airplanes";
     }
 
     @PostMapping("/airplane/update")
-    public String updateAirplanes(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
-        airplaneService.updateAirplane(airplane.getId(), airplane);
-
+    public String updateAirplane(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
+        try {
+            airplaneService.updateAirplane(airplane.getId(), airplane);
+        }
+        catch (RuntimeException e){
+            var airplanes = airplaneService.getAllAirplanes();
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession", session);
+            model.addAttribute("airplanes", airplanes);
+            return "airplanes";
+        }
         model.addAttribute("httpSession", session);
-
-        return "redirect:/airplanes"; // Redirect to the airplane list page
+        return "redirect:/airplanes";
     }
 
     @PostMapping("/airplanes/update")
-    public String updateAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+    public String updateSelectedAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
         var airplane = airplaneService.getAirplaneById(airplaneId);
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", airplane);
 
-        return "update-airplane"; // Redirect to the airplane list page
+        return "update-airplane";
     }
 
     @PostMapping("/airplane/info")
@@ -70,7 +84,7 @@ public class AirplaneController {
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", new AirplaneDto());
 
-        return "create-airplane"; // Redirect to the airplane list page
+        return "create-airplane";
     }
 
     @PostMapping("/airplane/create")

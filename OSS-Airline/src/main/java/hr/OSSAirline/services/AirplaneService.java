@@ -44,8 +44,7 @@ public class AirplaneService {
             updatedAirplane.setId(id);
             return airplaneRepository.save(airplaneMapper.toEntity(updatedAirplane));
         } else {
-            System.out.println("NOT DELETED");
-            return null;
+            throw new RuntimeException("Can not update airplane while flights are using it.");
         }
     }
     public void deleteAirplane(String id) {
@@ -53,7 +52,7 @@ public class AirplaneService {
         airplaneRepository.deleteById(id);
         }
         else {
-            System.out.println("NOT DELETED");
+            throw new RuntimeException("Can not delete airplane while flights are using it.");
         }
     }
 }

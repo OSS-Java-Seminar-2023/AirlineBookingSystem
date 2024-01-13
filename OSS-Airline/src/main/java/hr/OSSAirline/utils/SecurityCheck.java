@@ -26,7 +26,7 @@ public class SecurityCheck {
     public static String isUserAdminIfNotReturnToHome(HttpSession session) {
         var userName = session.getAttribute("userName");
         if(userName==null){
-            return "redirect:/";
+            return "redirect:/login";
         }
         var isAdmin = session.getAttribute("isAdmin");
         if(isAdmin.toString().equals("true")) {

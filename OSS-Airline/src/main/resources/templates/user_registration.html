@@ -9,6 +9,40 @@
     <link rel="stylesheet" th:href="@{/css/registration.css}">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
+    <script th:inline="javascript">
+        function validateForm() {
+            return validatePassword() && validatePasswordMatch();
+        }
+
+        function validatePassword() {
+            var passwordInput = document.getElementById('password');
+            var passwordHelp = document.getElementById('passwordHelp');
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            if (!passwordRegex.test(passwordInput.value)) {
+                passwordHelp.style.color = 'red';
+                passwordHelp.innerText = 'Password must be at least 8 characters long and include uppercase, lowercase, and a digit.';
+                return false;
+            } else {
+                passwordHelp.innerText = '';
+                return true;
+            }
+        }
+
+        function validatePasswordMatch() {
+            var passwordInput = document.getElementById('password');
+            var confirmPasswordInput = document.getElementById('confirmPassword');
+            var passwordMatchHelp = document.getElementById('passwordMatchHelp');
+
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordMatchHelp.innerText = 'Passwords do not match.';
+                return false;
+            } else {
+                passwordMatchHelp.innerText = '';
+                return true;
+            }
+        }
+    </script>
 </head>
 
 <header>
@@ -33,13 +67,16 @@
     </div >
     <div class="input-text-div">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" th:value="${user.password}" required>
+        <input type="password" id="password" name="password" th:value="${user.password}" required oninput="validatePassword()">
         <br>
+        <small id="passwordHelp" style="color: #808080;"></small>
     </div>
+
     <div class="input-text-div">
         <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required/>
+        <input type="password" id="confirmPassword" name="confirmPassword" required oninput="validatePasswordMatch()">
         <br>
+        <small id="passwordMatchHelp" style="color: red;"></small>
     </div>
     <div class="input-text-div">
         <label for="email">Email:</label>

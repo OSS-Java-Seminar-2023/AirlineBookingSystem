@@ -25,12 +25,16 @@
     <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
   </form>
 
+  <div th:if="${error}" class="error" style="color: red;">
+    <p th:text="${error}"></p>
+  </div>
+
   <div class="reservations">
     <div th:each="airplane : ${airplanes}" class="reservation-container">
       <div class="reservation-info">
         <div><strong></strong> <span th:text="${airplane.getModel()}" class="reservation-text"></span></div>
         <div><strong></strong> <span th:text="${airplane.getRegistration()}" class="reservation-text"></span></div>
-        <form th:action="@{/airplanes/{id}(id=${airplane.getId()})/delete}" method="post">
+        <form th:action="@{/airplane/delete}" method="post">
           <input type="hidden" name="airplaneId" th:value="${airplane.getId()}"/>
           <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
         </form>

@@ -43,5 +43,7 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
     List<Flight> findAllFlightsForFirstDateAfterGivenDate(@Param("from") Airport from, @Param("to") Airport to, @Param("givenDate") Date givenDate);
 
     Boolean existsByAirplane_Id(String airplane_id);
+    Boolean existsByTo_Id(String id);
+    Boolean existsByFrom_Id(String id);
 
 }

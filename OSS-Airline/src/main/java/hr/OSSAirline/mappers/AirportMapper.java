@@ -11,9 +11,9 @@ public interface AirportMapper {
 
     AirportMapper INSTANCE = Mappers.getMapper(AirportMapper.class);
 
-    @Mapping(target = "id", source = "id", ignore = true)
+    @Mapping(target = "id", source = "id")
     AirportDto toDto(Airport airport);
 
-    @Mapping(target = "id", source = "id", ignore = true)
+    @Mapping(target = "id", source = "id")
     Airport toEntity(AirportDto airportDto);
 }
