@@ -9,6 +9,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,15 +84,6 @@ public class UserController {
         model.addAttribute("httpSession",session);
         return "redirect:/";
     }
-
-    @GetMapping("/users")
-    public String listUsers(Model model, HttpSession session) {
-        List<UserDto> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-        model.addAttribute("httpSession",session);
-        return "userlist";
-    }
-
     @GetMapping("/logout")
     public String logout(HttpSession session, Model model) {
         model.addAttribute("httpSession",session);
@@ -142,5 +134,60 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "user_info";
+    }
+
+    @GetMapping("/users")
+    public String listUsers(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        var users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        model.addAttribute("httpSession",session);
+        return "users";
+    }
+
+    @GetMapping("/users/create")
+    public String createSelectedUser(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        model.addAttribute("user", new UserDto());
+        model.addAttribute("httpSession",session);
+        return "create-user";
+    }
+
+    @PostMapping("/user/create")
+    public String createUser(@ModelAttribute UserDto user, @RequestParam String confirmPassword, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        try {
+            if (!user.getPassword().equals(confirmPassword)) {
+                throw new RuntimeException("Password mismatch!");
+            }
+            userService.registerUser(user);
+        } catch (RuntimeException | MessagingException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("user", user);
+            model.addAttribute("httpSession",session);
+            return "create-user";
+        }
+        return "redirect:/users";
+    }
+
+    @PostMapping("/user/delete")
+    public String deleteUser(@RequestParam("userId")String userId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        var loggedInUser = userService.getUserByUsername(session.getAttribute("userName").toString());
+        try{
+            userService.deleteUser(userId, loggedInUser);
+        }
+        catch (RuntimeException e){
+            var users = userService.getAllUsers();
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("users", users);
+            model.addAttribute("httpSession",session);
+            return "users";
+        }
+        return "redirect:/users";
     }
 }

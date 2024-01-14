@@ -13,4 +13,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
     List<Reservation> findReservationsByUser(User user);
 
     Reservation findReservationsById(String id);
+
+    Boolean existsByUser_Id(String id);
 }

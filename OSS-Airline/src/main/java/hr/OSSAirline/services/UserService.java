@@ -4,6 +4,7 @@ import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.exceptions.PasswordException;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.models.User;
+import hr.OSSAirline.repositories.ReservationRepository;
 import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.utils.MailConstants;
 import jakarta.mail.MessagingException;
@@ -23,6 +24,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final EmailService emailService;
+    private final ReservationRepository reservationRepository;
 
     public void registerUser(UserDto user) throws MessagingException {
         if(usernameTaken(user.getUsername())){
@@ -92,5 +94,17 @@ public class UserService {
         }
         var hashedPassword = passwordEncoder.encode(newPassword);
         userRepository.changePassword(username, hashedPassword);
+    }
+
+    public void deleteUser(String id, UserDto loggedInUser){
+        if(id.equals(loggedInUser.getId())){
+            throw new RuntimeException("You can not delete your self.");
+        }
+        if(userRepository.existsById(id) && !reservationRepository.existsByUser_Id(id)){
+            userRepository.deleteById(id);
+        }
+        else{
+            throw new RuntimeException("Can not delete user, because user has reserved tickets.");
+        }
     }
 }
