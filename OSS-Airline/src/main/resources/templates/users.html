@@ -28,12 +28,49 @@
     <p th:text="${error}"></p>
 </div>
 
+<h3>Admin Users</h3>
+
 <table border="1">
     <thead>
     <tr>
         <th>Username</th>
         <th>Email</th>
         <th>Is Admin</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="admin : ${admins}">
+        <td th:text="${admin.getUsername()}"></td>
+        <td th:text="${admin.getEmail()}"></td>
+        <td th:text="${admin.getIsAdmin()}"></td>
+        <td>
+            <form th:action="@{/user/delete}" method="post">
+                <input type="hidden" name="userId" th:value="${admin.getId()}"/>
+                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/users/update}" method="post">
+                <input type="hidden" name="userId" th:value="${admin.getId()}"/>
+                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Regular Users</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Is Admin</th>
+        <th>Delete</th>
+        <th>Update</th>
     </tr>
     </thead>
     <tbody>
@@ -47,9 +84,16 @@
                 <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
             </form>
         </td>
+        <td>
+            <form th:action="@{/users/update}" method="post">
+                <input type="hidden" name="userId" th:value="${user.getId()}"/>
+                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>
 

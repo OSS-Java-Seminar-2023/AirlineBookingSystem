@@ -140,14 +140,16 @@ public class UserController {
     public String listUsers(Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
-        var users = userService.getAllUsers();
+        var users = userService.getAllUsersNotAdmins();
+        var admins = userService.getAllAdmins();
         model.addAttribute("users", users);
+        model.addAttribute("admins", admins);
         model.addAttribute("httpSession",session);
         return "users";
     }
 
     @GetMapping("/users/create")
-    public String createSelectedUser(Model model, HttpSession session) {
+    public String createUser(Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         model.addAttribute("user", new UserDto());
@@ -188,6 +190,34 @@ public class UserController {
             model.addAttribute("httpSession",session);
             return "users";
         }
+        return "redirect:/users";
+    }
+
+    @PostMapping("/users/update")
+    public String updateSelectedUser(@RequestParam("userId")String userId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        var user = userService.getUserById(userId);
+        model.addAttribute("httpSession", session);
+        model.addAttribute("user", user);
+        return "update-user";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUserToAdmin(@ModelAttribute("user")UserDto userDto, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        try{
+            userService.updateUserToAdmin(userDto.getId(),userDto);
+        }
+        catch (RuntimeException e){
+            var user = userService.getUserById(userDto.getId());
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession", session);
+            model.addAttribute("user", user);
+            return "update-user";
+        }
+        model.addAttribute("httpSession",session);
         return "redirect:/users";
     }
 }

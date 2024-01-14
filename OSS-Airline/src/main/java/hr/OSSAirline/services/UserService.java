@@ -36,7 +36,8 @@ public class UserService {
         encodeAndSetPassword(user);
 
         emailService.sendEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
-        userRepository.save(UserMapper.INSTANCE.toEntity(user));
+        user.setIsAdmin("false");
+        userRepository.save(userMapper.toEntity(user));
     }
 
     private static void encodeAndSetPassword(UserDto user) {
@@ -73,7 +74,21 @@ public class UserService {
     }
 
     public List<UserDto> getAllUsers() {
-        List<User> users = userRepository.findAll();
+        var users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<UserDto> getAllUsersNotAdmins() {
+        var users = userRepository.findByIsAdmin("false");
+        return users.stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<UserDto> getAllAdmins() {
+        var users = userRepository.findByIsAdmin("true");
         return users.stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
@@ -81,6 +96,10 @@ public class UserService {
 
     public UserDto getUserByUsername(String username){
         return userMapper.toDto(userRepository.findUserByUsername(username).get());
+    }
+
+    public UserDto getUserById(String id){
+        return userMapper.toDto(userRepository.getReferenceById(id));
     }
 
     public void changePassword(String username, String newPassword, String oldPassword, String passConfirm) throws PasswordException {
@@ -105,6 +124,21 @@ public class UserService {
         }
         else{
             throw new RuntimeException("Can not delete user, because user has reserved tickets.");
+        }
+    }
+
+    public void updateUserToAdmin(String id, UserDto updatesUser){
+        if(userRepository.existsById(id) && !reservationRepository.existsByUser_Id(id)){
+            if (getAllAdmins().size() == 1 &&
+                    getAllAdmins().stream().anyMatch(admin -> admin.getId().equals(updatesUser.getId()))) {
+                throw new RuntimeException("Can not update admin, because there has to be one admin.");
+            }
+            var user = userRepository.findById(id).get();
+            updatesUser.setPassword(user.getPassword());
+            userRepository.save(userMapper.toEntity(updatesUser));
+        }
+        else{
+            throw new RuntimeException("Can not update user, because user has reserved tickets.");
         }
     }
 }
