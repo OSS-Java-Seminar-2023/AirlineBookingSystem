@@ -35,7 +35,7 @@ public class UserService {
         }
         encodeAndSetPassword(user);
 
-        emailService.sendEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
+        emailService.compileEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
         user.setIsAdmin("false");
         userRepository.save(userMapper.toEntity(user));
     }
