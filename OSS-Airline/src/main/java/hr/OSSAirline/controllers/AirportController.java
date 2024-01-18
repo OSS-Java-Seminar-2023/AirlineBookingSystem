@@ -40,6 +40,8 @@ public class AirportController {
 
     @GetMapping("/airport/create")
     public String createAirport(Model model,HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         model.addAttribute("httpSession", session);
         model.addAttribute("airport", new AirportDto());
         return "create-airport";
@@ -47,7 +49,8 @@ public class AirportController {
 
     @PostMapping("/airport/create")
     public String createAirport(@ModelAttribute("airport") AirportDto airport, Model model, HttpSession session) {
-
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         try{
             airportService.save(airport);
         }
@@ -64,6 +67,8 @@ public class AirportController {
 
     @PostMapping("/airport/delete")
     public String deleteAirport(@RequestParam("airportId") String airportId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         try {
             airportService.delete(airportId);
         }
@@ -80,6 +85,8 @@ public class AirportController {
 
     @PostMapping("/airports/update")
     public String updateSelectedAirport(@RequestParam("airportId")String airportId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         var airport = airportService.getAirportById(airportId);
         model.addAttribute("httpSession", session);
         model.addAttribute("airport", airport);
@@ -88,6 +95,8 @@ public class AirportController {
 
     @PostMapping("/airport/update")
     public String updateAirport(@ModelAttribute("airportId")AirportDto airport, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         try{
             airportService.update(airport.getId(), airport);
         }

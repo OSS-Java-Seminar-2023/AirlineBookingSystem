@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSS Airline</title>
+    <title>User Registration</title>
     <link rel="stylesheet" th:href="@{/css/registration.css}">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
@@ -63,7 +63,7 @@
 </header>
 
 <body>
-<form action="/register" class="form-div" th:object="${user}" method="POST">
+<form action="/user/create" class="form-div" th:object="${user}" method="POST">
     <div th:if="${error}" class="error" style="color: red;">
         <p th:text="${error}"></p>
     </div>
@@ -71,7 +71,7 @@
         <img th:src="@{/images/user-login.png}" alt="LOGIN" class="user-img">
     </div>
     <div id="registration-text">
-        <strong>Registration</strong>
+        <strong>Create user</strong>
     </div>
     <div class="input-text-div">
         <label for="username">Username:</label>
@@ -97,7 +97,7 @@
         <br>
     </div>
     <div>
-        <button class="button-29" role="button">Register</button>
+        <button class="button-29" role="button">Create user</button>
     </div>
     <div th:if="${param.error}">
         <p style="color: red; font-weight: bold" th:text="${param.error}"></p>

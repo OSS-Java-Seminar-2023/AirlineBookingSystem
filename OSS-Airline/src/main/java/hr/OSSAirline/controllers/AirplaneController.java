@@ -31,6 +31,8 @@ public class AirplaneController {
 
     @PostMapping("/airplane/delete")
     public String deleteAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         try {
             airplaneService.deleteAirplane(airplaneId);
         }
@@ -47,6 +49,8 @@ public class AirplaneController {
 
     @PostMapping("/airplane/update")
     public String updateAirplane(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         try {
             airplaneService.updateAirplane(airplane.getId(), airplane);
         }
@@ -63,6 +67,8 @@ public class AirplaneController {
 
     @PostMapping("/airplanes/update")
     public String updateSelectedAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         var airplane = airplaneService.getAirplaneById(airplaneId);
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", airplane);
@@ -72,6 +78,8 @@ public class AirplaneController {
 
     @PostMapping("/airplane/info")
     public String airplaneInfo(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         var airplane = airplaneService.getAirplaneById(airplaneId);
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", airplane);
@@ -81,6 +89,8 @@ public class AirplaneController {
 
     @GetMapping("/airplane/create")
     public String airplaneCreate(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", new AirplaneDto());
 
@@ -89,6 +99,8 @@ public class AirplaneController {
 
     @PostMapping("/airplane/create")
     public String airplaneCreate(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
         airplaneService.saveAirplane(airplane);
 
         model.addAttribute("httpSession", session);
