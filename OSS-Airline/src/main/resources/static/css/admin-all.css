@@ -1,0 +1,95 @@
+body {
+    margin-top: 70px;
+    background-image: url("../images/airplane-wing-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 20px;
+    color: white;
+    height: 100%;
+}
+
+html{
+    height: 100%;
+    overflow: hidden;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-90%, -50%);
+    width: 40%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    margin: 20px;
+    overflow: auto;
+}
+
+
+.all-info-container{
+    background-color: white;
+    color: #002dcc;
+    border-radius: 30px;
+    width: 80%;
+    margin: 20px;
+}
+
+.all-info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    overflow: auto;
+}
+
+.all-info-parent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    overflow: auto;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+    align-content: center;
+    align-items: center;
+}
+
+.one-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.one-info *{
+    margin: 5px;
+}
+
+.one-info:first-child{
+    font-size: larger;
+    font-weight: bolder;
+}
+

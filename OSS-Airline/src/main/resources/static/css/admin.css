@@ -1,0 +1,59 @@
+.dashboard{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.containers{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-90%, -50%);
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 5px;
+    padding: 30px;
+    background-color: white;
+    color: #002dcc;
+    border-radius: 30px;
+    transition: scale 0.2s ease, box-shadow 0.2s ease;
+    &:hover{
+        box-shadow: 5px 5px 20px black;
+        scale: 1.02;
+    }
+}
+
+.container a{
+    padding: 5px 10px;
+    display: inline;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    color: #002dcc;
+    transition: background-color 0.4s ease;
+    &:hover{
+        background-color: #002dcc;
+        color: white;
+        box-shadow: 5px 5px 20px black;
+        border-radius: 30px;
+    }
+}
+
+
+

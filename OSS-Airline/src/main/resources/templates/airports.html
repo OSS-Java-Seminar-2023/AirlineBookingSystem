@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flight Search</title>
+  <title>OSS Airline</title>
   <link rel="stylesheet" th:href="@{/css/home.css}">
   <link rel="stylesheet" th:href="@{/css/button.css}">
+  <link rel="stylesheet" th:href="@{/css/admin-all.css}">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
 </head>
 
 <header>
@@ -18,54 +20,39 @@
 </header>
 
 <body>
+<div class="container">
 
-<div id="header">
-  <h2>Airports List</h2>
+  <h1>Airplanes</h1>
+
+  <div th:if="${error}" class="error" style="color: red;">
+    <p th:text="${error}"></p>
+  </div>
+  <div class="all-info-parent">
+    <form th:action="@{/airport/create}" method="get">
+      <button class="button-29" role="button"><span class="material-symbols-outlined">add</span></button>
+    </form>
+    <div class="all-info">
+      <div th:each="airport : ${airports}" class="all-info-container">
+        <div class="one-info">
+          <div><strong> <span th:text="${airport.getName()}" class="reservation-text"></span></strong></div>
+          <div><strong> <span th:text="${airport.getIATA()}"
+                              class="reservation-text"></span></strong></div>
+          <div class="buttons">
+            <form th:action="@{/airport/delete}" method="post">
+              <input type="hidden" name="airplaneId" th:value="${airport.getId()}"/>
+              <button class="button-29" role="button"><span
+                      class="material-symbols-outlined">delete</span></button>
+            </form>
+            <form th:action="@{/airports/update}" method="post">
+              <input type="hidden" name="airplaneId" th:value="${airport.getId()}"/>
+              <button class="button-29" role="button"><span
+                      class="material-symbols-outlined">update</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<form th:action="@{/airport/create}" method="get">
-  <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-</form>
-
-<div th:if="${error}" class="error" style="color: red;">
-  <p th:text="${error}"></p>
-</div>
-
-<div id="content">
-  <table border="1">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>IATA Code</th>
-      <th>Delete</th>
-      <th>Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="airport : ${airports}">
-      <td th:text="${airport.getName()}"></td>
-      <td th:text="${airport.getIATA()}"></td>
-      <td>
-        <form th:action="@{/airport/delete}" method="post">
-          <input type="hidden" name="airportId" th:value="${airport.getId()}"/>
-          <button type="submit" class="button-29" role="button">
-            <span class="material-symbols-outlined">manage_search</span>
-          </button>
-        </form>
-      </td>
-      <td>
-        <form th:action="@{/airports/update}" method="post">
-          <input type="hidden" name="airportId" th:value="${airport.getId()}"/>
-          <button type="submit" class="button-29" role="button">
-            <span class="material-symbols-outlined">manage_search</span>
-          </button>
-        </form>
-      </td>
-    </tr>
-    </tbody>
-
-  </table>
-</div>
-
 </body>
 </html>

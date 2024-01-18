@@ -78,7 +78,7 @@ public class UserService {
     }
 
     public UserDto getUserByUsername(String username){
-        return userMapper.toDto(userRepository.findUserByUsername(username).get());
+        return userMapper.toDto(userRepository.getUserByUsername(username));
     }
 
     public void changePassword(String username, String newPassword, String oldPassword, String passConfirm) throws PasswordException {
