@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSS Airline</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-all.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+<h2>Create Flight</h2>
+
+<div th:if="${error}" class="error" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/flights/create}" th:object="${flightForm}" method="post">
+
+    <div class="input-text-div">
+        <label for="flightNumber">Flight Number:</label>
+        <input type="text" id="flightNumber" th:field="*{flightNumber}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="from">From:</label>
+        <select id="from" th:field="*{fromAirportId}" required onchange="updateToOptions()">
+            <option value="" selected disabled>-- Select From Airport --</option>
+            <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="to">To:</label>
+        <select id="to" th:field="*{toAirportId}" required onchange="updateFromOptions()">
+            <option value="" selected disabled>-- Select To Airport --</option>
+            <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="airplane">Airplane:</label>
+        <select id="airplane" th:field="*{airplaneId}" required>
+            <option th:each="airplane : ${airplanes}" th:value="${airplane.id}" th:text="${airplane.registration + ' - ' + airplane.model}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="time">Time:</label>
+        <input type="time" id="time" th:field="*{time}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="gate">Gate:</label>
+        <input type="text" id="gate" th:field="*{gate}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="duration">Duration:</label>
+        <input type="time" id="duration" th:field="*{duration}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="firstClassPrice">First Class Price:</label>
+        <input type="number" id="firstClassPrice" th:field="*{firstClassPrice}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="businessClassPrice">Business Class Price:</label>
+        <input type="number" id="businessClassPrice" th:field="*{businessClassPrice}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="economyClassPrice">Economy Class Price:</label>
+        <input type="number" id="economyClassPrice" th:field="*{economyClassPrice}" required/>
+    </div>
+
+    <button type="submit">Create Flight</button>
+</form>
+
+
+</body>
+
+<script th:inline="javascript">
+    var today = new Date();
+    today.setDate(today.getDate() + 1);
+
+    var formattedDate = today.toISOString().slice(0, 10);
+    document.getElementById('date').min = formattedDate;
+</script>
+
+<script th:inline="javascript">
+    function updateToOptions() {
+        var fromAirportId = document.getElementById('from').value;
+
+        var toDropdown = document.getElementById('to');
+
+        toDropdown.innerHTML = "";
+
+        var defaultOption = document.createElement("option");
+        defaultOption.text = "-- Select To Airport --";
+        defaultOption.value = "";
+        toDropdown.add(defaultOption);
+
+        var airports = /*[[${airports}]]*/ [];
+
+        airports.forEach(function (airport) {
+            if (airport.id !== fromAirportId) {
+                var option = document.createElement("option");
+                option.text = airport.name;
+                option.value = airport.id;
+                toDropdown.add(option);
+            }
+        });
+    }
+</script>
+
+
+
+
+</html>
