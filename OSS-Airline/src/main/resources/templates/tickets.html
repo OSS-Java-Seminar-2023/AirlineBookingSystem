@@ -17,6 +17,10 @@
 <body>
 <div class="tickets">
     <h1>Selected Seats</h1>
+    <div class="total-price">
+        <strong>Total Price: </strong><span th:text="${totalPrice}"></span>€
+    </div>
+
     <div class="parent-div">
         <form th:action="@{/tickets/save}" method="post" class="form-div-2">
             <div th:each="seat, iterStat : ${selectedSeats}" class="seat">
