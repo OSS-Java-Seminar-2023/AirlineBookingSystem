@@ -10,7 +10,7 @@ public class Seat {
     @Id
     @UuidGenerator
     private String id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight_id")
     private Flight flight;
     @Column

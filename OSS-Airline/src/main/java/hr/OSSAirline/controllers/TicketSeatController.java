@@ -46,12 +46,16 @@ public class TicketSeatController {
 //            return "user_login";
 //        }
         var selectedSeats = ticketSeatService.getSeatsByIds(seats.stream().toList());
-        List<PassengerDto> passengers = new ArrayList<>();
+        var passengers = new ArrayList<>();
         for (int i = 0; i < selectedSeats.size(); i++) {
             passengers.add(new PassengerDto());
         }
+        var totalPrice = selectedSeats.stream()
+                .mapToDouble(SeatDto::getSeatPrice)
+                .sum();
         model.addAttribute("passengers", passengers);
         model.addAttribute("selectedSeats", selectedSeats);
+        model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("httpSession",session);
         return "tickets";
     }

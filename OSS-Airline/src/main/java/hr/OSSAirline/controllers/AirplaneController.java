@@ -84,7 +84,7 @@ public class AirplaneController {
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", airplane);
 
-        return "airplane"; // Redirect to the airplane list page
+        return "airplane";
     }
 
     @GetMapping("/airplane/create")
