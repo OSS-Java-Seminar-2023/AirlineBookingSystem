@@ -9,6 +9,10 @@
     <link rel="stylesheet" th:href="@{/css/registration.css}">
     <link rel="stylesheet" th:href="@{/css/nav.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <script th:inline="javascript">
         function validateForm() {
             return validatePassword() && validatePasswordMatch();
@@ -46,13 +50,14 @@
         function togglePasswordVisibility() {
             var passwordInput = document.getElementById('password');
             var visibilityButton = document.getElementById('visibilityButton');
+            var visibilityIcon = document.getElementById('icon');
 
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                visibilityButton.innerText = 'Hide';
+                visibilityIcon.innerText = 'visibility_off';
             } else {
                 passwordInput.type = 'password';
-                visibilityButton.innerText = 'Show';
+                visibilityIcon.innerText = 'visibility';
             }
         }
     </script>
@@ -67,9 +72,6 @@
     <div th:if="${error}" class="error" style="color: red;">
         <p th:text="${error}"></p>
     </div>
-    <div>
-        <img th:src="@{/images/user-login.png}" alt="LOGIN" class="user-img">
-    </div>
     <div id="registration-text">
         <strong>Create user</strong>
     </div>
@@ -77,17 +79,24 @@
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:value="${user.username}" required>
         <br>
-    </div >
-    <div class="input-text-div">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" th:value="${user.password}" required oninput="validatePassword()">
-        <button type="button" id="visibilityButton" onclick="togglePasswordVisibility()">Show</button>
-        <br>
-        <small id="passwordHelp" style="color: #808080;"></small>
     </div>
+    <div class="password-input">
+        <div class="input-text-div">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" th:value="${user.password}" required
+                   oninput="validatePassword()">
+        </div>
+        <div>
+            <button type="button" id="visibilityButton" onclick="togglePasswordVisibility()"><span
+                    class="material-symbols-outlined" id="icon">visibility  </span></button>
+            <br>
+        </div>
+    </div>
+    <small id="passwordHelp" style="color: #808080;"></small>
     <div class="input-text-div">
         <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required oninput="validatePasswordMatch()">
+        <input type="password" id="confirmPassword" name="confirmPassword" required
+               oninput="validatePasswordMatch()">
         <br>
         <small id="passwordMatchHelp" style="color: red;"></small>
     </div>

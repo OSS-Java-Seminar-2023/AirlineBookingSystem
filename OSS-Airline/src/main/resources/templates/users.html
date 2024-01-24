@@ -8,6 +8,8 @@
     <title>Flight Search</title>
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-all.css}">
+
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -18,81 +20,67 @@
 </header>
 
 <body>
-<h2>User List</h2>
-
-<form th:action="@{/users/create}" method="get">
-    <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-</form>
-
 <div th:if="${error}" class="error" style="color: red;">
     <p th:text="${error}"></p>
 </div>
+<div class="container">
 
-<h3>Admin Users</h3>
+    <h1>Users</h1>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Is Admin</th>
-        <th>Delete</th>
-        <th>Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="admin : ${admins}">
-        <td th:text="${admin.getUsername()}"></td>
-        <td th:text="${admin.getEmail()}"></td>
-        <td th:text="${admin.getIsAdmin()}"></td>
-        <td>
-            <form th:action="@{/user/delete}" method="post">
-                <input type="hidden" name="userId" th:value="${admin.getId()}"/>
-                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/users/update}" method="post">
-                <input type="hidden" name="userId" th:value="${admin.getId()}"/>
-                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <div th:if="${error}" class="error" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+    <div class="all-info-parent">
+        <form th:action="@{/users/create}" method="get">
+            <button class="button-29" role="button"><span class="material-symbols-outlined">add</span></button>
+        </form>
+        <div class="all-info">
+            <div th:each="admin : ${admins}" class="all-info-container">
+                <div class="one-info">
+                    <div><strong>Username:  </strong><span th:text="${admin.getUsername()}" class="reservation-text"></span></div>
+                    <div><strong>Email: </strong><span th:text="${admin.getEmail()}"
+                                        class="reservation-text"></span></div>
+                    <div><strong>Is admin: </strong><span th:text="${admin.getIsAdmin()}"
+                                        class="reservation-text"></span></div>
+                    <div class="buttons">
+                        <form th:action="@{/user/delete}" method="post">
+                            <input type="hidden" name="airplaneId" th:value="${admin.getId()}"/>
+                            <button class="button-29" role="button"><span
+                                    class="material-symbols-outlined">delete</span></button>
+                        </form>
+                        <form th:action="@{/users/update}" method="post">
+                            <input type="hidden" name="airplaneId" th:value="${admin.getId()}"/>
+                            <button class="button-29" role="button"><span
+                                    class="material-symbols-outlined">update</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-<h3>Regular Users</h3>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Is Admin</th>
-        <th>Delete</th>
-        <th>Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.getUsername()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td th:text="${user.getIsAdmin()}"></td>
-        <td>
-            <form th:action="@{/user/delete}" method="post">
-                <input type="hidden" name="userId" th:value="${user.getId()}"/>
-                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-            </form>
-        </td>
-        <td>
-            <form th:action="@{/users/update}" method="post">
-                <input type="hidden" name="userId" th:value="${user.getId()}"/>
-                <button class="button-29" role="button"><span class="material-symbols-outlined">manage_search</span></button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <div th:each="user : ${users}" class="all-info-container">
+                <div class="one-info">
+                    <div><strong> <span th:text="${user.getUsername()}" class="reservation-text"></span></strong></div>
+                    <div><strong> <span th:text="${user.getEmail()}"
+                                        class="reservation-text"></span></strong></div>
+                    <div><strong> <span th:text="${user.getIsAdmin()}"
+                                        class="reservation-text"></span></strong></div>
+                    <div class="buttons">
+                        <form th:action="@{/user/delete}" method="post">
+                            <input type="hidden" name="airplaneId" th:value="${user.getId()}"/>
+                            <button class="button-29" role="button"><span
+                                    class="material-symbols-outlined">delete</span></button>
+                        </form>
+                        <form th:action="@{/users/update}" method="post">
+                            <input type="hidden" name="airplaneId" th:value="${user.getId()}"/>
+                            <button class="button-29" role="button"><span
+                                    class="material-symbols-outlined">update</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -11,7 +11,7 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Mapping(source = "password", target = "password", ignore = true)
+    @Mapping(source = "password", target = "password")
     UserDto toDto(User user);
 
     User toEntity(UserDto userDto);
