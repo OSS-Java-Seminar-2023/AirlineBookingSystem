@@ -78,13 +78,11 @@
                         <div><strong> <span th:text="${flight.duration}"
                                             class="reservation-text"></span></strong></div>
                         <div class="buttons">
-                            <form th:action="@{/flights/delete}" method="post">
-                                <input type="hidden" name="flightId" th:value="${flight.getId()}"/>
+                            <form th:action="@{'/flights/delete/' + ${flight.getId()}}" method="post">
                                 <button class="button-29" role="button"><span
                                         class="material-symbols-outlined">delete</span></button>
                             </form>
-                            <form th:action="@{/flights/update}" method="post">
-                                <input type="hidden" name="flightId" th:value="${flight.getId()}"/>
+                            <form th:action="@{'/flights/update/' + ${flight.getId()}}" method="post">
                                 <button class="button-29" role="button"><span
                                         class="material-symbols-outlined">update</span></button>
                             </form>

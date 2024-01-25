@@ -1,5 +1,6 @@
 package hr.OSSAirline.controllers;
 
+import hr.OSSAirline.dto.AirportDto;
 import hr.OSSAirline.dto.FlightDto;
 import hr.OSSAirline.models.Flight;
 import hr.OSSAirline.services.AirplaneService;
@@ -12,10 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -79,6 +77,56 @@ public class FlightController {
             model.addAttribute("flightForm", new FlightForm());
 
             return "create-flight";
+        }
+        model.addAttribute("httpSession", session);
+        return "redirect:/flights-all";
+    }
+
+    @PostMapping("/flights/delete/{flightId}")
+    public String deleteFlight(@PathVariable("flightId") String flightId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        try {
+            flightService.deleteFlight(flightId);
+        }
+        catch (RuntimeException e){
+            var flights = flightService.getFlightsToday();
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession", session);
+            model.addAttribute("flights", flights);
+            return "flight-list";
+        }
+        model.addAttribute("httpSession", session);
+        return "redirect:/flights-all";
+    }
+
+    @PostMapping("/flights/update/{flightId}")
+    public String updateSelectedFlight(@PathVariable("flightId")String flightId, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        var flight = flightService.getFlightById(flightId);
+        var airports = airportService.getAllAirports();
+        var airplanes = airplaneService.getAllAirplanes();
+        model.addAttribute("airports", airports);
+        model.addAttribute("airplanes", airplanes);
+        model.addAttribute("httpSession", session);
+        model.addAttribute("flight", flight);
+        return "update-flight";
+    }
+
+    @PostMapping("/flights/update")
+    public String updateFlight(@ModelAttribute("flight") FlightDto flight, Model model, HttpSession session){
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        try{
+            flightService.updateFlight(flight.getId(), flight);
+        }
+        catch (RuntimeException e){
+            var flights = flightService.getFlightsToday();
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("httpSession", session);
+            model.addAttribute("flights", flights);
+            return "flight-list";
         }
         model.addAttribute("httpSession", session);
         return "redirect:/flights-all";

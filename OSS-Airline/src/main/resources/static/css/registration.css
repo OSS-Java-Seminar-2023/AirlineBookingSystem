@@ -105,6 +105,23 @@ input {
     }
 }
 
+.form-div-update-flight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: white;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10%;
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    transform: translate(30%, -50%);
+    font-weight: bold;
+}
+
 select{
     border: 2px solid #002dcc;
     background-color: white;

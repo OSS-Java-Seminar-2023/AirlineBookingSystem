@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search</title>
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<div th:if="${error}" class="error" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+
+<body>
+<form th:action="@{/flights/update}" th:object="${flight}" method="post" class="form-div">
+    <input type="hidden" th:field="*{id}"/>
+    <div th:if="${error}" class="error" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+    <div id="registration-text">
+        <strong>Update Flight</strong>
+    </div>
+    <div class="input-text-div">
+        <label for="flightNumber">Flight Number:</label>
+        <input type="text" id="flightNumber" th:field="*{flightNumber}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="from">From:</label>
+        <select id="from" th:field="*{from.id}" required onchange="updateToOptions()">
+            <option value="" selected disabled>-- Select From Airport --</option>
+            <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="to">To:</label>
+        <select id="to" th:field="*{to.id}" required onchange="updateFromOptions()">
+            <option value="" selected disabled>-- Select To Airport --</option>
+            <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="airplane">Airplane:</label>
+        <select id="airplane" th:field="*{airplane.id}" required>
+            <option th:each="airplane : ${airplanes}" th:value="${airplane.id}"
+                    th:text="${airplane.registration + ' - ' + airplane.model}"></option>
+        </select>
+    </div>
+
+    <div class="input-text-div">
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="time">Time:</label>
+        <input type="time" id="time" th:field="*{time}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="gate">Gate:</label>
+        <input type="text" id="gate" th:field="*{gate}" required/>
+    </div>
+
+    <div class="input-text-div">
+        <label for="duration">Duration:</label>
+        <input type="time" id="duration" th:field="*{duration}" required/>
+    </div>
+    <div>
+        <button class="button-29" role="button">Update Flight</button>
+    </div>
+</form>
+</body>
+</html>

@@ -18,4 +18,6 @@ public interface TicketRepository extends JpaRepository<Ticket, String> {
     @Modifying
     @Query("UPDATE ticket t SET t.reservation = :reservation WHERE t.id = :ticketId")
     void updateReservationField(String ticketId, Reservation reservation);
+
+    boolean existsTicketsByFlight_Id(String flight_id);
 }
