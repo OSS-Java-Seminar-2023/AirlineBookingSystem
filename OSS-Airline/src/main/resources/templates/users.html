@@ -43,15 +43,8 @@
                     <div><strong>Is admin: </strong><span th:text="${admin.getIsAdmin()}"
                                         class="reservation-text"></span></div>
                     <div class="buttons">
-                        <form th:action="@{/user/delete}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${admin.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">delete</span></button>
-                        </form>
-                        <form th:action="@{/users/update}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${admin.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">update</span></button>
+                        <form th:action="@{'/users/update/' + ${admin.getUsername()}}" method="post">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
                         </form>
                     </div>
                 </div>
@@ -59,21 +52,14 @@
 
             <div th:each="user : ${users}" class="all-info-container">
                 <div class="one-info">
-                    <div><strong> <span th:text="${user.getUsername()}" class="reservation-text"></span></strong></div>
-                    <div><strong> <span th:text="${user.getEmail()}"
-                                        class="reservation-text"></span></strong></div>
-                    <div><strong> <span th:text="${user.getIsAdmin()}"
-                                        class="reservation-text"></span></strong></div>
+                    <div><strong>Username:  </strong><span th:text="${user.getUsername()}" class="reservation-text"></span></div>
+                    <div><strong>Email: </strong><span th:text="${user.getEmail()}"
+                                                       class="reservation-text"></span></div>
+                    <div><strong>Is admin: </strong><span th:text="${user.getIsAdmin()}"
+                                                          class="reservation-text"></span></div>
                     <div class="buttons">
-                        <form th:action="@{/user/delete}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${user.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">delete</span></button>
-                        </form>
-                        <form th:action="@{/users/update}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${user.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">update</span></button>
+                        <form th:action="@{'/users/update/' + ${user.getUsername()}}" method="post">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
                         </form>
                     </div>
                 </div>

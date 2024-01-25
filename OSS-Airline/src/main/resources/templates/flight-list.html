@@ -20,36 +20,80 @@
 </header>
 
 <body>
-<h2>Flights</h2>
-<form th:action="@{/flights/create}" method="get">
-    <button class="button-29" role="button"><span class="material-symbols-outlined">add</span></button>
-</form>
+<div class="smrad">
+    <div class="filter">
+        <form th:action="@{/flights}" method="post" class="form-div">
+            <h1>FILTER FLIGHTS</h1>
+            <div class="form-inside-parent-div">
+                <div class="form-inside-div">
+                    <label for="from"><strong>From:</strong></label>
+                    <input type="text" id="from" name="from" list="fromAirports" required>
+                    <datalist id="fromAirports">
+                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                    </datalist>
+                </div>
+                <div class="form-inside-div">
+                    <label for="to"><strong>To:</strong></label>
+                    <input type="text" id="to" name="to" list="toAirports" required>
+                    <datalist id="toAirports">
+                        <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
+                    </datalist>
+                </div>
+            </div>
+            <label for="date"><strong>Date:</strong></label>
+            <input type="date" id="date" name="date" required>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Flight Number</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Airplane</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Gate</th>
-        <th>Duration</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="flight : ${flights}">
-        <td th:text="${flight.flightNumber}"></td>
-        <td th:text="${flight.from.name}"></td>
-        <td th:text="${flight.to.name}"></td>
-        <td th:text="${flight.airplane.model}"></td>
-        <td th:text="${flight.date}"></td>
-        <td th:text="${flight.time}"></td>
-        <td th:text="${flight.gate}"></td>
-        <td th:text="${flight.duration}"></td>
-    </tr>
-    </tbody>
-</table>
+            <button class="button-29" role="button"><span class="material-symbols-outlined">search</span></button>
+        </form>
+    </div>
+
+    <div class="container">
+
+        <h1>Flights</h1>
+
+        <div th:if="${error}" class="error" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+        <div class="all-info-parent">
+            <form th:action="@{/flights/create}" method="get">
+                <button class="button-29" role="button"><span class="material-symbols-outlined">add</span></button>
+            </form>
+            <div class="all-info">
+                <div th:each="flight : ${flights}" class="all-info-container">
+                    <div class="one-info">
+                        <div><strong> <span th:text="${flight.flightNumber}" class="reservation-text"></span></strong>
+                        </div>
+                        <div><strong> <span th:text="${flight.from.name}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.to.name}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.airplane.model}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.date}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.time}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.gate}"
+                                            class="reservation-text"></span></strong></div>
+                        <div><strong> <span th:text="${flight.duration}"
+                                            class="reservation-text"></span></strong></div>
+                        <div class="buttons">
+                            <form th:action="@{/flights/delete}" method="post">
+                                <input type="hidden" name="flightId" th:value="${flight.getId()}"/>
+                                <button class="button-29" role="button"><span
+                                        class="material-symbols-outlined">delete</span></button>
+                            </form>
+                            <form th:action="@{/flights/update}" method="post">
+                                <input type="hidden" name="flightId" th:value="${flight.getId()}"/>
+                                <button class="button-29" role="button"><span
+                                        class="material-symbols-outlined">update</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,8 +26,8 @@ public class AirplaneController {
         return "airplanes";
     }
 
-    @PostMapping("/airplane/delete")
-    public String deleteAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+    @PostMapping("/airplanes/delete/{airplaneId}")
+    public String deleteAirplane(@PathVariable String airplaneId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         try {
@@ -47,7 +44,7 @@ public class AirplaneController {
         return "redirect:/airplanes";
     }
 
-    @PostMapping("/airplane/update")
+    @PostMapping("/airplanes/update")
     public String updateAirplane(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
@@ -65,8 +62,8 @@ public class AirplaneController {
         return "redirect:/airplanes";
     }
 
-    @PostMapping("/airplanes/update")
-    public String updateSelectedAirplane(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+    @PostMapping("/airplanes/update/{airplaneId}")
+    public String updateSelectedAirplane(@PathVariable("airplaneId") String airplaneId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         var airplane = airplaneService.getAirplaneById(airplaneId);
@@ -76,8 +73,8 @@ public class AirplaneController {
         return "update-airplane";
     }
 
-    @PostMapping("/airplane/info")
-    public String airplaneInfo(@RequestParam("airplaneId") String airplaneId, Model model, HttpSession session) {
+    @PostMapping("/airplanes/info/{airplaneId}")
+    public String airplaneInfo(@PathVariable("airplaneId") String airplaneId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         var airplane = airplaneService.getAirplaneById(airplaneId);
@@ -87,7 +84,7 @@ public class AirplaneController {
         return "airplane";
     }
 
-    @GetMapping("/airplane/create")
+    @GetMapping("/airplanes/create")
     public String airplaneCreate(Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
@@ -97,7 +94,7 @@ public class AirplaneController {
         return "create-airplane";
     }
 
-    @PostMapping("/airplane/create")
+    @PostMapping("/airplanes/create")
     public String airplaneCreate(@ModelAttribute("airplane") AirplaneDto airplane, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

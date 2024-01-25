@@ -11,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -193,17 +190,17 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/users/update")
-    public String updateSelectedUser(@RequestParam("userId")String userId, Model model, HttpSession session){
+    @PostMapping("/users/update/{username}")
+    public String updateSelectedUser(@PathVariable String username, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
-        var user = userService.getUserById(userId);
+        var user = userService.getUserByUsername(username);
         model.addAttribute("httpSession", session);
         model.addAttribute("user", user);
         return "update-user";
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/users/update")
     public String updateUserToAdmin(@ModelAttribute("user")UserDto userDto, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

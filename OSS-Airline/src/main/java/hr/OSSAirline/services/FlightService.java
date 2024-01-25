@@ -28,4 +28,8 @@ public class FlightService {
         var flight = flightRepository.save(flightMapper.toEntity(flightDto));
         seatService.generateSeatsForFlight(flight,firstClassPrice,businessClassPrice,economyClassPrice);
     }
+
+    public List<Flight> getFlightsToday(){
+        return flightRepository.getFlightsToday();
+    }
 }

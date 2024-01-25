@@ -23,7 +23,7 @@
 <div class="all-div">
     <h1>Create Airplane</h1>
 
-    <form th:action="@{/airplane/create}" th:object="${airplane}" method="post" class="form-create">
+    <form th:action="@{/airplanes/create}" th:object="${airplane}" method="post" class="form-create">
         <input type="hidden" th:field="*{id}"/>
         <div class="container">
             <label for="registration"><strong>Registration:</strong></label>

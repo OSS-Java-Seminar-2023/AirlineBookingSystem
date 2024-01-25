@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,7 +35,7 @@ public class AirportController {
         return "airports";
     }
 
-    @GetMapping("/airport/create")
+    @GetMapping("/airports/create")
     public String createAirport(Model model,HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
@@ -47,7 +44,7 @@ public class AirportController {
         return "create-airport";
     }
 
-    @PostMapping("/airport/create")
+    @PostMapping("/airports/create")
     public String createAirport(@ModelAttribute("airport") AirportDto airport, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
@@ -65,8 +62,8 @@ public class AirportController {
         return "redirect:/airports";
     }
 
-    @PostMapping("/airport/delete")
-    public String deleteAirport(@RequestParam("airportId") String airportId, Model model, HttpSession session){
+    @PostMapping("/airports/delete/{airportId}")
+    public String deleteAirport(@PathVariable("airportId") String airportId, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         try {
@@ -83,8 +80,8 @@ public class AirportController {
         return "redirect:/airports";
     }
 
-    @PostMapping("/airports/update")
-    public String updateSelectedAirport(@RequestParam("airportId")String airportId, Model model, HttpSession session){
+    @PostMapping("/airports/update/{airportId}")
+    public String updateSelectedAirport(@PathVariable("airportId")String airportId, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         var airport = airportService.getAirportById(airportId);
@@ -93,7 +90,7 @@ public class AirportController {
         return "update-airport";
     }
 
-    @PostMapping("/airport/update")
+    @PostMapping("/airports/update")
     public String updateAirport(@ModelAttribute("airportId")AirportDto airport, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

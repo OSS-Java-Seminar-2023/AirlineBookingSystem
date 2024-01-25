@@ -15,14 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,13 +35,15 @@ public class FlightController {
     public final AirportService airportService;
     public final AirplaneService airplaneService;
 
-    @GetMapping("/flights")
+    @GetMapping("/flights-all")
     public String listFlights(Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         var flights = flightService.getAllFlights();
+        var airports = airportService.getAllAirports();
         model.addAttribute("httpSession", session);
-        model.addAttribute("flights", flights);
+        model.addAttribute("flights", flightService.getFlightsToday());
+        model.addAttribute("airports", airports);
         return "flight-list";
     }
 
@@ -76,8 +81,9 @@ public class FlightController {
             return "create-flight";
         }
         model.addAttribute("httpSession", session);
-        return "redirect:/flights";
+        return "redirect:/flights-all";
     }
+
 
     @Data
     public static class FlightForm {

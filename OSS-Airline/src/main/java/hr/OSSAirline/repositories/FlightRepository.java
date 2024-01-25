@@ -3,6 +3,9 @@ package hr.OSSAirline.repositories;
 import hr.OSSAirline.models.Airplane;
 import hr.OSSAirline.models.Airport;
 import hr.OSSAirline.models.Flight;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -46,4 +49,6 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
     Boolean existsByTo_Id(String id);
     Boolean existsByFrom_Id(String id);
 
+    @Query("SELECT f FROM flight f WHERE DATE(f.date) = CURRENT_DATE")
+    List<Flight> getFlightsToday();
 }

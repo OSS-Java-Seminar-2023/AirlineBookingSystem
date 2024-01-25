@@ -28,7 +28,7 @@
         <p th:text="${error}"></p>
     </div>
     <div class="all-info-parent">
-        <form th:action="@{/airplane/create}" method="get">
+        <form th:action="@{/airplanes/create}" method="get">
             <button class="button-29" role="button"><span class="material-symbols-outlined">add</span></button>
         </form>
         <div class="all-info">
@@ -38,20 +38,16 @@
                     <div><strong> <span th:text="${airplane.getRegistration()}"
                                         class="reservation-text"></span></strong></div>
                     <div class="buttons">
-                        <form th:action="@{/airplane/delete}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${airplane.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">delete</span></button>
+                        <form th:action="@{'/airplanes/delete/' + ${airplane.getId()}}" method="post">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">delete</span></button>
                         </form>
-                        <form th:action="@{/airplanes/update}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${airplane.getId()}"/>
-                            <button class="button-29" role="button"><span
-                                    class="material-symbols-outlined">update</span></button>
+
+                        <form th:action="@{'/airplanes/update/' + ${airplane.getId()}}" method="post">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
                         </form>
-                        <form th:action="@{/airplane/info}" method="post">
-                            <input type="hidden" name="airplaneId" th:value="${airplane.getId()}"/>
-                            <button class="button-29" role="button"><span class="material-symbols-outlined">info</span>
-                            </button>
+
+                        <form th:action="@{'/airplanes/info/' + ${airplane.getId()}}" method="post">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">info</span></button>
                         </form>
                     </div>
                 </div>
