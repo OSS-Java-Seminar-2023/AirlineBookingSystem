@@ -190,7 +190,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/users/update/{username}")
+    @GetMapping("/users/update/{username}")
     public String updateSelectedUser(@PathVariable String username, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

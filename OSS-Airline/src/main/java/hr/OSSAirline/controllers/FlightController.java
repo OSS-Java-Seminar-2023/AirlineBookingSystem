@@ -100,7 +100,7 @@ public class FlightController {
         return "redirect:/flights-all";
     }
 
-    @PostMapping("/flights/update/{flightId}")
+    @GetMapping("/flights/update/{flightId}")
     public String updateSelectedFlight(@PathVariable("flightId")String flightId, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

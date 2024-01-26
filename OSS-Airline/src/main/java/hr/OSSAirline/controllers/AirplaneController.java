@@ -62,7 +62,7 @@ public class AirplaneController {
         return "redirect:/airplanes";
     }
 
-    @PostMapping("/airplanes/update/{airplaneId}")
+    @GetMapping("/airplanes/update/{airplaneId}")
     public String updateSelectedAirplane(@PathVariable("airplaneId") String airplaneId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
@@ -73,7 +73,7 @@ public class AirplaneController {
         return "update-airplane";
     }
 
-    @PostMapping("/airplanes/info/{airplaneId}")
+    @GetMapping("/airplanes/info/{airplaneId}")
     public String airplaneInfo(@PathVariable("airplaneId") String airplaneId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;

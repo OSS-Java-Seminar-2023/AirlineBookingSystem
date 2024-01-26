@@ -43,7 +43,7 @@
                     <div><strong>Is admin: </strong><span th:text="${admin.getIsAdmin()}"
                                         class="reservation-text"></span></div>
                     <div class="buttons">
-                        <form th:action="@{'/users/update/' + ${admin.getUsername()}}" method="post">
+                        <form th:action="@{'/users/update/' + ${admin.getUsername()}}" method="get">
                             <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
                         </form>
                     </div>
@@ -58,7 +58,7 @@
                     <div><strong>Is admin: </strong><span th:text="${user.getIsAdmin()}"
                                                           class="reservation-text"></span></div>
                     <div class="buttons">
-                        <form th:action="@{'/users/update/' + ${user.getUsername()}}" method="post">
+                        <form th:action="@{'/users/update/' + ${user.getUsername()}}" method="get">
                             <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
                         </form>
                     </div>

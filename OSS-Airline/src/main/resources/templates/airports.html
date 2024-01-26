@@ -43,7 +43,7 @@
                 <button class="button-29" role="button"><span class="material-symbols-outlined">delete</span></button>
               </form>
 
-              <form th:action="@{'/airports/update/' + ${airport.getId()}}" method="post">
+              <form th:action="@{'/airports/update/' + ${airport.getId()}}" method="get">
                 <button class="button-29" role="button"><span class="material-symbols-outlined">update</span></button>
               </form>
           </div>

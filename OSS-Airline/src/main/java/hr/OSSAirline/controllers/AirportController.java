@@ -80,7 +80,7 @@ public class AirportController {
         return "redirect:/airports";
     }
 
-    @PostMapping("/airports/update/{airportId}")
+    @GetMapping("/airports/update/{airportId}")
     public String updateSelectedAirport(@PathVariable("airportId")String airportId, Model model, HttpSession session){
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
