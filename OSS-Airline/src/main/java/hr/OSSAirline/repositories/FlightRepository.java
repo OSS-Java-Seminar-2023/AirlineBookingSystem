@@ -51,4 +51,13 @@ public interface FlightRepository extends JpaRepository<Flight, String> {
 
     @Query("SELECT f FROM flight f WHERE DATE(f.date) = CURRENT_DATE")
     List<Flight> getFlightsToday();
+
+    List<Flight> getFlightByFlightNumber(String flightNumber);
+    List<Flight> getFlightByFlightNumberAndFrom_Name(String flightNumber, String from_name);
+    List<Flight> getFlightByFlightNumberAndFrom_NameAndTo_Name(String flightNumber, String from_name, String to_name);
+
+    @Query("SELECT f FROM flight f " +
+            "WHERE f.date = :givenDate " +
+            "AND (f.time > CURRENT_TIME() OR f.date > CURRENT_DATE())")
+    List<Flight> getFlightsByDate(@Param("givenDate") Date givenDate);
 }

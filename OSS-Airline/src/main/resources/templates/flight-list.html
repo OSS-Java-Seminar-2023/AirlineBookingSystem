@@ -22,26 +22,30 @@
 <body>
 <div class="smrad">
     <div class="filter">
-        <form th:action="@{/flights}" method="post" class="form-div">
+        <form th:action="@{/flights-all}" method="post" class="form-div">
             <h1>FILTER FLIGHTS</h1>
+            <div class="form-inside-div">
+                <label for="flightNumber"><strong>Flight Number:</strong></label>
+                <input type="text" id="flightNumber" name="flightNumber">
+            </div>
             <div class="form-inside-parent-div">
                 <div class="form-inside-div">
                     <label for="from"><strong>From:</strong></label>
-                    <input type="text" id="from" name="from" list="fromAirports" required>
+                    <input type="text" id="from" name="from" list="fromAirports">
                     <datalist id="fromAirports">
                         <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
                     </datalist>
                 </div>
                 <div class="form-inside-div">
                     <label for="to"><strong>To:</strong></label>
-                    <input type="text" id="to" name="to" list="toAirports" required>
+                    <input type="text" id="to" name="to" list="toAirports">
                     <datalist id="toAirports">
                         <option th:each="airport : ${airports}" th:value="${airport.name}"></option>
                     </datalist>
                 </div>
             </div>
             <label for="date"><strong>Date:</strong></label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date">
 
             <button class="button-29" role="button"><span class="material-symbols-outlined">search</span></button>
         </form>

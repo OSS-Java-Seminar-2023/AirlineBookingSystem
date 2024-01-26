@@ -8,6 +8,8 @@ import hr.OSSAirline.repositories.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,5 +55,31 @@ public class FlightService {
 
     public Flight getFlightById(String id) {
         return flightRepository.getReferenceById(id);
+    }
+
+    public List<Flight> filterFlightsByDate(List<Flight> flights, java.util.Date date){
+        return flights.stream().filter(flight -> flight.getDate().equals(date)).toList();
+    }
+
+    public List<Flight> getAllFilteredFlights(String flightNumber, String fromAirportName, String toAirportName, java.util.Date date){
+        List<Flight> flights = new ArrayList<>();
+        if(!flightNumber.isBlank() && fromAirportName.isBlank() && toAirportName.isBlank()){
+            flights.addAll(flightRepository.getFlightByFlightNumber(flightNumber));
+        }
+        else if(!flightNumber.isBlank() && !fromAirportName.isBlank() && toAirportName.isBlank()){
+            flights.addAll(flightRepository.getFlightByFlightNumberAndFrom_Name(flightNumber, fromAirportName));
+        } else if(!flightNumber.isBlank() && !fromAirportName.isBlank() && !toAirportName.isBlank()) {
+            flights.addAll(flightRepository.getFlightByFlightNumberAndFrom_NameAndTo_Name(flightNumber, fromAirportName, toAirportName));
+        } else if(flightNumber.isBlank() && fromAirportName.isBlank() && toAirportName.isBlank() && date == null){
+            flights.addAll(flightRepository.getFlightsToday());
+        }
+
+        if(date != null && !flights.isEmpty()){
+            filterFlightsByDate(flights, date);
+        } else if(date != null){
+            flights.addAll(flightRepository.getFlightsByDate(date));
+        }
+
+        return flights;
     }
 }

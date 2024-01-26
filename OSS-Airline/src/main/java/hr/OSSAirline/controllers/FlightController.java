@@ -1,8 +1,6 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.dto.AirportDto;
 import hr.OSSAirline.dto.FlightDto;
-import hr.OSSAirline.models.Flight;
 import hr.OSSAirline.services.AirplaneService;
 import hr.OSSAirline.services.AirportService;
 import hr.OSSAirline.services.FlightService;
@@ -17,13 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.Instant;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,10 +33,10 @@ public class FlightController {
     public String listFlights(Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
-        var flights = flightService.getAllFlights();
+        var flights = flightService.getFlightsToday();
         var airports = airportService.getAllAirports();
         model.addAttribute("httpSession", session);
-        model.addAttribute("flights", flightService.getFlightsToday());
+        model.addAttribute("flights", flights);
         model.addAttribute("airports", airports);
         return "flight-list";
     }
@@ -83,13 +79,12 @@ public class FlightController {
     }
 
     @PostMapping("/flights/delete/{flightId}")
-    public String deleteFlight(@PathVariable("flightId") String flightId, Model model, HttpSession session){
+    public String deleteFlight(@PathVariable("flightId") String flightId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         try {
             flightService.deleteFlight(flightId);
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             var flights = flightService.getFlightsToday();
             model.addAttribute("error", e.getMessage());
             model.addAttribute("httpSession", session);
@@ -101,7 +96,7 @@ public class FlightController {
     }
 
     @GetMapping("/flights/update/{flightId}")
-    public String updateSelectedFlight(@PathVariable("flightId")String flightId, Model model, HttpSession session){
+    public String updateSelectedFlight(@PathVariable("flightId") String flightId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
         var flight = flightService.getFlightById(flightId);
@@ -115,13 +110,12 @@ public class FlightController {
     }
 
     @PostMapping("/flights/update")
-    public String updateFlight(@ModelAttribute("flight") FlightDto flight, Model model, HttpSession session){
+    public String updateFlight(@ModelAttribute("flight") FlightDto flight, Model model, HttpSession session) {
         var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
         if (x != null) return x;
-        try{
+        try {
             flightService.updateFlight(flight.getId(), flight);
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             var flights = flightService.getFlightsToday();
             model.addAttribute("error", e.getMessage());
             model.addAttribute("httpSession", session);
@@ -130,6 +124,27 @@ public class FlightController {
         }
         model.addAttribute("httpSession", session);
         return "redirect:/flights-all";
+    }
+
+    @PostMapping("/flights-all")
+    public String filterFlights(@RequestParam("flightNumber") String flightNumber, @RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("date") String date, Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+
+        var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        var parsedDate = new java.util.Date();
+        try {
+            parsedDate = dateFormat.parse(date);
+        }
+        catch (ParseException e){
+            System.out.println(e);
+        }
+        var flights = flightService.getAllFilteredFlights(flightNumber, from, to, parsedDate);
+        var airports = airportService.getAllAirports();
+        model.addAttribute("httpSession", session);
+        model.addAttribute("flights", flights);
+        model.addAttribute("airports", airports);
+        return "flight-list";
     }
 
 
