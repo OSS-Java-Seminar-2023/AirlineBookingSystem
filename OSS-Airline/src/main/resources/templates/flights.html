@@ -21,24 +21,24 @@
 
 <div th:if="${#lists.size(flights_map['flights_date']) > 0 or #lists.size(flights_map['flights_after']) > 0 or #lists.size(flights_map['flights_before']) > 0}">
     <div class="flight-header">
+        <div>Date</div>
+        <div>Time</div>
         <div>Flight Number</div>
         <div>From</div>
         <div>To</div>
         <div>Airplane</div>
-        <div>Date</div>
-        <div>Time</div>
         <div>Gate</div>
         <div>Duration</div>
         <div><i class="material-icons">shopping_cart</i></div>
     </div>
 
     <div th:each="flight : ${flights_map['flights_date']}" class="flight">
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.flightNumber}"></div>
         <div th:text="${flight.from.name}"></div>
         <div th:text="${flight.to.name}"></div>
         <div th:text="${flight.airplane.model}"></div>
-        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
-        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
         <form th:action="@{/seats}" method="post">
@@ -50,13 +50,15 @@
         <h1> SORRY, NO FLIGHTS FOUND ON GIVEN DATE! </h1>
     </div>
     <br>
+    <br>
+    <br>
     <div th:each="flight : ${flights_map['flights_before']}" class="flight">
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.flightNumber}"></div>
         <div th:text="${flight.from.name}"></div>
         <div th:text="${flight.to.name}"></div>
         <div th:text="${flight.airplane.model}"></div>
-        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
-        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
         <form th:action="@{/seats}" method="post">
@@ -68,13 +70,15 @@
         <h1> SORRY, NO FLIGHTS FOUND BEFORE THE GIVEN DATE! </h1>
     </div>
     <br>
+    <br>
+    <br>
     <div th:each="flight : ${flights_map['flights_after']}" class="flight">
+        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
+        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.flightNumber}"></div>
         <div th:text="${flight.from.name}"></div>
         <div th:text="${flight.to.name}"></div>
         <div th:text="${flight.airplane.model}"></div>
-        <div th:text="${#dates.format(flight.date, 'yyyy-MM-dd')}"></div>
-        <div th:text="${#dates.format(flight.time, 'HH:mm')}"></div>
         <div th:text="${flight.gate}"></div>
         <div th:text="${#dates.format(flight.duration, 'HH:mm')}"></div>
         <form th:action="@{/seats}" method="post">

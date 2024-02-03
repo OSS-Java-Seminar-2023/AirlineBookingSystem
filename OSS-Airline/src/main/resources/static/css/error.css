@@ -34,3 +34,21 @@
     align-content: center;
     justify-content: center;
 }
+
+.error div{
+    padding: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: red;
+}
+
+.text-link{
+    font-size: larger;
+    transition: color 0.2s ease, scale 0.2s ease;
+    &:hover{
+        scale: 1.05;
+        color: #002dcc;
+    }
+}
