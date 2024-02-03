@@ -19,7 +19,7 @@ public class AirportController {
     private final AirportService airportService;
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
-        List<AirportDto> airports = airportService.getAllAirports();
+        var airports = airportService.getAllAirports();
         model.addAttribute("airports", airports);
         model.addAttribute("httpSession",session);
         return "index";

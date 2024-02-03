@@ -38,8 +38,8 @@ public class ReservationController {
 
     @PostMapping("/reservations/details")
     public String detailedReservation(@RequestParam String reservationId, Model model, HttpSession session){
-        //var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
-        //if (x != null) return x;
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if (x != null) return x;
 
         var reservation = reservationService.getReservationById(reservationId);
         model.addAttribute("httpSession",session);
