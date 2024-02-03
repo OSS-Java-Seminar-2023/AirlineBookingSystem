@@ -19,26 +19,25 @@ public class EmailService {
         javaMailSender.send(message);
     }
 
-    public void compileEmail(String toEmail, String body, String subject) throws MessagingException {
+    public void sendWelcomeEmail(String toEmail) throws MessagingException {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ossairline@gmail.com");
         message.setTo(toEmail);
-        message.setSubject(subject);
-        message.setText(body);
+        message.setSubject(MailConstants.MAIL_SUBJECT);
+        message.setText(MailConstants.MAIL_BODY);
         sendEmail(message);
     }
 
-    public void sendReservationMail(User user, String reservationId) {
+    public void sendReservationMail(User user) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ossairline@gmail.com");
         message.setTo(user.getEmail());
         message.setSubject(MailConstants.MAIL_RESERVATION_SUBJECT);
-        message.setText(getReservationEmailMessage(user, reservationId));
+        message.setText(getReservationEmailMessage(user));
         sendEmail(message);
     }
 
-    private String getReservationEmailMessage(User user, String reservationId) {
-        return "Hello, " + user.getUsername() + "! \nYou can see you reservation on our web page using this code: \n" +
-                reservationId + "\nBest regards, OSS Airline";
+    private String getReservationEmailMessage(User user) {
+        return "Hello, " + user.getUsername() + "! \nThank you for your reservation \n Best regards, OSS Airline";
     }
 }

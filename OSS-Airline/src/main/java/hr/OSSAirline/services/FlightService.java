@@ -68,7 +68,7 @@ public class FlightService {
         }
         else if(!flightNumber.isBlank() && !fromAirportName.isBlank() && toAirportName.isBlank()){
             flights.addAll(flightRepository.getFlightByFlightNumberAndFrom_Name(flightNumber, fromAirportName));
-        } else if(!flightNumber.isBlank() && !fromAirportName.isBlank() && !toAirportName.isBlank()) {
+        } else if(!flightNumber.isBlank() && !fromAirportName.isBlank()) {
             flights.addAll(flightRepository.getFlightByFlightNumberAndFrom_NameAndTo_Name(flightNumber, fromAirportName, toAirportName));
         } else if(flightNumber.isBlank() && fromAirportName.isBlank() && toAirportName.isBlank() && date == null){
             flights.addAll(flightRepository.getFlightsToday());
