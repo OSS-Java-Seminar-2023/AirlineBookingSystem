@@ -20,7 +20,7 @@ public class AirportService {
     private final FlightRepository flightRepository;
 
     public List<AirportDto> getAllAirports(){
-        List<Airport> airports = airportRepository.findAll();
+        var airports = airportRepository.findAll();
         return airports.stream()
                 .map(airportMapper::toDto)
                 .collect(Collectors.toList());

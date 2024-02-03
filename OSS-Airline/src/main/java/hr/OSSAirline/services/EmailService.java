@@ -20,7 +20,7 @@ public class EmailService {
     }
 
     public void sendWelcomeEmail(String toEmail) throws MessagingException {
-        SimpleMailMessage message = new SimpleMailMessage();
+        var message = new SimpleMailMessage();
         message.setFrom("ossairline@gmail.com");
         message.setTo(toEmail);
         message.setSubject(MailConstants.MAIL_SUBJECT);
@@ -29,7 +29,7 @@ public class EmailService {
     }
 
     public void sendReservationMail(User user) {
-        SimpleMailMessage message = new SimpleMailMessage();
+        var message = new SimpleMailMessage();
         message.setFrom("ossairline@gmail.com");
         message.setTo(user.getEmail());
         message.setSubject(MailConstants.MAIL_RESERVATION_SUBJECT);

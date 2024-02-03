@@ -38,11 +38,11 @@ public class TicketPassengerSeatService {
     private final SeatMapper seatMapper;
 
     public List<TicketDto> proccessTicket(Map<String, PassengerDto> passenger_map) {
-        List<TicketDto> tickets = new ArrayList<>();
+        var tickets = new ArrayList<TicketDto>();
 
         for (Map.Entry<String, PassengerDto> entry : passenger_map.entrySet()) {
-            PassengerDto passengerDto = entry.getValue();
-            PassengerDto existingPassenger = passengerMapper.toDto(passengerRepository.findByPIN(passengerDto.getPIN()));
+            var passengerDto = entry.getValue();
+            var existingPassenger = passengerMapper.toDto(passengerRepository.findByPIN(passengerDto.getPIN()));
 
             if (existingPassenger == null) {
                 passengerRepository.save(passengerMapper.toEntity(passengerDto));
@@ -54,7 +54,7 @@ public class TicketPassengerSeatService {
                 }
             }
 
-            TicketDto ticketDto = new TicketDto();
+            var ticketDto = new TicketDto();
             ticketDto.setPassenger(passengerDto);
             ticketDto.setSeat(seatMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null)));
             ticketDto.setFlight(flightMapper.toDto(seatRepository.findById(entry.getKey()).orElse(null).getFlight()));
@@ -80,9 +80,9 @@ public class TicketPassengerSeatService {
     }
 
     private int calculateAge(Date DOB) {
-        Calendar birthDate = Calendar.getInstance();
+        var birthDate = Calendar.getInstance();
         birthDate.setTime(DOB);
-        Calendar currentDate = Calendar.getInstance();
+        var currentDate = Calendar.getInstance();
         int years = currentDate.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR);
         if (currentDate.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
             years--;

@@ -90,6 +90,7 @@ public class AirplaneController {
         if (x != null) return x;
         model.addAttribute("httpSession", session);
         model.addAttribute("airplane", new AirplaneDto());
+        model.addAttribute("models", airplaneService.getAllAirplanes());
 
         return "create-airplane";
     }

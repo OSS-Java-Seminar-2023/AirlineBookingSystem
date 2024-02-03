@@ -103,7 +103,6 @@ public class UserController {
     public String changePassword(HttpSession session, Model model){
         var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
         if(x != null) return x;
-
         model.addAttribute("httpSession",session);
 
         return "change-pass";
