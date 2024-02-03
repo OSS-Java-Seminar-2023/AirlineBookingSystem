@@ -3,7 +3,6 @@ package hr.OSSAirline.services;
 import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.exceptions.PasswordException;
 import hr.OSSAirline.mappers.UserMapper;
-import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.ReservationRepository;
 import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.utils.MailConstants;
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +33,7 @@ public class UserService {
         }
         encodeAndSetPassword(user);
 
-        emailService.compileEmail(user.getEmail(), MailConstants.MAIL_SUBJECT, MailConstants.MAIL_BODY);
+        emailService.sendWelcomeEmail(user.getEmail());
         user.setIsAdmin("false");
         userRepository.save(userMapper.toEntity(user));
     }

@@ -39,7 +39,7 @@ h2 {
     background-color: white;
     gap: 20px;
     padding: 40px;
-    border-radius: 10%;
+    border-radius: 30px;
     position: absolute;
     top: 50%;
     width: 20%;
@@ -114,7 +114,7 @@ input {
     background-color: white;
     gap: 10px;
     padding: 20px;
-    border-radius: 10%;
+    border-radius: 30px;
     position: absolute;
     top: 50%;
     width: 50%;
