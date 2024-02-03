@@ -22,13 +22,8 @@ public class TicketSeatController {
 
     @PostMapping("/seats")
     public String getAllAvailableSeats(@RequestParam String flightId, Model model, HttpSession session) {
-//        try {
-//            SecurityCheck.isUserNotLoggedInReturnToLogin(session);
-//        } catch (RuntimeException e) {
-//            model.addAttribute("error", e.getMessage());
-//            model.addAttribute("httpSession",session);
-//            return "user_login";
-//        }
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if (x != null) return x;
         var availableSeats = ticketSeatService.getAllAvailableSeats(flightId);
         model.addAttribute("availableSeats", availableSeats);
         model.addAttribute("httpSession", session);
@@ -38,13 +33,8 @@ public class TicketSeatController {
 
     @PostMapping("/tickets")
     public String bookSelectedSeats(@RequestParam("selectedSeats") List<String> seats, Model model, HttpSession session){
-//        try {
-//            SecurityCheck.isUserNotLoggedInReturnToLogin(session);
-//        } catch (RuntimeException e) {
-//            model.addAttribute("error", e.getMessage());
-//            model.addAttribute("httpSession",session);
-//            return "user_login";
-//        }
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if (x != null) return x;
         var selectedSeats = ticketSeatService.getSeatsByIds(seats.stream().toList());
         var passengers = new ArrayList<>();
         for (int i = 0; i < selectedSeats.size(); i++) {
