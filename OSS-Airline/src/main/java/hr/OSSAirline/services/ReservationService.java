@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,12 @@ public class ReservationService {
     public final ReservationRepository reservationRepository;
 
     private final ReservationMapper reservationMapper;
+
+    public List<ReservationDto> getAllReservations(){
+        return reservationRepository.findAll().stream()
+                .map(reservationMapper::toDto)
+                .toList();
+    }
 
     public List<ReservationDto> getAllUserReservations(User user){
         return reservationRepository.findReservationsByUser(user).stream()

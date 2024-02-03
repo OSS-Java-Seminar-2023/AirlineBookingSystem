@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSS Airline - Reservations</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-all.css}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+</head>
+
+<header>
+    <div th:replace="~{/nav.html}"></div>
+</header>
+
+<body>
+<div class="container">
+    <h1>Reservations</h1>
+
+    <div th:if="${error}" class="error" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div class="all-info-parent">
+        <div class="all-info">
+            <div th:each="reservation : ${reservations}" class="all-info-container">
+                <div class="one-info">
+                    <div><strong><span th:text="${reservation.getUser().getUsername()}" class="reservation-text"></span></strong></div>
+                    <div><strong><span th:text="${reservation.getPaymentInfo()}" class="reservation-text"></span></strong></div>
+                    <div><strong><span th:text="${reservation.getPaymentDate()}" class="reservation-text"></span></strong></div>
+
+                    <div th:each="ticket : ${reservation.getTickets()}">
+                        <span th:text="${ticket.getTicketDetails()}" class="reservation-text"></span>
+                    </div>
+
+                    <div class="buttons">
+                        <form th:action="@{'/reservations/info/' + ${reservation.getId()}}" method="get">
+                            <button class="button-29" role="button"><span class="material-symbols-outlined">info</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
