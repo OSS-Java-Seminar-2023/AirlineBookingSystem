@@ -35,9 +35,13 @@ public class TicketPassengerSeatController {
                         passengers::get
                 ));
         try{
-            var ticket_list = ticketPassengerSeatService.proccessTicket(passengers_map); //TODO  fix error throw form function DONE
+            var ticket_list = ticketPassengerSeatService.proccessTicket(passengers_map);
+            var totalPrice = ticket_list.stream()
+                    .mapToDouble(TicketDto::getTicketPrice)
+                    .sum();
             model.addAttribute("httpSession", session);
             model.addAttribute("ticketList", ticket_list);
+            model.addAttribute("totalPrice", totalPrice);
         }
         catch (RuntimeException e){
             var selectedSeats = ticketSeatService.getSeatsByIds(seats.stream().toList());
