@@ -1,15 +1,22 @@
 package hr.OSSAirline.services;
 
+import hr.OSSAirline.dto.PassengerDto;
+import hr.OSSAirline.mappers.PassengerMapper;
 import hr.OSSAirline.repositories.PassengerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
-public class PassengerService {
-    public final PassengerRepository passengerRepository;
+import java.util.List;
 
-    @Autowired
-    public PassengerService(PassengerRepository passengerRepository){
-        this.passengerRepository=passengerRepository;
+@Service
+@RequiredArgsConstructor
+public class PassengerService {
+    private final PassengerRepository passengerRepository;
+    private final PassengerMapper passengerMapper;
+
+    public List<PassengerDto> getAllPassengers() {
+        return passengerRepository.findAll().stream()
+                .map(passengerMapper::toDto)
+                .toList();
     }
 }

@@ -32,10 +32,10 @@ public class FlightService {
         seatService.generateSeatsForFlight(flight, firstClassPrice, businessClassPrice, economyClassPrice);
     }
 
-    public Flight updateFlight(String id, FlightDto flight) {
+    public void updateFlight(String id, FlightDto flight) {
         if (flightRepository.existsById(id) && !ticketRepository.existsTicketsByFlight_Id(id)) {
             flight.setId(id);
-            return flightRepository.save(flightMapper.toEntity(flight));
+            flightRepository.save(flightMapper.toEntity(flight));
         } else {
             throw new RuntimeException("Can not update flight that has reserved tickets.");
         }

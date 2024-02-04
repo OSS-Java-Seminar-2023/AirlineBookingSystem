@@ -39,8 +39,8 @@ public class UserService {
     }
 
     private static void encodeAndSetPassword(UserDto user) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        var passwordEncoder = new BCryptPasswordEncoder();
+        var hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
     }
 

@@ -20,6 +20,16 @@ public class ReservationController {
 
     private final UserRepository userRepository;
 
+    @GetMapping("/reservations-all")
+    public String getAllReservations(Model model, HttpSession session) {
+        var x = SecurityCheck.isUserAdminIfNotReturnToHome(session);
+        if (x != null) return x;
+        var reservations = reservationService.getAllReservations();
+        model.addAttribute("httpSession", session);
+        model.addAttribute("reservations", reservations);
+        return "reservations-all";
+    }
+
     @GetMapping("/reservations")
     public String seeReservations(Model model, HttpSession session){
         var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);

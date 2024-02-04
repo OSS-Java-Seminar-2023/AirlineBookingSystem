@@ -16,9 +16,9 @@ public class SeatService {
 
     @Transactional
     public void generateSeatsForFlight(Flight flight, Float firstClassPrice, Float businessClassPrice, Float economyClassPrice) {
-        int firstClassSeats = flight.getAirplane().getFirstSeats();
-        int businessClassSeats = flight.getAirplane().getBusinessSeats();
-        int economyClassSeats = flight.getAirplane().getEconomySeats();
+        var firstClassSeats = flight.getAirplane().getFirstSeats();
+        var businessClassSeats = flight.getAirplane().getBusinessSeats();
+        var economyClassSeats = flight.getAirplane().getEconomySeats();
 
         generateSeats(flight, firstClassSeats, "First Class", firstClassPrice);
         generateSeats(flight, businessClassSeats, "Business Class", businessClassPrice);
@@ -27,7 +27,7 @@ public class SeatService {
 
     private void generateSeats(Flight flight, int numberOfSeats, String seatClass, float seatPrice) {
         for (int i = 1; i <= numberOfSeats; i++) {
-            Seat seat = new Seat();
+            var seat = new Seat();
             seat.setId(UUID.randomUUID().toString());
             seat.setFlight(flight);
             seat.setSeatNumber(generateSeatNumber(seatClass, i));

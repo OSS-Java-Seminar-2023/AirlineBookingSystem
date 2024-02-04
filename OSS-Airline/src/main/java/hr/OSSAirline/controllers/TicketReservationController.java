@@ -1,6 +1,7 @@
 package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.dto.TicketDto;
+import hr.OSSAirline.models.TicketForm;
 import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.services.EmailService;
 import hr.OSSAirline.services.TicketReservationService;
@@ -24,13 +25,8 @@ public class TicketReservationController {
 
     @PostMapping("/tickets/reserve")
     public String reserveTickets(@ModelAttribute("tickets") TicketForm ticketForm, Model model, HttpSession session) {
-        try {
-            SecurityCheck.isUserNotLoggedInReturnToLogin(session);
-        } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
-            model.addAttribute("httpSession", session);
-            return "user_login";
-        }
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
+        if (x != null) return x;
         var userName = session.getAttribute("userName").toString();
         ticketReservationService.makeReservation(ticketForm, userName);
         var user = userRepository.findByUsername(userName);
@@ -40,12 +36,4 @@ public class TicketReservationController {
         return "index";
     }
 
-    @Data
-    public class TicketForm {
-        private List<TicketDto> tickets;
-        private List<String> passenger;
-        private List<String> flight;
-        private List<String> seat;
-        private List<Float> price;
-    }
 }

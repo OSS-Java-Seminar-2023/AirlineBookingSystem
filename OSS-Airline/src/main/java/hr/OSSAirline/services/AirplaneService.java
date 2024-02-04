@@ -39,10 +39,10 @@ public class AirplaneService {
         return airplaneMapper.toDto(airplaneRepository.getReferenceById(id));
     }
 
-    public Airplane updateAirplane(String id, AirplaneDto updatedAirplane) {
+    public void updateAirplane(String id, AirplaneDto updatedAirplane) {
         if (airplaneRepository.existsById(id) && !flightRepository.existsByAirplane_Id(id)) {
             updatedAirplane.setId(id);
-            return airplaneRepository.save(airplaneMapper.toEntity(updatedAirplane));
+            airplaneRepository.save(airplaneMapper.toEntity(updatedAirplane));
         } else {
             throw new RuntimeException("Can not update airplane while flights are using it.");
         }

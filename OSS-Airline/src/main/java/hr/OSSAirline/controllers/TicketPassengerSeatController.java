@@ -25,7 +25,7 @@ public class TicketPassengerSeatController {
     private final TicketSeatService ticketSeatService;
     @PostMapping("/tickets/save")
     public String saveTickets(@ModelAttribute("passengerForm") PassengerForm passengerForm, @RequestParam("seats") List<String> seats, Model model, HttpSession session) {
-        var x = SecurityCheck.isUserLoggedInReturnToHome(session);
+        var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
         if (x != null) return x;
         var passengers = passengerForm.getPassengers();
         var passengers_map = IntStream.range(0, seats.size())
