@@ -61,7 +61,7 @@
 
                 <div>
                     <label for="passengerDOB">Date of Birth:</label>
-                    <input type="date" id="passengerDOB" th:name="'passengers[' + ${iterStat.index} + '].DOB'" required>
+                    <input type="date" id="passengerDOB" th:name="'passengers[' + ${iterStat.index} + '].DOB'" onchange="validateDOB()" required>
                 </div>
 
                 <input type="hidden" name="seats" th:value="${seat.id}"/>
@@ -73,4 +73,6 @@
     </div>
 </div>
 </body>
+<script th:src="@{/javaScript/tickets.js}">
+</script>
 </html>

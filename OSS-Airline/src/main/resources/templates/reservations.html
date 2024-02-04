@@ -25,7 +25,7 @@
         <div th:each="reservation : ${reservations}" class="reservation-container">
             <div class="reservation-info">
                 <div><strong>No of tickets:</strong> <span th:text="${reservation.getTickets().size()}" class="reservation-text"></span></div>
-                <div><strong>Date of reservation:</strong> <span th:text="${reservation.getTickets().get(0).flight.getDate()}" class="reservation-text"></span></div>
+                <div><strong>Date of flight:</strong> <span th:text="${reservation.getTickets().get(0).flight.getDate()}" class="reservation-text"></span></div>
                 <div><strong>From:</strong> <span th:text="${reservation.getTickets().get(0).flight.getFrom().getName()}" class="reservation-text"></span></div>
                 <div><strong>To:</strong> <span th:text="${reservation.getTickets().get(0).flight.getTo().getName()}" class="reservation-text"></span></div>
             </div>
