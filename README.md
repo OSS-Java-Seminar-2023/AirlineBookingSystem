@@ -36,7 +36,6 @@ Our system is equipped with many features for reservation and flight management 
 ### Manager Features:
 1. **User Management:**
    - Create, modify, and disable user accounts
-   - Reset user passwords and unlock accounts
      
 2. **Passenger Management:**
    - Create, modify, and delete passengers
@@ -51,8 +50,6 @@ Our system is equipped with many features for reservation and flight management 
 
 2. **Buying tickets:**
    - Book tickets for one or many passengers
-   - Book a two-way flight 
-   - Cancel the order
   
 3. **Mail confirmations**
    - Receive a mail confirmation for your ticket/s 
