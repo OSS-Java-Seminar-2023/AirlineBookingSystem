@@ -45,7 +45,7 @@ public class TicketPassengerSeatService {
             var existingPassenger = passengerMapper.toDto(passengerRepository.findByPIN(passengerDto.getPIN()));
 
             if (existingPassenger == null) {
-                passengerRepository.save(passengerMapper.toEntity(passengerDto));
+                passengerDto=passengerMapper.toDto(passengerRepository.save(passengerMapper.toEntity(passengerDto)));
             } else {
                 if (ComparisonUtil.areEqual(passengerDto, existingPassenger)) {
                     passengerDto = existingPassenger;
