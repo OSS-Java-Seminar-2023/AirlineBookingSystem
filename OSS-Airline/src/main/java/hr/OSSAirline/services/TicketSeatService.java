@@ -1,9 +1,11 @@
 package hr.OSSAirline.services;
 
+import hr.OSSAirline.dto.AirplaneDto;
 import hr.OSSAirline.dto.SeatDto;
 import hr.OSSAirline.dto.TicketDto;
 import hr.OSSAirline.mappers.SeatMapper;
 import hr.OSSAirline.mappers.TicketMapper;
+import hr.OSSAirline.models.Airplane;
 import hr.OSSAirline.models.Seat;
 import hr.OSSAirline.repositories.SeatRepository;
 import hr.OSSAirline.repositories.TicketRepository;

@@ -53,6 +53,21 @@
         </form>
     </div>
 </div>
+<div th:if="${airplaneModel=='Airbus A320'}" class="airplane-seats">
+    <img th:src="@{/images/AirbusA320.png}" alt="airbusA319">
+</div>
+<div th:if="${airplaneModel=='Airbus A319'}" class="airplane-seats">
+    <img th:src="@{/images/AirbusA319.png}" alt="airbusA319">
+</div>
+<div th:if="${airplaneModel=='Boeing 737-800'}" class="airplane-seats">
+    <img th:src="@{/images/Boeing737-800.png}" alt="airbusA319">
+</div>
+<div th:if="${airplaneModel=='Bombardier Q400'}" class="airplane-seats">
+    <img th:src="@{/images/BombardierQ400.png}" alt="airbusA319">
+</div>
+<div th:if="${airplaneModel=='Embraer ERJ-175'}" class="airplane-seats">
+    <img th:src="@{/images/EmbraerERJ-175.png}" alt="airbusA319">
+</div>
 </body>
 
 </html>

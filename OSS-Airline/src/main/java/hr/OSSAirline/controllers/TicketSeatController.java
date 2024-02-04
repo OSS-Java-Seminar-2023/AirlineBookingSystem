@@ -2,6 +2,7 @@ package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.dto.PassengerDto;
 import hr.OSSAirline.dto.SeatDto;
+import hr.OSSAirline.services.FlightService;
 import hr.OSSAirline.services.TicketSeatService;
 import hr.OSSAirline.utils.SecurityCheck;
 import jakarta.servlet.http.HttpSession;
@@ -19,13 +20,16 @@ import java.util.List;
 public class TicketSeatController {
 
     private final TicketSeatService ticketSeatService;
+    private final FlightService flightService;
 
     @PostMapping("/seats")
     public String getAllAvailableSeats(@RequestParam String flightId, Model model, HttpSession session) {
         var x = SecurityCheck.isUserNotLoggedInReturnToLogin(session);
         if (x != null) return x;
         var availableSeats = ticketSeatService.getAllAvailableSeats(flightId);
+        var flight = flightService.getFlightById(flightId);
         model.addAttribute("availableSeats", availableSeats);
+        model.addAttribute("airplaneModel", flight.getAirplane().getModel());
         model.addAttribute("httpSession", session);
         return "seats";
 
