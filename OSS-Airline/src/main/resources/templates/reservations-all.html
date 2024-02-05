@@ -34,13 +34,10 @@
                     <div><strong><span th:text="${reservation.getPaymentDate()}" class="reservation-text"></span></strong></div>
 
                     <div th:each="ticket : ${reservation.getTickets()}">
-                        <span th:text="${ticket.getTicketDetails()}" class="reservation-text"></span>
-                    </div>
+                        <div><strong>From -> To: <span th:text="${ticket.flight.from.getName()} + ' -> ' + ${ticket.flight.to.getName()}" class="reservation-text"></span></strong></div>
+                        <div><strong>Name Surname: <span th:text="${ticket.passenger.name} + ' ' + ${ticket.passenger.surname}" class="reservation-text"></span></strong></div>
+                        <div><strong>Price: <span th:text="${ticket.getTicketPrice()}" class="reservation-text"></span></strong></div>
 
-                    <div class="buttons">
-                        <form th:action="@{'/reservations/info/' + ${reservation.getId()}}" method="get">
-                            <button class="button-29" role="button"><span class="material-symbols-outlined">info</span></button>
-                        </form>
                     </div>
                 </div>
             </div>
