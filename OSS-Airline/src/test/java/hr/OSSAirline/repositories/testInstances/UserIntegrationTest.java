@@ -23,9 +23,9 @@ public class UserIntegrationTest  extends RepositoryTestBase {
     private UserRepository userRepository;
 
     @Test
-    void userSaveGetByUsrnameTest() {
+    void userSaveGetByUsernameTest() {
         User testUser = new User();
-        testUser.setUsername("Ante");
+        testUser.setUsername("Mauro");
         testUser.setPassword("ante123");
         testUser.setEmail("ante@oss.hr");
 
@@ -34,5 +34,136 @@ public class UserIntegrationTest  extends RepositoryTestBase {
 
         Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
         Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
+    }
+
+    @Test
+    void userSaveGetByUsernameTest2() {
+        User testUser = new User();
+        testUser.setUsername("Mate");
+        testUser.setPassword("mate123");
+        testUser.setEmail("mate@oss.hr");
+
+
+        userRepository.save(testUser);
+
+        Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
+        Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
+    }
+
+    @Test
+    void userSaveGetByUsernameTest3() {
+        User testUser = new User();
+        testUser.setUsername("Jure");
+        testUser.setPassword("jure123");
+        testUser.setEmail("jure@oss.hr");
+
+
+        userRepository.save(testUser);
+
+        Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
+        Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
+    }
+
+    @Test
+    void userSaveGetByUsernameTest4() {
+        User testUser = new User();
+        testUser.setUsername("Filip");
+        testUser.setPassword("filip123");
+        testUser.setEmail("filip@oss.hr");
+
+
+        userRepository.save(testUser);
+
+        Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
+        Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
+    }
+
+    @Test
+    void userSaveGetByUsernameTest5() {
+        User testUser = new User();
+        testUser.setUsername("Roko");
+        testUser.setPassword("roko123");
+        testUser.setEmail("roko@oss.hr");
+
+
+        userRepository.save(testUser);
+
+        Optional<User> out = userRepository.findUserByUsername(testUser.getUsername());
+        Assertions.assertEquals(out.get().getUsername(), testUser.getUsername());
+    }
+
+    @Test
+    void userSaveGetNullByUsernameTest() {
+        User testUser = new User();
+        testUser.setUsername("Ante");
+        testUser.setPassword("ante123");
+        testUser.setEmail("ante@oss.hr");
+
+        var wrong_username = "wrong";
+
+        userRepository.save(testUser);
+
+        var out = userRepository.findUserByUsername(wrong_username);
+        Assertions.assertTrue(out.isEmpty());
+    }
+
+    @Test
+    void userSaveGetNullByUsernameTest2() {
+        User testUser = new User();
+        testUser.setUsername("Ante");
+        testUser.setPassword("ante123");
+        testUser.setEmail("ante@oss.hr");
+
+        var wrong_username = "antee";
+
+        userRepository.save(testUser);
+
+        var out = userRepository.findUserByUsername(wrong_username);
+        Assertions.assertTrue(out.isEmpty());
+    }
+
+    @Test
+    void userSaveGetNullByUsernameTest3() {
+        User testUser = new User();
+        testUser.setUsername("Ante");
+        testUser.setPassword("ante123");
+        testUser.setEmail("ante@oss.hr");
+
+        var wrong_username = "a";
+
+        userRepository.save(testUser);
+
+        var out = userRepository.findUserByUsername(wrong_username);
+        Assertions.assertTrue(out.isEmpty());
+    }
+
+    @Test
+    void userSaveGetNullByUsernameTest4() {
+        User testUser = new User();
+        testUser.setUsername("Ante");
+        testUser.setPassword("ante123");
+        testUser.setEmail("ante@oss.hr");
+
+        var wrong_username = "ant";
+
+        userRepository.save(testUser);
+
+        var out = userRepository.findUserByUsername(wrong_username);
+        Assertions.assertTrue(out.isEmpty());
+    }
+
+    @Test
+    void userSaveGetNullByUsernameTest5() {
+        User testUser = new User();
+        testUser.setUsername("Ante");
+        testUser.setPassword("ante123");
+        testUser.setEmail("ante@oss.hr");
+
+        var wrong_username = "anteante";
+
+        userRepository.save(testUser);
+
+        var out = userRepository.findUserByUsername(wrong_username);
+        Assertions.assertTrue(out.isEmpty());
     }
 }
