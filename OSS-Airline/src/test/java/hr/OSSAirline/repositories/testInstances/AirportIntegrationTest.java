@@ -1,11 +1,8 @@
 package hr.OSSAirline.repositories.testInstances;
 
-import hr.OSSAirline.models.Airplane;
 import hr.OSSAirline.models.Airport;
-import hr.OSSAirline.repositories.AirplaneRepository;
 import hr.OSSAirline.repositories.AirportRepository;
 import hr.OSSAirline.repositories.RepositoryTestBase;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

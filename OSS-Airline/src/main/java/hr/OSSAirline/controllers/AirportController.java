@@ -1,6 +1,5 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.dto.AirplaneDto;
 import hr.OSSAirline.dto.AirportDto;
 import hr.OSSAirline.services.AirportService;
 import hr.OSSAirline.utils.SecurityCheck;
@@ -9,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

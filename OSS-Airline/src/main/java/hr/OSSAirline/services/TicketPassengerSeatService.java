@@ -69,11 +69,11 @@ public class TicketPassengerSeatService {
     private Float calculateDiscountedPrice(Date DOB, Float basePrice) {
         var age = calculateAge(DOB);
         if (age < BABY_AGE_THRESHOLD) {
-            return basePrice * BABY_DISCOUNT_PERCENTAGE;
+            return roundFloat(basePrice * BABY_DISCOUNT_PERCENTAGE);
         } else if (BABY_AGE_THRESHOLD < age && age < CHILD_AGE_THRESHOLD) {
-            return basePrice * CHILD_DISCOUNT_PERCENTAGE;
+            return roundFloat(basePrice * CHILD_DISCOUNT_PERCENTAGE);
         } else if (age >= ELDER_AGE_THRESHOLD) {
-            return basePrice * ELDER_DISCOUNT_PERCENTAGE;
+            return roundFloat(basePrice * ELDER_DISCOUNT_PERCENTAGE);
         } else {
             return basePrice;
         }
@@ -88,5 +88,10 @@ public class TicketPassengerSeatService {
             years--;
         }
         return years;
+    }
+
+    private static Float roundFloat(Float number){
+        var formatted = String.format("%.2f", number);
+        return Float.parseFloat(formatted);
     }
 }

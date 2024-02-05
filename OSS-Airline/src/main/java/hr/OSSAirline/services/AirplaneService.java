@@ -2,7 +2,6 @@ package hr.OSSAirline.services;
 
 import hr.OSSAirline.dto.AirplaneDto;
 import hr.OSSAirline.mappers.AirplaneMapper;
-import hr.OSSAirline.models.Airplane;
 import hr.OSSAirline.repositories.AirplaneRepository;
 import hr.OSSAirline.repositories.FlightRepository;
 import lombok.RequiredArgsConstructor;

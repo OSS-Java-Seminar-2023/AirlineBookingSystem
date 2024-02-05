@@ -5,12 +5,10 @@ import hr.OSSAirline.exceptions.PasswordException;
 import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.repositories.ReservationRepository;
 import hr.OSSAirline.repositories.UserRepository;
-import hr.OSSAirline.utils.MailConstants;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.util.List;

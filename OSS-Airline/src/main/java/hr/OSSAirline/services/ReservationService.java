@@ -2,14 +2,12 @@ package hr.OSSAirline.services;
 
 import hr.OSSAirline.dto.ReservationDto;
 import hr.OSSAirline.mappers.ReservationMapper;
-import hr.OSSAirline.models.Reservation;
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

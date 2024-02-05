@@ -2,20 +2,14 @@ package hr.OSSAirline.controllers;
 
 import hr.OSSAirline.dto.UserDto;
 import hr.OSSAirline.exceptions.PasswordException;
-import hr.OSSAirline.mappers.UserMapper;
 import hr.OSSAirline.services.UserService;
 import hr.OSSAirline.utils.SecurityCheck;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-import static hr.OSSAirline.utils.SecurityCheck.isUserLoggedInReturnToHome;
 
 @Controller
 @RequiredArgsConstructor

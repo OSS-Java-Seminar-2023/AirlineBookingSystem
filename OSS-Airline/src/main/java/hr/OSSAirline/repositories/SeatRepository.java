@@ -1,6 +1,5 @@
 package hr.OSSAirline.repositories;
 
-import hr.OSSAirline.dto.FlightDto;
 import hr.OSSAirline.models.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -23,7 +23,43 @@ SELECT
     currentDate,
     '08:00:00',
     'GateB',
-    '08:30:00';
+    '00:30:00';
+
+INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
+SELECT
+    UUID(),
+    'OU101',
+    (SELECT id FROM airport WHERE name = 'Split Airport'),
+    (SELECT id FROM airport WHERE name = 'Dubrovnik Airport'),
+    (SELECT id FROM airplane ORDER BY RAND() LIMIT 1),
+    currentDate,
+    '10:00:00',
+    'GateB',
+    '00:30:00';
+
+INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
+SELECT
+    UUID(),
+    'OU101',
+    (SELECT id FROM airport WHERE name = 'Zagreb International Airport'),
+    (SELECT id FROM airport WHERE name = 'Split Airport'),
+    (SELECT id FROM airplane ORDER BY RAND() LIMIT 1),
+    currentDate,
+    '09:00:00',
+    'GateB',
+    '00:30:00';
+
+INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
+SELECT
+    UUID(),
+    'OU101',
+    (SELECT id FROM airport WHERE name = 'Split Airport'),
+    (SELECT id FROM airport WHERE name = 'Zagreb International Airport'),
+    (SELECT id FROM airplane ORDER BY RAND() LIMIT 1),
+    currentDate,
+    '12:00:00',
+    'GateB',
+    '00:30:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -35,7 +71,7 @@ SELECT
     currentDate,
     '08:05:00',
     'GateC',
-    '09:55:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -47,7 +83,7 @@ SELECT
     currentDate,
     '10:50:00',
     'GateA',
-    '12:30:00';
+    '01:50:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -59,7 +95,7 @@ SELECT
     currentDate,
     '15:00:00',
     'GateG',
-    '16:55:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -71,7 +107,7 @@ SELECT
     currentDate,
     '18:20:00',
     'GateA',
-    '20:15:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -83,7 +119,7 @@ SELECT
     currentDate,
     '11:40:00',
     'GateD',
-    '14:30:00';
+    '02:30:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -95,7 +131,7 @@ SELECT
     currentDate,
     '16:15:00',
     'GateF',
-    '19:30:00';
+    '2:30:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -107,7 +143,7 @@ SELECT
     currentDate,
     '06:00:00',
     'GateC',
-    '07:20:00';
+    '01:20:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -119,7 +155,7 @@ SELECT
     currentDate,
     '9:00:00',
     'GateA',
-    '11:30:00';
+    '01:30:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -131,7 +167,7 @@ SELECT
     currentDate,
     '12:30:00',
     'GateG',
-    '16:55:00';
+    '2:00:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -143,7 +179,7 @@ SELECT
     currentDate,
     '20:30:00',
     'GateA',
-    '23:00:00';
+    '1:30:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -155,7 +191,7 @@ SELECT
     currentDate,
     '07:05:00',
     'GateC',
-    '09:00:00';
+    '2:05:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -167,7 +203,7 @@ SELECT
     currentDate,
     '10:00:00',
     'GateA',
-    '12:00:00';
+    '02:05:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -179,7 +215,7 @@ SELECT
     currentDate,
     '13:00:00',
     'GateG',
-    '14:55:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -191,7 +227,7 @@ SELECT
     currentDate,
     '16:20:00',
     'GateA',
-    '18:15:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -203,7 +239,7 @@ SELECT
     currentDate,
     '07:05:00',
     'GateC',
-    '09:00:00';
+    '02:00:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -215,7 +251,7 @@ SELECT
     currentDate,
     '10:00:00',
     'GateA',
-    '12:00:00';
+    '02:00:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -227,7 +263,7 @@ SELECT
     currentDate,
     '13:00:00',
     'GateG',
-    '14:55:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -239,7 +275,7 @@ SELECT
     currentDate,
     '16:20:00',
     'GateA',
-    '18:15:00';
+    '01:55:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -251,7 +287,7 @@ SELECT
     currentDate,
     '14:00:00',
     'GateG',
-    '16:20:00';
+    '02:20:00';
 
 INSERT INTO flight (id, flight_number, from_id, to_id, airplane_id, date, time, gate, duration)
 SELECT
@@ -263,7 +299,7 @@ SELECT
     currentDate,
     '15:20:00',
     'GateA',
-    '18:15:00';
+    '01:15:00';
 
 -- Increment date for the next iteration
 SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);

@@ -1,20 +1,16 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.dto.TicketDto;
 import hr.OSSAirline.models.TicketForm;
 import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.services.EmailService;
 import hr.OSSAirline.services.TicketReservationService;
 import hr.OSSAirline.utils.SecurityCheck;
 import jakarta.servlet.http.HttpSession;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

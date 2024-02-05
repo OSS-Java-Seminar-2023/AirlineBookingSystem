@@ -3,8 +3,6 @@ package hr.OSSAirline.repositories.testInstances;
 import hr.OSSAirline.models.User;
 import hr.OSSAirline.repositories.RepositoryTestBase;
 import hr.OSSAirline.repositories.UserRepository;
-import hr.OSSAirline.services.UserService;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Testcontainers

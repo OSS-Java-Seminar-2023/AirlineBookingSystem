@@ -1,11 +1,9 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.repositories.PassengerRepository;
 import hr.OSSAirline.services.PassengerService;
 import hr.OSSAirline.utils.SecurityCheck;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

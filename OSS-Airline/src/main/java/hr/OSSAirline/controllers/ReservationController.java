@@ -1,6 +1,5 @@
 package hr.OSSAirline.controllers;
 
-import hr.OSSAirline.repositories.ReservationRepository;
 import hr.OSSAirline.repositories.UserRepository;
 import hr.OSSAirline.services.ReservationService;
 import hr.OSSAirline.utils.SecurityCheck;
