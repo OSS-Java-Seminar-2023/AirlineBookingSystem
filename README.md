@@ -21,7 +21,7 @@
 ## List of Contents 📖
 * [Introduction](#introduction)
 * [Features](#features)
-  * [Manager Features](#manager-features)
+  * [Admin Features](#manager-features)
   * [User Features](#user-features)
 * [Implementation](#implementation)
   * [Database Setup](#database-setup)
@@ -33,28 +33,42 @@ The Airline Ticket Reservation System is a Java-based project developed using th
 ## Features 📝
 Our system is equipped with many features for reservation and flight management services. Some of the features we implemented are:
 
-### Manager Features:
+### Admin Features:
 1. **User Management:**
-   - Create, modify, and disable user accounts
-   - Reset user passwords and unlock accounts
+   - Create new users
+   - Manage existing users
      
 2. **Passenger Management:**
    - Create, modify, and delete passengers
    
 3. **Flight Management:**
    - Create, modify, and delete flights
+   - Manage custom prices for each seat class
    - Manage the boarding and landing times and locations
+  
+4. **Airplane Management:**
+   - Create new airplanes from existing models
+   - Update already existing airplanes
+  
+5. **Airport Management:**
+   - Create a new airport
+   - Modify existing airports
+   - Delete airports that are no longer in use
   
 ### User Features:
 1. **Flight search:**
    - Search for flights to and from designated locations and times
+   - View the flights from the nearest day in the future and in the past
 
-2. **Buying tickets:**
+2. **Reserving tickets:**
    - Book tickets for one or many passengers
-   - Book a two-way flight 
-   - Cancel the order
+   - Receive a discount based on the age of passengers
+
+3. **View past reservations:**
+   - View your past reservations and see them in detail
   
-3. **Mail confirmations**
+4. **Mail confirmations**
+   - Receive a greeting mail upon a new registration
    - Receive a mail confirmation for your ticket/s 
   
 ## Implementation 💡
