@@ -69,7 +69,10 @@ Our system is equipped with many features for reservation and flight management 
   
 4. **Mail confirmations**
    - Receive a greeting mail upon a new registration
-   - Receive a mail confirmation for your ticket/s 
+   - Receive a mail confirmation for your ticket/s
+  
+5. **User Info**
+   - Change your password
   
 ## Implementation 💡
 
