@@ -8,13 +8,18 @@
     <title>OSS Airline</title>
     <link rel="stylesheet" th:href="@{/css/ti.css}">
     <link rel="stylesheet" th:href="@{/css/button.css}">
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() { window.history.forward(); }
+    </script>
 </head>
 
 <header>
     <div th:replace="~{/nav.html}"></div>
 </header>
 
-<body>
+<body onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload="">
 <div class="tickets">
     <h1>Book Tickets</h1>
     <div class="total-price">
