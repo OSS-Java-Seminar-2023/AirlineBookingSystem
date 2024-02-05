@@ -23,6 +23,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("SPU");
         testAirport.setName("Split");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByName(testAirport.getName());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -33,6 +34,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("ZRN");
         testAirport.setName("Zrnovnica");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByName(testAirport.getName());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -43,6 +45,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("MAK");
         testAirport.setName("Makarska");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByName(testAirport.getName());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -53,6 +56,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("KAS");
         testAirport.setName("Kastela");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByName(testAirport.getName());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -62,7 +66,8 @@ public class AirportIntegrationTest extends RepositoryTestBase {
     public void airportSaveAndGetByName5(){
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
-        testAirport.setName("Srinjine");
+        testAirport.setName("Karepovac");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByName(testAirport.getName());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -73,6 +78,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByIATA(testAirport.getIATA());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -83,6 +89,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("FRT");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByIATA(testAirport.getIATA());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -93,6 +100,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("ZUT");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByIATA(testAirport.getIATA());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -103,6 +111,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("RTZ");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByIATA(testAirport.getIATA());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -113,6 +122,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("MTZ");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var airport = airportRepository.getByIATA(testAirport.getIATA());
         Assertions.assertEquals(airport.getName(), testAirport.getName());
@@ -123,6 +133,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var wrong = "null";
 
@@ -135,6 +146,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var wrong = "srinjin";
 
@@ -147,6 +159,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var wrong = "sri";
 
@@ -159,6 +172,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var wrong = "AAA";
 
@@ -171,6 +185,7 @@ public class AirportIntegrationTest extends RepositoryTestBase {
         var testAirport = new Airport();
         testAirport.setIATA("AAA");
         testAirport.setName("Srinjine");
+        airportRepository.save(testAirport);
 
         var wrong = "srinjineee";
 
